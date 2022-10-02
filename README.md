@@ -13,7 +13,20 @@
 
 ## Макет проекта
 
-[Figma](https://www.figma.com/file/xrX1HnqbZXxlUXTUfqKwVb/Vue-SPA-course?node-id=6%3A0)
+[Figma](https://www.figma.com/file/xrX1HnqbZXxlUXTUfqKwVb/Vue-SPA-course?node-id=0%3A1)
+
+## Техническая часть
+
+[Node.js](https://nodejs.org/ru/)
+[Vue.js](https://v3.ru.vuejs.org/)
+[Vue CLI](https://cli.vuejs.org/ru/)
+[Vuex](https://vuex.vuejs.org/)
+[Vue Router](https://router.vuejs.org/)
+[sass](https://sass-lang.com/)
+[normalize.css](https://necolas.github.io/normalize.css/)
+[bootstrap v5.0](https://getbootstrap.com/)
+[axios](https://github.com/axios/axios)
+[swiper](https://swiperjs.com/)
 
 ### Project setup
 ```
