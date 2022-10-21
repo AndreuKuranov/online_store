@@ -1,0 +1,7 @@
+@function px($n) { 
+  @return $n + 0px;
+}
+
+@function px2rem($n, $fontSize: $baseFontSize) {
+  @return calc(px($n) / px($fontSize)) + rem;
+}
