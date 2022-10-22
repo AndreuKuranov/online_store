@@ -43,6 +43,21 @@
       </div>
     </div>
   </section>
+
+  <TabsComponent
+    class="page__tabs"
+  >
+    <TabComponent title="Характеристики" icon="settings_applications">
+      text Характеристики
+    </TabComponent>
+    <TabComponent title="Описание" icon="description">
+      text Описание
+    </TabComponent>
+    <TabComponent title="Отзывы" icon="reviews">
+      text Отзывы
+    </TabComponent>
+  </TabsComponent>
+
   <ListProducts
     class="page__products"
     :title="title"
@@ -51,8 +66,10 @@
 </template>
 
 <script>
-import ListProducts from '@/components/ListProducts.vue';
-import CounterComponent from '@/components/CounterComponent.vue';
+import ListProducts from "@/components/ListProducts.vue";
+import CounterComponent from "@/components/CounterComponent.vue";
+import TabsComponent from "@/components/TabsComponent.vue"
+import TabComponent from "@/components/TabComponent.vue"
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation, Pagination } from "swiper";
 import "swiper/css/bundle";
@@ -63,21 +80,23 @@ export default {
     Swiper,
     SwiperSlide,
     CounterComponent,
+    TabsComponent,
+    TabComponent,
   },
   data() {
     return {
       modules: [Autoplay, Navigation, Pagination],
       slides: [
-        { id: 'slide1', image: '4.png', altText: '4' },
-        { id: 'slide2', image: '5.png', altText: '5' },
-        { id: 'slide3', image: '6.png', altText: '6' },
+        { id: "slide1", image: "4.png", altText: "4" },
+        { id: "slide2", image: "5.png", altText: "5" },
+        { id: "slide3", image: "6.png", altText: "6" },
       ],
-      title: 'Товары',
+      title: "Товары",
       products: [
-        {id: "products1", link: "#", name: "Название товара", price: "9 999", img: '01.jpg'},
-        {id: "products2", link: "#", name: "Название товара", price: "9 999", img: '02.jpg'},
-        {id: "products3", link: "#", name: "Название товара", price: "9 999", img: '03.jpg'},
-        {id: "products4", link: "#", name: "Название товара", price: "9 999", img: '04.jpg'},
+        {id: "products1", link: "#", name: "Название товара", price: "9 999", img: "01.jpg"},
+        {id: "products2", link: "#", name: "Название товара", price: "9 999", img: "02.jpg"},
+        {id: "products3", link: "#", name: "Название товара", price: "9 999", img: "03.jpg"},
+        {id: "products4", link: "#", name: "Название товара", price: "9 999", img: "04.jpg"},
       ],
     }
   },

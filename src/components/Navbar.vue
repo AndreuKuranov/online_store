@@ -65,7 +65,6 @@
     }
   }
   &__item {
-    list-style: none;
     padding: 5px 0;
     position: relative;
     transition: 0.5s ease-out;
