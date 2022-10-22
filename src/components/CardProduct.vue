@@ -48,6 +48,11 @@
   font-size: px2rem(18px);
   line-height: 1.16;
   box-shadow: px2rem(5px) px2rem(5px) px2rem(5px) rgba($blackColor, 0.3);
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   &__img-block {
     position: relative;
@@ -77,7 +82,7 @@
 
   &__link {
     @extend %link;
-    display: block;
+    display: inline-block;
     margin: 0 0 px2rem(45px) 0;
 
     @media (max-width: 768px) {

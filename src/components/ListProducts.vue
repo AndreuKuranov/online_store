@@ -30,11 +30,10 @@ export default {
   props: {
     products: {
       type: Array,
-      required: true
+      default: () => []
     },
     title: {
-      type: String,
-      required: true
+      type: String
     }
   },
 };
@@ -42,7 +41,7 @@ export default {
 
 <style lang="scss">
 .products {
-  padding: px2rem(32px) 0 px2rem(42px) 0;
+  padding: 0 0 px2rem(42px) 0;
 
   &__container {
 

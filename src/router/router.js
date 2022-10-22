@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeComponent from '@/pages/HomeComponent'
+import DitalPageProduct from '@/pages/DitalPageProduct'
 
 
 const routes = [
@@ -26,12 +27,12 @@ const routes = [
   //   name: 'TaskListComponent',
   //   beforeEnter: managwrAuthGuard
   // },
-  // {
-  //   path: '/tasklist/:id',
-  //   component: TaskId,
-  //   name: 'TaskId',
-  //   beforeEnter: managwrAuthGuard
-  // },
+  {
+    // path: '//:id',
+    path: '/product', //пока так
+    component: DitalPageProduct,
+    name: 'DitalPageProduct',
+  },
   // {
   //   path: '/:pathMatch(.*)*',
   //   component: Error404Component,
