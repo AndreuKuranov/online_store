@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeComponent from '@/pages/HomeComponent'
-import DitalPageProduct from '@/pages/DitalPageProduct'
-
+import HomeComponent from '@/pages/HomeComponent';
+import DitalPageProduct from '@/pages/DitalPageProduct';
+import Error404Component from '@/pages/Error404Component';
+import CategoriePage from '@/pages/CategoriePage';
+import BasketProducts from '@/pages/BasketProducts';
 
 const routes = [
   {
@@ -9,35 +11,27 @@ const routes = [
     component: HomeComponent,
     name: 'HomeComponent',
   },
-  // {
-  //   path: '/about',
-  //   component: AboutComponent,
-  //   name: 'AboutComponent',
-  //   children: [
-  //     {
-  //       path: 'about-app',
-  //       component: AboutApp,
-  //       name: 'AboutApp'
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/tasklist',
-  //   component: TaskListComponent,
-  //   name: 'TaskListComponent',
-  //   beforeEnter: managwrAuthGuard
-  // },
+  {
+    path: '/basket',
+    component: BasketProducts,
+    name: 'BasketProducts',
+  },
+  {
+    path: '/categorie',
+    component: CategoriePage,
+    name: 'CategoriePage',
+  },
   {
     // path: '//:id',
     path: '/product', //пока так
     component: DitalPageProduct,
     name: 'DitalPageProduct',
   },
-  // {
-  //   path: '/:pathMatch(.*)*',
-  //   component: Error404Component,
-  //   name: 'Error404Component'
-  // },
+  {
+    path: '/:pathMatch(.*)*',
+    component: Error404Component,
+    name: 'Error404Component'
+  },
 ]
 
 const router = createRouter({

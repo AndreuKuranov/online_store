@@ -1,15 +1,25 @@
 $baseFontSize: 20px;
 
+$mainFontSize: 18px;
+$titleFontSize: 36px;
+$bigFontSize: 40px;
+$mediumFontSize: 24px;
+$smallFontSize: 14px;
+
+$smallBorderRadius: 5px;
+$mediumBorderRadius: 10px;
+$borderRadius50: 50%;
+
+$baseHeightBtn: 60px;
+
 $fontRoboto: 'Roboto', sans-serif;
 $fontSourceSansPro:'Source Sans Pro', sans-serif;
 
-$whiteColor: #fff;
-$blackColor: #000;
+$darkColor: #000;
+$lightColor: #fff;
+$successColor: #57DE54;
+$dangerColor: #FE0404;
+$mutedColor: #D6E6F5;
 
-$greenColor: #57DE54;
-$redColor: #FE0404;
-
-$baseBdColor: #C9DEF1;
-$additionalBdColor: #C4C4C4;
-
-
+$baseBGColor: #C9DEF1;
+$additionalBGColor: #C4C4C4;

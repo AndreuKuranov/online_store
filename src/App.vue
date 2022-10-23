@@ -21,4 +21,14 @@
 </script>
 
 <style lang="scss">
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.page {
+  flex: 1 1 auto;
+}
 </style>

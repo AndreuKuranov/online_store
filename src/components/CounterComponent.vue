@@ -20,11 +20,12 @@
 .counter {
   display: flex;
   align-items: center;
-  border: 1px solid #000;
+  border: 1px solid $darkColor;
   box-sizing: border-box;
   justify-content: space-between;
-  border-radius: px2rem(5px);
+  border-radius: px2rem($smallBorderRadius);
   padding: 0 px2rem(8px);
+  background-color: $lightColor;
 
   &__btn {
     @include blockCenter;
@@ -32,31 +33,31 @@
     border: none;
     background: none;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: $borderRadius50;
     width: px2rem(35px);
     height: px2rem(35px);
     transition: 0.3s;
   }
 
   &__btn--remove:hover {
-    background-color: #FE0404;
-    box-shadow: 0 0 px2rem(5px) rgba(#FE0404, 1);
+    background-color: $dangerColor;
+    box-shadow: 0 0 px2rem(5px) rgba($dangerColor, 1);
   }
 
   &__btn--add:hover {
-    background-color: #57DE54;
-    box-shadow: 0 0 px2rem(5px) rgba(#57DE54, 1);
+    background-color: $successColor;
+    box-shadow: 0 0 px2rem(5px) rgba($successColor, 1);
   }
 
   &__material-symbols-outlined {
-    font-size: px2rem(40px);
+    font-size: px2rem($bigFontSize);
     font-weight: 700;
   }
 
   &__text {
     @include blockCenter;
     font-family: $fontSourceSansPro;
-    font-size: px2rem(36px);
+    font-size: px2rem($titleFontSize);
   }
 }
 </style>

@@ -14,7 +14,12 @@
         v-for="item in navList"
         :key="item.id"
       >
-        <a class="navbar__link" :href="item.link">{{ item.textLink }}</a>
+        <button 
+          class="navbar__link"
+          @click="$router.push(item.link)"
+        >
+          {{ item.textLink }}
+        </button>
       </li>
     </ul>
 </nav>
@@ -25,9 +30,9 @@
     data() {
       return {
         navList: [
-          {id: "navList1", link: "#", textLink: "Категории"},
-          {id: "navList2", link: "#", textLink: "Новости"},
-          {id: "navList3", link: "#", textLink: "О нас"},
+          {id: 'navList1', link: '/categorie', textLink: 'Категории'},
+          {id: 'navList2', link: '#', textLink: 'Новости'},
+          {id: 'navList3', link: '#', textLink: 'О нас'},
         ]
       }
     },
@@ -39,9 +44,7 @@
 
 <style lang="scss">
 .navbar {
-  
   &__btn {
-    background-color: rgba($color: #000000, $alpha: 0);
     border: none;
     cursor: pointer;
 
@@ -49,48 +52,54 @@
       display: none !important;
     }
   }
+
   &__symbols {
-    font-size: px2rem(40px);
+    font-size: px2rem($bigFontSize);
   }
+
   &__list {
     @extend %list;
     display: flex;
     flex-wrap: wrap;
     padding-top: px2rem(2px);
     column-gap: px2rem(50px);
-    row-gap: px2rem(10px);
+    font-size: px2rem($mainFontSize);
 
     @media (max-width: 768px) {
-      display: none !important;
+      display: none;
     }
   }
+
   &__item {
-    padding: 5px 0;
+    padding: px2rem(5px) 0;
     position: relative;
     transition: 0.5s ease-out;
     display: block;
   }
+
   &__item:hover {
-    color: $greenColor;
+
   }
+
   &__item::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 27px;
+    @extend %afterBefore;
+    top: px2rem(27px);
     left: 50%;
     right: 50%;
     height: 2px;
-    background-color: $greenColor;
+    background-color: $darkColor;
     transition: 0.5s ease-out;
     border-radius: 1px;
   }
+
   &__item:hover::after {
     left: 0;
     right: 0;
   }
+
   &__link {
-    @extend %link;
+    @include button-clear;
+    cursor: pointer;
   }
 }
 </style>

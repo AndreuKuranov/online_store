@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <div class="products__container container">
-      <div class="products__title">{{title}}</div>
+      <h2 v-if="title" class="products__title">{{title}}</h2>
       <div class="products__body">
 
         <div
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CardProduct from '@/components/CardProduct.vue'
+import CardProduct from '@/components/CardProduct.vue';
 
 export default {
   components: {
@@ -33,8 +33,9 @@ export default {
       default: () => []
     },
     title: {
-      type: String
-    }
+      type: String,
+      required: false,
+    },
   },
 };
 </script>
@@ -48,7 +49,8 @@ export default {
   }
 
   &__title {
-    font-size: px2rem(36px);
+    font-size: px2rem($titleFontSize);
+    font-weight: 400;
     line-height: 1.16;
     margin: 0 0 px2rem(10px) 0;
   }

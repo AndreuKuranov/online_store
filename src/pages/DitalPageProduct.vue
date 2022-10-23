@@ -1,7 +1,11 @@
 <template>
+  <TitleBlock
+    class="page__title"
+  >
+    Название товара
+  </TitleBlock>
   <section class="page__product product">
     <div class="product__container container">
-      <h1 class="product__title">Название товара</h1>
       <div class="product__body">
         <swiper
           navigation
@@ -60,19 +64,20 @@
 
   <ListProducts
     class="page__products"
-    :title="title"
-    :products="products"
+    :title="titleTop"
+    :products="productsTop"
   />
 </template>
 
 <script>
-import ListProducts from "@/components/ListProducts.vue";
-import CounterComponent from "@/components/CounterComponent.vue";
-import TabsComponent from "@/components/TabsComponent.vue"
-import TabComponent from "@/components/TabComponent.vue"
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Navigation, Pagination } from "swiper";
-import "swiper/css/bundle";
+import ListProducts from '@/components/ListProducts.vue';
+import CounterComponent from '@/components/CounterComponent.vue';
+import TabsComponent from '@/components/TabsComponent.vue';
+import TabComponent from '@/components/TabComponent.vue';
+import TitleBlock from '@/components/TitleBlock.vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination } from 'swiper';
+import 'swiper/css/bundle';
 
 export default {
   components: {
@@ -82,22 +87,23 @@ export default {
     CounterComponent,
     TabsComponent,
     TabComponent,
+    TitleBlock,
   },
   data() {
     return {
       modules: [Autoplay, Navigation, Pagination],
       slides: [
-        { id: "slide1", image: "4.png", altText: "4" },
-        { id: "slide2", image: "5.png", altText: "5" },
-        { id: "slide3", image: "6.png", altText: "6" },
+        { id: 'slide1', image: '4.png', altText: '4' },
+        { id: 'slide2', image: '5.png', altText: '5' },
+        { id: 'slide3', image: '6.png', altText: '6' },
       ],
-      title: "Товары",
-      products: [
-        {id: "products1", link: "#", name: "Название товара", price: "9 999", img: "01.jpg"},
-        {id: "products2", link: "#", name: "Название товара", price: "9 999", img: "02.jpg"},
-        {id: "products3", link: "#", name: "Название товара", price: "9 999", img: "03.jpg"},
-        {id: "products4", link: "#", name: "Название товара", price: "9 999", img: "04.jpg"},
-      ],
+      titleTop: 'Топ продаж',
+      productsTop: [
+        {id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg'},
+        {id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg'},
+        {id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg'},
+        {id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg'},
+      ]
     }
   },
 };
@@ -137,7 +143,7 @@ export default {
   }
 
   &__price {
-    font-size: px2rem(36px);
+    font-size: px2rem($titleFontSize);
     margin: 0 0 px2rem(22px) 0;
     font-family: $fontSourceSansPro;
   }
@@ -145,7 +151,6 @@ export default {
   &__btn-block {
     display: flex;
     gap: px2rem(10px);
-    
   }
 
   &__counter {
@@ -154,7 +159,7 @@ export default {
 
   &__btn {
     width: 100%;
-    min-height: px2rem(60px);
+    min-height: px2rem($baseHeightBtn);
   }
 }
 </style>

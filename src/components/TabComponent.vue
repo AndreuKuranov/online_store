@@ -24,9 +24,9 @@ export default {
 
 <style lang="scss">
 .tab-content {
-  background-color: #C9DEF1;
+  background-color: $baseBGColor;
   padding: px2rem(16px) px2rem(14px);
-  margin: -2px 0 0 0;
+  margin: -1px 0 0 0;
   min-height: px2rem(256px);
 }
 </style>

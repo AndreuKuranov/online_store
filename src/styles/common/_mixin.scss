@@ -3,3 +3,10 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin button-clear {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+}

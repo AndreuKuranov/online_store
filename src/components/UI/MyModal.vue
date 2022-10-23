@@ -8,12 +8,12 @@
       <div @click.stop class="modal__content">
         <my-button 
             type="button"
-            class="d-flex p-2 rounded-circle btn-danger btn__close"
+            class="modal__close"
             @click="closeModal"
           >
             <span class="material-symbols-outlined">close</span>
           </my-button>
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </transition>
@@ -29,29 +29,35 @@
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .modal {
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($darkColor, 0.5);
   position: fixed;
   display: flex;
-}
-.modal__content {
-  position: relative;
-  margin: auto;
-  background: white;
-  border-radius: 12px;
-  min-height: 50px;
-  min-width: 300px;
-  padding: 20px;
-}
-.btn__close {
-  position: absolute;
-  top: -21px;
-  right: -21px;
+
+  &__content {
+    position: relative;
+    margin: auto;
+    background: $lightColor;
+    border-radius: $mediumBorderRadius;
+    min-height: 50px;
+    min-width: 300px;
+    padding: px2rem(20px);
+  }
+
+  &__close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    height: 40px;
+    width: 40px;
+    background-color: $dangerColor;
+    border-radius: $borderRadius50;
+  }
 }
 
 .modal-bg-enter-active,

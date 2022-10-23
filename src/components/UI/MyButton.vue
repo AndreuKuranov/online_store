@@ -2,7 +2,7 @@
   <button 
     class="btn"
   >
-    <slot></slot>
+    <slot />
   </button>
 </template>
 
@@ -14,21 +14,19 @@
 
 <style lang="scss">
 .btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include blockCenter;
   cursor: pointer;
-  text-align: center;
   border: none;
-  font-size: px2rem(24px);
+  font-size: px2rem($mediumFontSize);
   line-height: 1.16;
-  background-color: #57DE54;
-  color: #fff;
-  border-radius: px2rem(5px);
+  background-color: $successColor;
+  color: $lightColor;
+  border-radius: px2rem($smallBorderRadius);
   transition: 0.3s;
   padding: px2rem(5px) px2rem(10px);
-}
-.btn:hover {
-  box-shadow: 0px 0px px2rem(5px) rgba(#000, 0.5);
+
+  &:hover {
+    box-shadow: 0px 0px px2rem(5px) rgba($darkColor, 0.5);
+  }
 }
 </style>

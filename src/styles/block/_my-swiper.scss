@@ -4,7 +4,7 @@
 
   &__slide {
     text-align: center;
-    background: $additionalBdColor;
+    background: $additionalBGColor;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,14 +33,14 @@
 
       min-width: px2rem(40px);
       min-height: px2rem(40px);
-      border-left: px2rem(10px) solid $blackColor;
-      border-bottom: px2rem(10px) solid $blackColor;
+      border-left: px2rem(10px) solid $darkColor;
+      border-bottom: px2rem(10px) solid $darkColor;
       transition: 0.2s;
       transform: translate3d(px2rem(20px), 0, 0) rotate(45deg);
       
     }
     &:hover::after {
-      filter: drop-shadow(px2rem(5px) 0px px2rem(5px) $blackColor);
+      filter: drop-shadow(px2rem(5px) 0px px2rem(5px) $darkColor);
     }
   }
 
@@ -51,14 +51,14 @@
 
       min-width: px2rem(40px);
       min-height: px2rem(40px);
-      border-right: px2rem(10px) solid $blackColor;
-      border-top: px2rem(10px) solid $blackColor;
+      border-right: px2rem(10px) solid $darkColor;
+      border-top: px2rem(10px) solid $darkColor;
       transition: 0.2s;
       transform: translate3d(px2rem(-20px), 0, 0) rotate(45deg);
       
     }
     &:hover::after {
-      filter: drop-shadow(0px px2rem(5px) px2rem(5px) $blackColor);
+      filter: drop-shadow(0px px2rem(5px) px2rem(5px) $darkColor);
     }
   }
 }

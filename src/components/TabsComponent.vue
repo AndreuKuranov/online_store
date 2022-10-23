@@ -7,7 +7,7 @@
           v-for="item in tabTitles" 
           :title="item.title"
           :key="item.title"
-          :class="{ selected: item.title === selectedTitle }"
+          :class="{ 'tabs__item-lista--active': item.title === selectedTitle }"
           @click="selectedTitle = item.title"
         >
           <span class="tabs__material-symbols-outlined material-symbols-outlined">{{ item.icon }}</span>
@@ -53,11 +53,11 @@ export default {
     @extend %list;
     display: flex;
     gap: px2rem(20px);
-    font-size: px2rem(24px);
+    font-size: px2rem($mediumFontSize);
   }
 
   &__item-list {
-    background-color: rgba(#D6E6F5, 0.7);
+    background-color: rgba($mutedColor, 0.7);
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -83,10 +83,10 @@ export default {
       display: none;
     }
   }
-}
 
-.selected {
-  background-color: #C9DEF1;
-  cursor: default;
+  &__item-lista--active {
+    background-color: $baseBGColor;
+    cursor: default;
+  }
 }
 </style>

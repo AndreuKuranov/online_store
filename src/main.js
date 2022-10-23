@@ -1,4 +1,3 @@
-// import "bootstrap/dist/css/bootstrap.css";
 import { createApp } from 'vue';
 import App from './App';
 import components from '@/components/UI';
@@ -21,4 +20,3 @@ app
   .use(store)
   .mount('#app');
 
-// import "bootstrap/dist/js/bootstrap.js";
