@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent class="ordering-form">
-    <h2 class="ordering-form__title">Оформить заказа</h2>
+    <h2 class="ordering-form__title">Оформить заказ</h2>
 
     <div class="ordering-form__body">
       <div class="ordering-form__item">

@@ -2,8 +2,10 @@
   <header class="header">
     <div class="header__container container">
       <div class="header__logo logo">
+<!--        это ссылка-->
         <span class="logo__link" @click="$router.push('/')" title="На главную">
           <img class="logo__img" src="@/image/vue-logo.png" alt="vue logo">
+<!--          это не параграф-->
           <p class="logo__text">Vue-spa-shop</p>
         </span>
       </div>
@@ -37,11 +39,17 @@
 
 <style lang="scss" scoped>
 .header {
-  background-color: $baseBGColor;
+  background-color: $baseBGColor; // не имеет преимуществ перед css переменными
 
   &__container {
     display: flex;
     align-items: center;
+    // это лишнее и очень близко к холивару (с тем кто такое насоветовал),
+    // лишняя работа, нет никакой проблемы делать адаптив
+    // с указанием нужного размера шрифта отдельным блокам
+    // такой подход применяется точечно, обычно в статьях максимум, да и то веет чем-то устаревшим.
+    // практического смысла в таком управлении скалированием шрифтов нет,
+    // а исходники получаются чуть более трешовыми визуально для чтения
     column-gap: px2rem(24px);
     min-height: px2rem(100px);
   }
@@ -78,12 +86,16 @@
   &__shopping-cart {
     margin: px2rem(18px) px2rem(45px) 0 0;
 
+    //а вот такое наоборот выносят в миксины, чтобы не дублировать 768 и 769 магические числа по css коду
     @media (max-width: 768px) {
       margin: px2rem(18px) px2rem(25px) 0 0;
     }
   }
 }
 
+//не одобряю, блок логотипа по сути должен быть отдельным компонентом в SPA,
+//вообще у тебя header является GodObject антипаттерном и делает много чего,
+//отсюда надо вынести всё что выноится на мелкие компоненты с их уникальными стилями
 .logo {
   &__link {
     display: flex;
@@ -125,13 +137,13 @@
 
   &__symbols {
     font-variation-settings:
-    'FILL' 1,
+    'FILL' 1, // что это? насколько практично так делать?
   }
 
   &__text {
     min-width: px2rem(152px);
 
-    @media (max-width: 992px) {
+    @media (max-width: 992px) { // нарушение mobile first
       display: none ;
     }
   }

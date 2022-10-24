@@ -26,12 +26,14 @@
   }
 }
 
+//не самый повторяемый код, я бы не выносил
 %afterBefore {
   display: block;
   position: absolute;
   content: '';
 }
 
+// ну такое, не вижу проблемы писать эти две строки там где надо (не часто)
 %marginPadding {
   margin: 0;
   padding: 0;
