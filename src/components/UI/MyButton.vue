@@ -18,7 +18,7 @@
   cursor: pointer;
   border: none;
   font-size: px2rem($mediumFontSize);
-  line-height: 1.16;
+  line-height: 1.16; // зачем так?
   background-color: $successColor;
   color: $lightColor;
   border-radius: px2rem($smallBorderRadius);

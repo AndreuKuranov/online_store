@@ -61,6 +61,14 @@ export default {
     margin: px2rem(-10px);
   }
 
+  //да, вот поэтому флексы и плохо подходят когда речь идёт о табличном лейауте,
+  //вот такое почекай
+  //.layout-grid {
+  //  display: grid;
+  //  grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 165px),1fr));
+  //  gap: var(--layout-grid-gap, 12px);
+  //}
+
   &__column {
     flex: 0 1 25%;
 

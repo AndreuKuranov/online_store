@@ -1,5 +1,6 @@
 <template>
   <div class="card-product">
+    <!--    это ссылка, не div, #футакимбыть, роутер у дива - плохо -->
     <div 
       @click="$router.push(product.link)" 
       class="card-product__img-block"
