@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     class="tab-content"
     v-show="title === selectedTitle"
   >
@@ -12,7 +12,7 @@ import { inject } from 'vue';
 
 export default {
   props: ['title'],
-  setup () {
+  setup() {
     const selectedTitle = inject("selectedTitle");
 
     return {
@@ -24,9 +24,18 @@ export default {
 
 <style lang="scss">
 .tab-content {
-  background-color: $baseBGColor;
-  padding: px2rem(16px) px2rem(14px);
+  background-color: var(--base-bg-color);
+  padding: 16px 14px;
   margin: -1px 0 0 0;
-  min-height: px2rem(256px);
+  min-height: 256px;
+
+  @include max-width-md {
+    padding: 12px 10px;
+    min-height: 230px;
+  }
+
+  @include max-width-xs {
+    min-height: 200px;
+  }
 }
 </style>

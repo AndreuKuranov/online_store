@@ -31,7 +31,6 @@
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import 'swiper/css/bundle';
 
 export default {
   components: {
@@ -53,15 +52,23 @@ export default {
 
 <style lang="scss">
 .banner {
-  background-color: $additionalBGColor;
-  margin: 0 0 px2rem(32px) 0;
+  background-color: var(--additional-bg-color);
+  margin: 0 0 32px 0;
+
+  @include max-width-md {
+    margin: 0 0 27px 0;
+  }
+
+  @include max-width-xs {
+    margin: 0 0 18px 0;
+  }
 
   &__container {
 
   }
 
   &__my-swiper {
-    
+
   }
 }
 </style>

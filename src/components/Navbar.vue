@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar">
     <my-button 
-      class="navbar__btn" 
+      class="navbar__btn"
       type="button"
       title="Меню"
     >
@@ -22,24 +22,24 @@
         </button>
       </li>
     </ul>
-</nav>
+  </nav>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        navList: [
-          {id: 'navList1', link: '/categorie', textLink: 'Категории'},
-          {id: 'navList2', link: '#', textLink: 'Новости'},
-          {id: 'navList3', link: '#', textLink: 'О нас'},
-        ]
-      }
-    },
-    methods: {
+export default {
+  data() {
+    return {
+      navList: [
+        { id: 'navList1', link: '/categorie', textLink: 'Категории' },
+        { id: 'navList2', link: '#', textLink: 'Новости' },
+        { id: 'navList3', link: '#', textLink: 'О нас' },
+      ]
+    }
+  },
+  methods: {
 
-    },
-  }
+  },
+}
 </script>
 
 <style lang="scss">
@@ -48,56 +48,44 @@
     border: none;
     cursor: pointer;
 
-    @media (min-width: 769px) {
+    @include min-width-md {
       display: none !important;
     }
   }
 
   &__symbols {
-    font-size: px2rem($bigFontSize);
+    font-size: var(--big-font-size);
+
+    @include max-width-xs {
+      font-size: 34px;
+    }
   }
 
   &__list {
     @extend %list;
     display: flex;
     flex-wrap: wrap;
-    padding-top: px2rem(2px);
-    column-gap: px2rem(50px);
-    font-size: px2rem($mainFontSize);
+    padding-top: 2px;
+    column-gap: 50px;
+    font-size: var(--main-font-size);
 
-    @media (max-width: 768px) {
+    @include max-width-lg {
+      column-gap: 30px;
+    }
+
+    @include max-width-md {
       display: none;
     }
   }
 
   &__item {
-    padding: px2rem(5px) 0;
+    padding: 5px 0;
     position: relative;
     transition: 0.5s ease-out;
     display: block;
   }
 
-  &__item:hover {
-
-  }
-
-  // идея понятная, красивая. Однако сложная, заслуживает отдельного блока или миксина,
-  // который можно таскать между проектами, не надо хардкодить по месту применения
-  &__item::after {
-    @extend %afterBefore;
-    top: px2rem(27px);
-    left: 50%;
-    right: 50%;
-    height: 2px;
-    background-color: $darkColor;
-    transition: 0.5s ease-out;
-    border-radius: 1px;
-  }
-
-  &__item:hover::after {
-    left: 0;
-    right: 0;
-  }
+  @include link-active("&__item", var(--dark-color), 27px, 2px, 1px);
 
   &__link {
     @include button-clear;

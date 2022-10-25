@@ -10,3 +10,91 @@
   background: none;
   padding: 0;
 }
+
+@mixin link-active ($cl, $color, $top, $height, $borderRadius) {
+  #{$cl}::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: $top;
+    left: 50%;
+    right: 50%;
+    height: $height;
+    background-color: $color;
+    transition: 0.5s ease-out;
+    border-radius: $borderRadius;
+  }
+
+  #{$cl}:hover::after {
+    left: 0;
+    right: 0;
+  }
+}
+
+@mixin min-width-lg {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin max-width-lg {
+  @media (max-width: 991.98px) {
+    @content;
+  }
+}
+
+@mixin min-width-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin max-width-md {
+  @media (max-width: 767.98px) {
+    @content;
+  }
+}
+
+@mixin min-width-sm {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin max-width-sm {
+  @media (max-width: 575.98px) {
+    @content;
+  }
+}
+
+@mixin min-width-xs {
+  @media (min-width: 480px) {
+    @content;
+  }
+}
+
+@mixin max-width-xs {
+  @media (max-width: 479.98px) {
+    @content;
+  }
+}
+
+%link {
+  text-decoration: none;
+  color: inherit;
+}
+
+%list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+%afterBefore {
+  display: block;
+  position: absolute;
+  content: '';
+}

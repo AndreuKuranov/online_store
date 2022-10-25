@@ -2,17 +2,17 @@
   <transition name="modal-bg">
     <div 
       class="modal" 
-      v-if="stateModal" 
+      v-if="stateModal"
       @click="closeModal"
     >
       <div @click.stop class="modal__content">
-        <my-button 
-            type="button"
-            class="modal__close"
-            @click="closeModal"
-          >
-            <span class="material-symbols-outlined">close</span>
-          </my-button>
+        <my-button
+          type="button"
+          class="modal__close"
+          @click="closeModal"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </my-button>
         <slot />
       </div>
     </div>
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-  import toggleMixin from '@/mixins/toggleMixin';
+import toggleMixin from '@/mixins/toggleMixin';
 
-  export default {
-    name: 'my-modal',
-    mixins: [toggleMixin],
-  }
+export default {
+  name: 'my-modal',
+  mixins: [toggleMixin],
+}
 
 </script>
 
@@ -35,28 +35,32 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba($darkColor, 0.5);
+  background: rgba(var(--dark-color-rgb), 0.5);
   position: fixed;
   display: flex;
 
   &__content {
     position: relative;
     margin: auto;
-    background: $lightColor;
-    border-radius: $mediumBorderRadius;
+    background: var(--light-color);
+    border-radius: var(--medium-border-radius);
     min-height: 50px;
     min-width: 300px;
-    padding: px2rem(20px);
+    padding: 20px;
+
+    @include max-width-sm {
+      padding: 12px;
+    }
   }
 
   &__close {
     position: absolute;
     top: -20px;
     right: -20px;
-    height: 40px;
+    min-height: 40px;
     width: 40px;
-    background-color: $dangerColor;
-    border-radius: $borderRadius50;
+    background-color: var(--danger-color);
+    border-radius: var(--border-radius-50);
   }
 }
 
@@ -64,6 +68,7 @@
 .modal-bg-leave-active {
   transition: opacity 0.5s ease;
 }
+
 .modal-bg-enter-from,
 .modal-bg-leave-to {
   opacity: 0;

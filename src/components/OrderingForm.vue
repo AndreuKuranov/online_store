@@ -87,7 +87,6 @@ export default {
 
   &__btn {
     width: 100%;
-    min-height: px2rem($baseHeightBtn);
   }
 }
 </style>

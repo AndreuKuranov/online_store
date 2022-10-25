@@ -1,25 +1,31 @@
-$baseFontSize: 20px;
+:root {
+  --base-font-size: 20px;
 
-$mainFontSize: 18px;
-$titleFontSize: 36px;
-$bigFontSize: 40px;
-$mediumFontSize: 24px;
-$smallFontSize: 14px;
+  --main-font-size: 18px;
+  --title-font-size: 36px;
+  --big-font-size: 40px;
+  --medium-font-size: 24px;
+  --small-font-size: 14px;
 
-$smallBorderRadius: 5px;
-$mediumBorderRadius: 10px;
-$borderRadius50: 50%;
+  --small-border-radius: 5px;
+  --medium-border-radius: 10px;
+  --border-radius-50: 50%;
 
-$baseHeightBtn: 60px;
+  --base-height-btn: 60px;
 
-$fontRoboto: 'Roboto', sans-serif;
-$fontSourceSansPro:'Source Sans Pro', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+  --font-source-sans-pro:'Source Sans Pro', sans-serif;
 
-$darkColor: #000;
-$lightColor: #fff;
-$successColor: #57DE54;
-$dangerColor: #FE0404;
-$mutedColor: #D6E6F5;
+  --dark-color: #000;
+  --dark-color-rgb: 0, 0, 0;
+  --light-color: #fff;
+  --success-color: #57DE54;
+  --success-color-rgb: 87, 222, 84;
+  --danger-color: #FE0404;
+  --danger-color-rgb: 254, 4, 4;
+  --muted-color: #D6E6F5;
+  --muted-color-rgb: 214, 230, 245;
 
-$baseBGColor: #C9DEF1;
-$additionalBGColor: #C4C4C4;
+  --base-bg-color: #C9DEF1;
+  --additional-bg-color: #C4C4C4;
+}

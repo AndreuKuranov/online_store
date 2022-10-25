@@ -26,7 +26,7 @@ export default {
   setup(props, { slots }) {
     const tabTitles = ref(slots.default().map(tab => {
       return {
-        title: tab.props.title, 
+        title: tab.props.title,
         icon: tab.props.icon,
       }
     }));
@@ -43,7 +43,11 @@ export default {
 
 <style lang="scss">
 .tabs {
-  margin: px2rem(30px) 0 px2rem(30px) 0;
+  margin: 30px 0;
+
+  @include max-width-md {
+    margin: 24px 0;
+  }
 
   &__container {
 
@@ -52,20 +56,25 @@ export default {
   &__list {
     @extend %list;
     display: flex;
-    gap: px2rem(20px);
-    font-size: px2rem($mediumFontSize);
+    gap: 20px;
+    font-size: var(--medium-font-size);
+
+    @include max-width-md {
+      font-size: 20px;
+      gap: 12px;
+    }
   }
 
   &__item-list {
-    background-color: rgba($mutedColor, 0.7);
+    background-color: rgba(var(--muted-color-rgb), 0.7);
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    padding: px2rem(16px) px2rem(17px);
+    padding: 16px 17px;
     transition: 0.3s;
 
-    @media (max-width: 576px) {
-      padding: px2rem(10px) px2rem(17px);
+    @include max-width-sm {
+      padding: 10px 17px;
     }
   }
 
@@ -73,19 +82,19 @@ export default {
     display: none;
     font-size: 30px;
 
-    @media (max-width: 576px) {
+    @include max-width-sm {
       display: block;
     }
   }
 
   &__text {
-    @media (max-width: 576px) {
+    @include max-width-sm {
       display: none;
     }
   }
 
   &__item-lista--active {
-    background-color: $baseBGColor;
+    background-color: var(--base-bg-color);
     cursor: default;
   }
 }

@@ -17,21 +17,29 @@ export default {
 
 <style lang="scss">
 .footer {
-  background-color: $baseBGColor;
+  background-color: var(--base-bg-color);
 
   &__container {
-    
+
   }
 
   &__body {
-    min-height: px2rem(86px);
+    min-height: 86px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include max-width-md {
+      min-height: 76px;
+    }
+
+    @include max-width-xs {
+      min-height: 68px;
+    }
   }
 
   &__item {
-    font-size: $smallFontSize;
+    font-size: var(--small-font-size);
   }
 }
 </style>

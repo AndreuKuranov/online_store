@@ -21,9 +21,19 @@
   }
 
   &__text {
-    font-size: px2rem($titleFontSize);
+    font-size: var(--title-font-size);
     font-weight: 400;
-    margin: px2rem(28px) 0 px2rem(40px) 0;
+    margin: 28px 0 40px 0;
+
+    @include max-width-md {
+      font-size: 32px;
+      margin: 22px 0 34px 0;
+    }
+
+    @include max-width-xs {
+      font-size: 26px;
+      margin: 16px 0 22px 0;
+    }
   }
 }
 </style>

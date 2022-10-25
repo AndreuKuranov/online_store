@@ -42,31 +42,46 @@ export default {
 
 <style lang="scss">
 .products {
-  padding: 0 0 px2rem(42px) 0;
+  padding: 0 0 42px 0;
+
+  @include max-width-md {
+    padding: 0 0 34px 0;
+  }
+
+  @include max-width-xs {
+    padding: 0 0 24px 0;
+  }
 
   &__container {
 
   }
 
   &__title {
-    font-size: px2rem($titleFontSize);
+    font-size: var(--title-font-size);
     font-weight: 400;
     line-height: 1.16;
-    margin: 0 0 px2rem(10px) 0;
+    margin: 0 0 10px 0;
+
+    @include max-width-md {
+      font-size: 32px;
+    }
+
+    @include max-width-xs {
+      font-size: 26px;
+    }
   }
 
   &__body {
     display: flex;
     flex-wrap: wrap;
-    margin: px2rem(-10px);
+    margin: -10px;
   }
 
-  //да, вот поэтому флексы и плохо подходят когда речь идёт о табличном лейауте,
-  //вот такое почекай
+  // пока оставлю, позже попробую сделать
   //.layout-grid {
-  //  display: grid;
-  //  grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 165px),1fr));
-  //  gap: var(--layout-grid-gap, 12px);
+  //   display: grid;
+  //   grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 165px),1fr));
+  //   gap: var(--layout-grid-gap, 12px);
   //}
 
   &__column {
@@ -84,7 +99,7 @@ export default {
   }
 
   &__card-product {
-    margin: px2rem(10px);
+    margin: 10px;
   }
 }
 </style>

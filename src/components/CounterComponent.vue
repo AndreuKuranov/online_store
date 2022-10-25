@@ -11,53 +11,93 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+
+}
 </script>
 
 <style lang="scss">
 .counter {
   display: flex;
   align-items: center;
-  border: 1px solid $darkColor;
+  border: 1px solid var(--dark-color);
   box-sizing: border-box;
   justify-content: space-between;
-  border-radius: px2rem($smallBorderRadius);
-  padding: 0 px2rem(8px);
-  background-color: $lightColor;
+  border-radius: var(--small-border-radius);
+  padding: 8px;
+  background-color: var(--light-color);
+
+  min-height: var(--base-height-btn);
+
+  @include max-width-md {
+    min-height: 54px;
+    padding: 5px;
+  }
+
+  @include max-width-sm {
+    min-height: 50px;
+  }
+
+  @include max-width-xs {
+    min-height: 44px;
+  }
 
   &__btn {
     @include blockCenter;
-
     border: none;
     background: none;
     cursor: pointer;
-    border-radius: $borderRadius50;
-    width: px2rem(35px);
-    height: px2rem(35px);
+    border-radius: var(--border-radius-50);
+    width: 35px;
+    height: 35px;
     transition: 0.3s;
+
+    @include max-width-md {
+      width: 30px;
+      height: 30px;
+    }
+
+    @include max-width-xs {
+      width: 25px;
+      height: 25px;
+    }
   }
 
   &__btn--remove:hover {
-    background-color: $dangerColor;
-    box-shadow: 0 0 px2rem(5px) rgba($dangerColor, 1);
+    background-color: var(--danger-color);
+    box-shadow: 0 0 5px rgba(var(--danger-color-rgb), 1);
   }
 
   &__btn--add:hover {
-    background-color: $successColor;
-    box-shadow: 0 0 px2rem(5px) rgba($successColor, 1);
+    background-color: var(--success-color);
+    box-shadow: 0 0 5px rgba(var(--success-color-rgb), 1);
   }
 
   &__material-symbols-outlined {
-    font-size: px2rem($bigFontSize);
+    font-size: var(--big-font-size);
     font-weight: 700;
+
+    @include max-width-md {
+      font-size: 30px;
+    }
+
+    @include max-width-xs {
+      font-size: 26px;
+    }
   }
 
   &__text {
     @include blockCenter;
-    font-family: $fontSourceSansPro;
-    font-size: px2rem($titleFontSize);
+    font-family: var(--font-source-sans-pro);
+    font-size: var(--title-font-size);
+
+    @include max-width-md {
+      font-size: 28px;
+    }
+
+    @include max-width-xs {
+      font-size: 26px;
+    }
   }
 }
 </style>

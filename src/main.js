@@ -5,6 +5,9 @@ import router from "@/router/router";
 import directives from '@/directives';
 import store from '@/store';
 
+import '@/styles/style.scss';
+import 'swiper/css/bundle';
+
 const app = createApp(App);
 
 components.forEach(component => {

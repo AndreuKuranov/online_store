@@ -46,16 +46,5 @@ export default {
 </script>
 
 <style lang="scss">
-.banner {
-  background-color: $additionalBGColor;
-  margin: 0 0 px2rem(32px) 0;
 
-  &__container {
-
-  }
-
-  &__my-swiper {
-    
-  }
-}
 </style>

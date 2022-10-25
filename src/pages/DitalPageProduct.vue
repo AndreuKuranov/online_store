@@ -1,7 +1,5 @@
 <template>
-  <TitleBlock
-    class="page__title"
-  >
+  <TitleBlock class="page__title">
     Название товара
   </TitleBlock>
   <section class="page__product product">
@@ -23,9 +21,9 @@
             v-for="item in slides"
             :key="item.id"
           >
-            <img 
-              class="my-swiper__img" 
-              :src="require(`@/image/${item.image}`)" 
+            <img
+              class="my-swiper__img"
+              :src="require(`@/image/${item.image}`)"
               :alt="item.altText"
             />
           </swiper-slide>
@@ -33,13 +31,8 @@
         <div class="product__price-block">
           <div class="product__price">Цена: 10 000 руб</div>
           <div class="product__btn-block">
-            <CounterComponent
-              class="product__counter"
-            />
-            <my-button 
-              class="product__btn"
-              type="button"
-            >
+            <CounterComponent class="product__counter" />
+            <my-button class="product__btn" type="button">
               Купить
             </my-button>
           </div>
@@ -48,9 +41,7 @@
     </div>
   </section>
 
-  <TabsComponent
-    class="page__tabs"
-  >
+  <TabsComponent class="page__tabs">
     <TabComponent title="Характеристики" icon="settings_applications">
       text Характеристики
     </TabComponent>
@@ -62,11 +53,7 @@
     </TabComponent>
   </TabsComponent>
 
-  <ListProducts
-    class="page__products"
-    :title="titleTop"
-    :products="productsTop"
-  />
+  <ListProducts class="page__products" :title="titleTop" :products="productsTop" />
 </template>
 
 <script>
@@ -77,7 +64,6 @@ import TabComponent from '@/components/TabComponent.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import 'swiper/css/bundle';
 
 export default {
   components: {
@@ -99,10 +85,10 @@ export default {
       ],
       titleTop: 'Топ продаж',
       productsTop: [
-        {id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg'},
-        {id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg'},
-        {id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg'},
-        {id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg'},
+        { id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg' },
+        { id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg' },
+        { id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg' },
+        { id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg' },
       ]
     }
   },
@@ -111,55 +97,58 @@ export default {
 
 <style lang="scss">
 .product {
-  &__container {
-
-  }
-
-  &__title {
-    font-weight: 400;
-    margin: px2rem(30px) 0 px2rem(28px) 0;
-  }
+  &__container {}
 
   &__body {
     display: grid;
-    gap: px2rem(20px);
+    gap: 20px;
     grid-template-columns: 67% 1fr;
 
-    @media (max-width: 992px) {
+    @include max-width-lg {
       grid-template-columns: 60% 1fr;
     }
 
-    @media (max-width: 768px) {
+    @include max-width-md {
       grid-template-columns: 1fr;
     }
   }
 
-  &__my-swiper {
-    
-  }
+  &__my-swiper {}
 
   &__price-block {
-    margin: px2rem(3px) 0 0 0;
+    margin: 3px 0 0 0;
   }
 
   &__price {
-    font-size: px2rem($titleFontSize);
-    margin: 0 0 px2rem(22px) 0;
-    font-family: $fontSourceSansPro;
+    font-family: var(--font-source-sans-pro);
+    font-size: var(--title-font-size);
+    margin: 0 0 22px 0;
+
+    @include max-width-md {
+      font-size: 30px;
+      margin: 0 0 16px 0;
+    }
+
+    @include max-width-xs {
+      font-size: 24px;
+    }
   }
 
   &__btn-block {
     display: flex;
-    gap: px2rem(10px);
+    gap: 10px;
   }
 
   &__counter {
-    min-width: px2rem(160px);
+    min-width: 160px;
+
+    @include max-width-lg {
+      min-width: 150px;
+    }
   }
 
   &__btn {
     width: 100%;
-    min-height: px2rem($baseHeightBtn);
   }
 }
 </style>

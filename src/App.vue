@@ -1,12 +1,11 @@
 <template>
   <div class="wrapper">
     <header-component />
+
     <main class="page">
       <router-view />
     </main>
 
-<!--    футер стоит прижать к низу экрана, иначе может быть так себе UI когда будут-->
-<!--    асинхронные загрузки-->
     <footer-component />
   </div>
 </template>
