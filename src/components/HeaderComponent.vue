@@ -35,21 +35,21 @@ export default {
   &__container {
     display: flex;
     align-items: center;
-    column-gap: 24px;
-    min-height: 100px;
+    column-gap: 16px;
+    min-height: 76px;
 
-    @include max-width-lg {
-      min-height: 88px;
-    }
-
-    @include max-width-sm {
+    @include min-width-xs {
       column-gap: 20px;
       min-height: 82px;
     }
 
-    @include max-width-xs {
-      column-gap: 16px;
-      min-height: 76px;
+    @include min-width-sm {
+      min-height: 88px;
+    }
+
+    @include min-width-lg {
+      min-height: 100px;
+      column-gap: 24px;
     }
   }
 
@@ -65,12 +65,12 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 16px;
 
-    @include max-width-md {
-      justify-content: flex-end;
-      gap: 16px;
+    @include min-width-md {
+      justify-content: space-between;
+      gap: 20px;
     }
   }
 
@@ -79,14 +79,14 @@ export default {
   }
 
   &__shopping-cart {
-    margin: 18px 45px 0 0;
+    margin: 18px 18px 0 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       margin: 18px 25px 0 0;
     }
 
-    @include max-width-xs {
-      margin: 18px 18px 0 0;
+    @include min-width-md {
+      margin: 18px 45px 0 0;
     }
   }
 }

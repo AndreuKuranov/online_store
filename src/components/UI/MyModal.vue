@@ -46,10 +46,10 @@ export default {
     border-radius: var(--medium-border-radius);
     min-height: 50px;
     min-width: 300px;
-    padding: 20px;
+    padding: 12px;
 
-    @include max-width-sm {
-      padding: 12px;
+    @include min-width-sm {
+      padding: 20px;
     }
   }
 

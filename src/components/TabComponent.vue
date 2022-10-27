@@ -27,15 +27,14 @@ export default {
   background-color: var(--base-bg-color);
   padding: 16px 14px;
   margin: -1px 0 0 0;
-  min-height: 256px;
+  min-height: 200px;
 
-  @include max-width-md {
+  @include min-width-xs {
     padding: 12px 10px;
     min-height: 230px;
   }
-
-  @include max-width-xs {
-    min-height: 200px;
+  @include min-width-md {
+    min-height: 256px;
   }
 }
 </style>

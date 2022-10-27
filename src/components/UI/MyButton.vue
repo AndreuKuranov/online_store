@@ -15,26 +15,24 @@ export default {
   @include blockCenter;
   cursor: pointer;
   border: none;
-  font-size: var(--medium-font-size);
   background-color: var(--success-color);
   color: var(--light-color);
   border-radius: var(--small-border-radius);
   transition: 0.3s;
-  padding: 5px 10px;
-  min-height: var(--base-height-btn);
+  padding: 3px 7px;
+  min-height: 44px;
+  font-size: 20px;
 
-  @include max-width-md {
+  @include min-width-xs {
+    min-height: 50px; 
+  }
+  @include min-width-sm {
     min-height: 54px;
+    font-size: var(--medium-font-size);
+    padding: 5px 10px;
   }
-
-  @include max-width-sm {
-    min-height: 50px;
-    font-size: 20px;
-    padding: 3px 7px;
-  }
-
-  @include max-width-xs {
-    min-height: 44px;
+  @include min-width-md {
+    min-height: 60px;
   }
 
   &:hover {

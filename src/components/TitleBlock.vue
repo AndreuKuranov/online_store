@@ -21,18 +21,17 @@
   }
 
   &__text {
-    font-size: var(--title-font-size);
+    font-size: 26px;
+    margin: 16px 0 22px 0;
     font-weight: 400;
-    margin: 28px 0 40px 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 32px;
       margin: 22px 0 34px 0;
     }
-
-    @include max-width-xs {
-      font-size: 26px;
-      margin: 16px 0 22px 0;
+    @include min-width-md {
+      margin: 28px 0 40px 0;
+      font-size: var(--title-font-size);
     }
   }
 }

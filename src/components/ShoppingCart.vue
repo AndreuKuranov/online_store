@@ -22,15 +22,14 @@ export default {
   display: block;
 
   &__symbols {
-    font-size: 35px;
+    font-size: 28px;
     font-variation-settings: 'FILL' 1;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 32px;
     }
-
-    @include max-width-xs {
-      font-size: 28px;
+    @include min-width-md {
+      font-size: 35px;
     }
   }
 
@@ -39,25 +38,26 @@ export default {
     @include blockCenter;
     background-color: var(--danger-color);
     border-radius: var(--border-radius-50);
-    width: 30px;
-    height: 30px;
-    top: -12px;
-    right: -12px;
+    width: 22px;
+    height: 22px;
+    top: -8px;
+    right: -8px;
     color: var(--light-color);
     font-weight: 700;
+    font-size: 14px;
 
-    @include max-width-md {
+    @include min-width-xs {
       width: 26px;
       height: 26px;
       top: -10px;
       right: -10px;
+      font-size: 16px;
     }
-
-    @include max-width-xs {
-      width: 22px;
-      height: 22px;
-      top: -8px;
-      right: -8px;
+    @include min-width-md {
+      width: 30px;
+      height: 30px;
+      top: -12px;
+      right: -12px;
     }
   }
 }

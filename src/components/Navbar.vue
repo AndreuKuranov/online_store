@@ -54,27 +54,27 @@ export default {
   }
 
   &__symbols {
-    font-size: var(--big-font-size);
+    font-size: 34px;
 
-    @include max-width-xs {
-      font-size: 34px;
+    @include min-width-xs {
+      font-size: var(--big-font-size);
     }
   }
 
   &__list {
     @extend %list;
-    display: flex;
-    flex-wrap: wrap;
     padding-top: 2px;
-    column-gap: 50px;
+    column-gap: 30px;
     font-size: var(--main-font-size);
+    display: none;
 
-    @include max-width-lg {
-      column-gap: 30px;
+    @include min-width-md {
+      display: flex;
+      flex-wrap: wrap;
     }
 
-    @include max-width-md {
-      display: none;
+    @include min-width-lg {
+      column-gap: 50px;
     }
   }
 

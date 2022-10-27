@@ -97,23 +97,26 @@ export default {
 
 <style lang="scss">
 .product {
-  &__container {}
+  &__container {
+
+  }
 
   &__body {
     display: grid;
     gap: 20px;
-    grid-template-columns: 67% 1fr;
+    grid-template-columns: 1fr;
 
-    @include max-width-lg {
+    @include min-width-md {
       grid-template-columns: 60% 1fr;
     }
-
-    @include max-width-md {
-      grid-template-columns: 1fr;
+    @include min-width-lg {
+      grid-template-columns: 67% 1fr;
     }
   }
 
-  &__my-swiper {}
+  &__my-swiper {
+
+  }
 
   &__price-block {
     margin: 3px 0 0 0;
@@ -121,16 +124,15 @@ export default {
 
   &__price {
     font-family: var(--font-source-sans-pro);
-    font-size: var(--title-font-size);
-    margin: 0 0 22px 0;
+    font-size: 24px;
+    margin: 0 0 16px 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 30px;
-      margin: 0 0 16px 0;
     }
-
-    @include max-width-xs {
-      font-size: 24px;
+    @include min-width-md {
+      font-size: var(--title-font-size);
+      margin: 0 0 22px 0;
     }
   }
 
@@ -140,10 +142,10 @@ export default {
   }
 
   &__counter {
-    min-width: 160px;
+    min-width: 150px;
 
-    @include max-width-lg {
-      min-width: 150px;
+    @include min-width-lg {
+      min-width: 160px;
     }
   }
 

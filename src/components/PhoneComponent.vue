@@ -25,9 +25,10 @@ export default {
   &__text {
     min-width: 170px;
     font-size: var(--main-font-size);
+    display: none;
 
-    @include max-width-lg {
-      display: none;
+    @include min-width-lg {
+      display: block;
     }
   }
 }

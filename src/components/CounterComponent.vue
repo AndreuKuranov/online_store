@@ -24,22 +24,21 @@ export default {
   box-sizing: border-box;
   justify-content: space-between;
   border-radius: var(--small-border-radius);
-  padding: 8px;
   background-color: var(--light-color);
+  min-height: 44px;
+  padding: 5px;
 
-  min-height: var(--base-height-btn);
-
-  @include max-width-md {
-    min-height: 54px;
-    padding: 5px;
-  }
-
-  @include max-width-sm {
+  @include min-width-sm {
     min-height: 50px;
   }
 
-  @include max-width-xs {
-    min-height: 44px;
+  @include min-width-xs {
+    min-height: 54px;
+  }
+
+  @include min-width-md {
+    min-height: 60px;
+    padding: 8px;
   }
 
   &__btn {
@@ -48,18 +47,18 @@ export default {
     background: none;
     cursor: pointer;
     border-radius: var(--border-radius-50);
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     transition: 0.3s;
 
-    @include max-width-md {
+    @include min-width-xs {
       width: 30px;
       height: 30px;
     }
 
-    @include max-width-xs {
-      width: 25px;
-      height: 25px;
+    @include min-width-md {
+      width: 35px;
+      height: 35px;
     }
   }
 
@@ -74,29 +73,29 @@ export default {
   }
 
   &__material-symbols-outlined {
-    font-size: var(--big-font-size);
+    font-size: 26px;
     font-weight: 700;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 30px;
     }
 
-    @include max-width-xs {
-      font-size: 26px;
+    @include min-width-md {
+      font-size: var(--big-font-size);
     }
   }
 
   &__text {
     @include blockCenter;
     font-family: var(--font-source-sans-pro);
-    font-size: var(--title-font-size);
+    font-size: 26px;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 28px;
     }
 
-    @include max-width-xs {
-      font-size: 26px;
+    @include min-width-md {
+      font-size: var(--title-font-size);
     }
   }
 }

@@ -38,14 +38,13 @@ export default {
 
 <style lang="scss">
 .pagination {
-  margin: 12px 0 45px 0;
+  margin: 12px 0 30px 0;
 
-  @include max-width-md {
+  @include min-width-xs {
     margin: 12px 0 38px 0;
   }
-
-  @include max-width-xs {
-    margin: 12px 0 30px 0;
+  @include min-width-md {
+    margin: 12px 0 45px 0;
   }
 
   &__container {
@@ -56,14 +55,13 @@ export default {
   &__list {
     @extend %list;
     display: flex;
-    gap: 46px;
+    gap: 12px;
 
-    @include max-width-md {
+    @include min-width-xs {
       gap: 26px;
     }
-
-    @include max-width-xs {
-      gap: 12px;
+    @include min-width-md {
+      gap: 46px;
     }
   }
 
@@ -71,21 +69,20 @@ export default {
     @include blockCenter;
     background-color: rgba(var(--muted-color-rgb), 0.7);
     cursor: pointer;
-    height: 60px;
-    width: 60px;
     border-radius: var(--small-border-radius);
-    font-size: var(--title-font-size);
+    height: 30px;
+    width: 30px;
+    font-size: 20px;
 
-    @include max-width-md {
+    @include min-width-xs {
       height: 40px;
       width: 40px;
       font-size: 28px;
     }
-
-    @include max-width-xs {
-      height: 30px;
-      width: 30px;
-      font-size: 20px;
+    @include min-width-md {
+      height: 60px;
+      width: 60px;
+      font-size: var(--title-font-size);
     }
   }
 
@@ -99,11 +96,11 @@ export default {
   }
 
   &__material-symbols-outlined {
-    font-size: var(--big-font-size);
+    font-size: 30px;
     font-weight: 700;
 
-    @include max-width-md {
-      font-size: 30px;
+    @include min-width-md {
+      font-size: var(--big-font-size);
     }
   }
 }

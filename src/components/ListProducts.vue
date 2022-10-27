@@ -42,14 +42,14 @@ export default {
 
 <style lang="scss">
 .products {
-  padding: 0 0 42px 0;
+  padding: 0 0 24px 0;
 
-  @include max-width-md {
+  @include min-width-xs {
     padding: 0 0 34px 0;
   }
 
-  @include max-width-xs {
-    padding: 0 0 24px 0;
+  @include min-width-md {
+    padding: 0 0 42px 0;
   }
 
   &__container {
@@ -57,17 +57,17 @@ export default {
   }
 
   &__title {
-    font-size: var(--title-font-size);
+    font-size: 26px;
     font-weight: 400;
     line-height: 1.16;
     margin: 0 0 10px 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 32px;
     }
 
-    @include max-width-xs {
-      font-size: 26px;
+    @include min-width-md {
+      font-size: var(--title-font-size);
     }
   }
 
@@ -85,16 +85,16 @@ export default {
   //}
 
   &__column {
-    flex: 0 1 25%;
+    flex: 0 1 100%;
 
-    @media (max-width: 1250px) {
-      flex: 0 1 33.333%;
-    }
-    @media (max-width: 900px) {
+    @media (min-width: 480px) {
       flex: 0 1 50%;
     }
-    @media (max-width: 480px) {
-      flex: 0 1 100%;
+    @media (min-width: 900px) {
+      flex: 0 1 33.333%;
+    }
+    @media (min-width: 1250px) {
+      flex: 0 1 25%;
     }
   }
 

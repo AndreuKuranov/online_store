@@ -24,17 +24,17 @@ export default {
   }
 
   &__body {
-    min-height: 86px;
+    min-height: 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    @include max-width-md {
+    @include min-width-xs {
       min-height: 76px;
     }
 
-    @include max-width-xs {
-      min-height: 68px;
+    @include min-width-md {
+      min-height: 86px;
     }
   }
 

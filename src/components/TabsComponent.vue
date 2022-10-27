@@ -43,10 +43,10 @@ export default {
 
 <style lang="scss">
 .tabs {
-  margin: 30px 0;
+  margin: 24px 0;
 
-  @include max-width-md {
-    margin: 24px 0;
+  @include min-width-md {
+    margin: 30px 0;
   }
 
   &__container {
@@ -56,12 +56,12 @@ export default {
   &__list {
     @extend %list;
     display: flex;
-    gap: 20px;
-    font-size: var(--medium-font-size);
+    font-size: 20px;
+    gap: 12px;
 
-    @include max-width-md {
-      font-size: 20px;
-      gap: 12px;
+    @include min-width-md {
+      gap: 20px;
+      font-size: var(--medium-font-size);
     }
   }
 
@@ -70,26 +70,28 @@ export default {
     cursor: pointer;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    padding: 16px 17px;
+    padding: 10px 17px;
     transition: 0.3s;
 
-    @include max-width-sm {
-      padding: 10px 17px;
+    @include min-width-sm {
+      padding: 16px 17px;
     }
   }
 
   &__material-symbols-outlined {
-    display: none;
+    display: block;
     font-size: 30px;
 
-    @include max-width-sm {
-      display: block;
+    @include min-width-sm {
+      display: none;
     }
   }
 
   &__text {
-    @include max-width-sm {
-      display: none;
+    display: none;
+
+    @include min-width-sm {
+      display: block;
     }
   }
 

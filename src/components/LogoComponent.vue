@@ -20,60 +20,55 @@ export default {
 
 <style lang="scss">
 .logo {
-  min-width: 254px;
+  min-width: 110px;
 
-  @include max-width-md {
+  @include min-width-xs {
     min-width: 140px;
   }
-
-  @include max-width-xs {
-    min-width: 110px;
+  @include min-width-md {
+    min-width: 254px;
   }
 
   &__link {
     @extend %link;
-    display: flex;
-    column-gap: 18px;
-    align-items: center;
+    @include blockCenter;
+    column-gap: 10px;
+    flex-direction: column;
 
-    @include max-width-md {
-      flex-direction: column;
-      justify-content: center;
-      column-gap: 10px;
+    @include min-width-md {
+      flex-direction: row;
+      column-gap: 18px;
     }
   }
 
   &__img {
-    width: 71px;
-    height: 71px;
+    width: 48px;
+    height: 48px;
 
-    @include max-width-md {
-      width: 60px;
-      height: 60px;
-    }
-
-    @include max-width-sm {
+    @include min-width-xs {
       width: 54px;
       height: 54px;
     }
-
-    @include max-width-xs {
-      width: 48px;
-      height: 48px;
+    @include min-width-sm {
+      width: 60px;
+      height: 60px;
+    }
+    @include min-width-md {
+      width: 71px;
+      height: 71px;
     }
   }
 
   &__text {
     text-transform: uppercase;
-    font-size: var(--medium-font-size);
+    font-size: 15px;
     margin: 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: var(--main-font-size);
     }
-
-    @include max-width-xs {
-      font-size: 15px;
+    @include min-width-md {
+      font-size: var(--medium-font-size);
     }
   }
 }

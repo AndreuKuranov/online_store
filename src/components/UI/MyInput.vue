@@ -25,12 +25,12 @@ export default {
 .form-input {
   box-sizing: border-box;
   width: 100%;
-  padding: 18px 10px;
+  padding: 14px 6px;
   border: 1px solid var(--dark-color);
   border-radius: var(--small-border-radius);
 
-  @include max-width-md {
-    padding: 14px 6px;
+  @include min-width-md {
+    padding: 18px 10px;
   }
 }
 </style>

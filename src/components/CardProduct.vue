@@ -85,29 +85,30 @@ export default {
 
   &__content {
     background-color: var(--additional-bg-color);
-    padding: 10px 20px 20px 25px;
+    padding: 10px 12px 12px 16px;
 
-    @include max-width-md {
+    @include min-width-xs {
       padding: 10px 16px 16px 20px;
     }
 
-    @include max-width-xs {
-      padding: 10px 12px 12px 16px;
+    @include min-width-md {
+      padding: 10px 20px 20px 25px;
     }
+
   }
 
   &__link {
     @extend %link;
     display: inline-block;
-    margin: 0 0 45px 0;
+    margin: 0 0 20px 0;
     font-size: var(--main-font-size);
 
-    @include max-width-md {
+    @include min-width-xs {
       margin: 0 0 30px 0;
     }
 
-    @include max-width-xs {
-      margin: 0 0 20px 0;
+    @include min-width-md {
+      margin: 0 0 45px 0;
     }
   }
 
@@ -119,25 +120,25 @@ export default {
   &__price {
     display: flex;
     align-items: center;
-    gap: 10px;
     justify-content: space-between;
-    font-size: var(--main-font-size);
+    gap: 8px;
+    font-size: 16px;
 
-    @include max-width-sm {
-      gap: 8px;
-      font-size: 16px;
+    @include min-width-sm {
+      gap: 10px;
+      font-size: var(--main-font-size);
     }
   }
 
   &__text {
-    padding: 0 0 10px 0;
+    padding: 0 0 4px 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       padding: 0 0 6px 0;
     }
 
-    @include max-width-xs {
-      padding: 0 0 4px 0;
+    @include min-width-md {
+      padding: 0 0 10px 0;
     }
   }
 

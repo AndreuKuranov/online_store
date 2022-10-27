@@ -78,88 +78,90 @@ export default {
 
 <style lang="scss">
 .basket {
-  padding: 0 0 40px 0;
+  padding: 0 0 24px 0;
 
-  @include max-width-md {
+  @include min-width-xs {
     padding: 0 0 32px 0;
   }
-
-  @include max-width-xs {
-    padding: 0 0 24px 0;
+  @include min-width-md {
+    padding: 0 0 40px 0;
   }
 
-  &__container {}
+  &__container {
+
+  }
 
   &__body {
     display: grid;
     gap: 20px;
-    grid-template-columns: 75% 1fr;
+    grid-template-columns: 1fr;
 
-    @include max-width-lg {
-      grid-template-columns: 1fr;
+    @include min-width-lg {
+      grid-template-columns: 75% 1fr;
     }
   }
 
   &__product-list {
     display: flex;
     flex-wrap: wrap;
-    margin: -10px;
+    margin: -8px;
 
-    @include max-width-md {
-      margin: -8px;
+    @include min-width-md {
+      margin: -10px;
     }
   }
 
   &__column {
-    flex: 0 1 33.333%;
+    flex: 0 1 100%;
 
-    @media (max-width: 900px) {
+    @include min-width-xs {
       flex: 0 1 50%;
     }
 
-    @include max-width-xs {
-      flex: 0 1 100%;
+    @media (min-width: 900px) {
+      flex: 0 1 33.333%;
     }
   }
 
   &__card-product {
-    margin: 10px;
+    margin: 8px;
 
-    @include max-width-md {
-      margin: 8px;
+    @include min-width-md {
+      margin: 10px;
     }
   }
 
-  &__price-block {}
+  &__price-block {
+
+  }
 
   &__price {
     font-size: var(--title-font-size);
-    margin: 0 0 22px 0;
+    font-size: 24px;
+    margin: 0 0 16px 0;
 
-    @include max-width-md {
+    @include min-width-xs {
       font-size: 30px;
-      margin: 0 0 16px 0;
     }
-
-    @include max-width-xs {
-      font-size: 24px;
+    @include min-width-md {
+      margin: 0 0 22px 0;
     }
   }
 
   &__btn {
     width: 100%;
-    min-height: var(--base-height-btn);
+    min-height: 44px;
 
-    @include max-width-md {
-      min-height: 54px;
-    }
-
-    @include max-width-sm {
+    @include min-width-xs {
       min-height: 50px;
     }
 
-    @include max-width-xs {
-      min-height: 44px;
+    @include min-width-sm {
+      min-height: 54px;
+    }
+
+    @include min-width-md {
+      min-height: 60px;
     }
   }
 }

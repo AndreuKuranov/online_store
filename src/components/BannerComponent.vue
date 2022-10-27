@@ -53,14 +53,13 @@ export default {
 <style lang="scss">
 .banner {
   background-color: var(--additional-bg-color);
-  margin: 0 0 32px 0;
+  margin: 0 0 18px 0;
 
-  @include max-width-md {
+  @include min-width-xs {
     margin: 0 0 27px 0;
   }
-
-  @include max-width-xs {
-    margin: 0 0 18px 0;
+  @include min-width-md {
+    margin: 0 0 32px 0;
   }
 
   &__container {
