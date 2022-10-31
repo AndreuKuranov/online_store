@@ -1,13 +1,13 @@
 <template>
   <select 
-    class="form-control"
+    class="select"
     @change="changeOption"
     :value="modelValue"
   >
     <option disabled value="">Выберите из списка</option>
     <option
       v-for="option in options"
-      :key="option.value"
+      :key="option.id"
       :value="option.value"
     >
       {{ option.name }}

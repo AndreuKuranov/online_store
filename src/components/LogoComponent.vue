@@ -1,14 +1,13 @@
 <template>
   <div class="logo">
-    <a 
-      href="javascript:;" 
+    <router-link
       class="logo__link" 
-      @click="$router.push('/')" 
+      to="/"
       title="На главную"
     >
       <img class="logo__img" src="@/image/vue-logo.png" alt="vue logo">
       <span class="logo__text">Vue-spa-shop</span>
-    </a>
+    </router-link>
   </div>
 </template>
 

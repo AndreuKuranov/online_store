@@ -1,8 +1,7 @@
 <template>
   <div class="card-product">
-    <a 
-      href="javascript:;"
-      @click="$router.push(product.link)"
+    <router-link 
+      :to="product.link"
       class="card-product__img-block"
     >
       <img 
@@ -10,15 +9,14 @@
         :src="require(`@/image/product/${product.img}`)"
         :alt="product.name"
       >
-    </a>
+    </router-link>
     <div class="card-product__content">
-      <a 
-        href="javascript:;"
-        @click="$router.push(product.link)"
+      <router-link
+        :to="product.link" 
         class="card-product__link"
       >
         <h4 class="card-product__title">{{ product.name }}</h4>
-      </a>
+      </router-link>
       <div class="card-product__price">
         <div class="card-product__text">{{ product.price }} руб</div>
         <my-button 

@@ -1,12 +1,11 @@
 <template>
-  <a 
-    href="javascript:;" 
-    @click="$router.push('/basket')" 
+  <router-link
+    to="/basket" 
     class="shopping-cart"
   >
     <span class="material-symbols-outlined shopping-cart__symbols">shopping_cart</span>
     <div class="shopping-cart__icon">2</div>
-  </a>
+  </router-link>
 </template>
 
 <script>
