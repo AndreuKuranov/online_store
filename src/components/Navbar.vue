@@ -7,32 +7,7 @@
     >
       <span class="material-symbols-outlined navbar__symbols">menu</span>
     </my-button>
-
     <ul class="navbar__list">
-      <li 
-        class="navbar__item"
-      >
-        <router-link
-          class="navbar__link navbar__link--select"
-          to="/categorie"
-          @pointerover="overLink"
-          @pointerout="outLink"
-        >
-          Категории
-        </router-link>
-        <div
-            class="navbar__block-select"
-            ref="dropSelect"
-            @pointerover="overSelect"
-            @pointerout="outSelect"
-          >
-            <my-select
-              class="navbar__select"
-              :options="selectValue"
-              @change="$router.push($event.target.value)"
-            />
-          </div>
-      </li>
       <li 
         class="navbar__item"
         v-for="item in navList"
@@ -48,44 +23,18 @@
     </ul>
   </nav>
 </template>
-
 <script>
 export default {
   data() {
     return {
       navList: [
+        { id: 'navList1', link: '/categorie', textLink: 'Каталог' },
         { id: 'navList2', link: '#', textLink: 'Новости' },
         { id: 'navList3', link: '#', textLink: 'О нас' },
-      ],
-      selectValue: [
-        { id: 'value1', value: '#', name: '1'},
-        { id: 'value2', value: '/', name: '2'},
-        { id: 'value3', value: '/', name: '3'},
-      ],
-      selectHover: false,
+      ]
     }
   },
   methods: {
-    noneSelect() {
-      setTimeout(() => {
-        if (!this.selectHover) {
-          this.$refs.dropSelect.style.display = 'none';
-        }
-      }, 500)
-    },
-    overLink() {
-      this.$refs.dropSelect.style.display = 'block';
-    },
-    outLink() {
-      this.noneSelect();
-    },
-    overSelect() {
-      this.selectHover = true;
-    },
-    outSelect() {
-      this.selectHover = false;
-      this.noneSelect();
-    }
   },
 }
 </script>
@@ -139,17 +88,6 @@ export default {
     @include button-clear;
     @extend %link;
     cursor: pointer;
-  }
-
-  &__block-select {
-    display: none;
-    position: relative;
-  }
-
-  &__select {
-    position: absolute;
-    top: 0;
-    z-index: 1;
   }
 }
 </style>

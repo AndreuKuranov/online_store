@@ -4,6 +4,9 @@ import DitalPageProduct from '@/pages/DitalPageProduct';
 import Error404Component from '@/pages/Error404Component';
 import CategoriePage from '@/pages/CategoriePage';
 import BasketProducts from '@/pages/BasketProducts';
+import AuthorizationPage from '@/pages/AuthorizationPage';
+
+// const isAuthorized = localStorage.hasOwnProperty('token')
 
 const routes = [
   {
@@ -26,6 +29,11 @@ const routes = [
     path: '/product', //пока так
     component: DitalPageProduct,
     name: 'DitalPageProduct',
+  },
+  {
+    path: '/authorization',
+    component: AuthorizationPage,
+    name: 'AuthorizationPage',
   },
   {
     path: '/:pathMatch(.*)*',

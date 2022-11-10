@@ -1,7 +1,43 @@
 <template>
   <TitleBlock class="page__title">
-    Название категории
+    Каталог
   </TitleBlock>
+
+  <div class="page__filter filter">
+    <div class="filter__container container">
+      <h3 class="filter__title">Тип</h3>
+      <ul class="filter__list list-filter">
+        <li
+          class="list-filter__item"
+          v-for="item in typeProduct"
+          :key="item.id"
+        >
+          <my-button
+            class="list-filter__btn"
+            type="button"
+          >
+            {{ item.text }}
+          </my-button>
+        </li>
+      </ul>
+
+      <h3 class="filter__title">Бренд</h3>
+      <ul class="filter__list list-filter">
+        <li
+          class="list-filter__item"
+          v-for="item in brandProduct"
+          :key="item.id"
+        >
+          <my-button
+            class="list-filter__btn"
+            type="button"
+          >
+            {{ item.text }}
+          </my-button>
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <ListProducts
     class="page__products"
@@ -21,6 +57,7 @@
 import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -30,29 +67,44 @@ export default {
   },
   data() {
     return {
-      title: 'Название категории',
-      products: [
-        { id: 'products1', link: '/product', name: 'Название товара', price: '9 999', img: '01.jpg' },
-        { id: 'products2', link: '/product', name: 'Название товара', price: '9 999', img: '02.jpg' },
-        { id: 'products3', link: '/product', name: 'Название товара', price: '9 999', img: '03.jpg' },
-        { id: 'products4', link: '/product', name: 'Название товара', price: '9 999', img: '04.jpg' },
-        { id: 'products5', link: '/product', name: 'Название товара', price: '9 999', img: '01.jpg' },
-        { id: 'products6', link: '/product', name: 'Название товара', price: '9 999', img: '02.jpg' },
-        { id: 'products7', link: '/product', name: 'Название товара', price: '9 999', img: '03.jpg' },
-        { id: 'products8', link: '/product', name: 'Название товара', price: '9 999', img: '04.jpg' },
-      ],
       titleTop: 'Топ продаж',
-      productsTop: [
-        { id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg' },
-        { id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg' },
-        { id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg' },
-        { id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg' },
-      ]
     }
   },
+  computed: {
+    ...mapState({
+      products: state => state.shop.products,
+      productsTop: state => state.shop.productsTop,
+      typeProduct: state => state.shop.typeProduct,
+      brandProduct: state => state.shop.brandProduct,
+    }),
+  }
 }
 </script>
 
 <style lang="scss">
+.filter {
 
+  &__container {
+
+  }
+
+  &__list {
+    margin-bottom: 20px;
+  }
+}
+
+.list-filter {
+  @extend %list;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  &__item {
+    
+  }
+
+  &__btn {
+
+  }
+}
 </style>

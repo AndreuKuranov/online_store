@@ -7,6 +7,14 @@
         <Navbar class="header__navbar" />
         <PhoneComponent class="header__phone" />
         <ShoppingCart class="header__shopping-cart" />
+
+        <router-link 
+          class="header__authorization-btn authorization-btn"
+          to="/authorization"
+        >
+          <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">person</span>
+        </router-link>
+
       </div>
     </div>
   </header>
@@ -87,6 +95,26 @@ export default {
 
     @include min-width-md {
       margin: 18px 45px 0 0;
+    }
+  }
+
+  &__authorization-btn {
+
+  }
+}
+
+.authorization-btn {
+  @extend %link;
+
+  &__material-symbols-outlined {
+    font-size: 28px;
+    font-variation-settings: 'FILL' 1;
+
+    @include min-width-xs {
+      font-size: 32px;
+    }
+    @include min-width-md {
+      font-size: 35px;
     }
   }
 }
