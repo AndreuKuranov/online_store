@@ -10,7 +10,7 @@
 
         <router-link 
           class="header__authorization-btn authorization-btn"
-          to="/authorization"
+          to="/login"
         >
           <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">person</span>
         </router-link>
@@ -32,7 +32,7 @@ export default {
     PhoneComponent,
     ShoppingCart,
     LogoComponent,
-  }
+  },
 }
 </script>
 

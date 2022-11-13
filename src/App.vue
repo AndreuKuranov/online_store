@@ -13,12 +13,26 @@
 <script>
   import HeaderComponent from '@/components/HeaderComponent.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+  import { check } from '@/http/userAPI';
+  import { mapMutations } from 'vuex';
 
   export default {
     components: { 
       HeaderComponent, 
       FooterComponent 
     },
+    methods: {
+      ...mapMutations({
+        setIsAuth: 'auth/setIsAuth',
+        setUser: 'auth/setUser',
+      })
+    },
+    mounted() {
+      check().then(data => {
+        this.setIsAuth(true);
+        this.setUser(data);
+      })
+    }
   }
 </script>
 

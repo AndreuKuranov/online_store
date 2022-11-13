@@ -1,8 +1,8 @@
 <template>
   <div class="page__authorization authorization">
     <div class="authorization__container container">
-      <form @submit="onSubmit" class="authorization__form">
-        <h3 class="authorization__title">Регистрация</h3>
+      <form @submit.prevent class="authorization__form">
+        <h3 class="authorization__title">{{textForm.title}}</h3>
 
         <div class="authorization__body">
           <div class="authorization__item">
@@ -13,7 +13,7 @@
               id="login"
               v-focus
               placeholder="login"
-              v-model="login"
+              v-model="email"
             />
           </div>
 
@@ -29,11 +29,19 @@
           </div>
 
           <div class="authorization__item">
+            <router-link
+              class="authorization__link"
+              :to="textForm.link"
+            >
+              {{textForm.textLink}}
+            </router-link>
+
             <my-button
               class="authorization__btn"
-              @click="onLogoutButtonClick"
+              type="button"
+              @click="clickAuth"
             >
-              Войти
+              {{textForm.btn}}
             </my-button>
           </div>
         </div>
@@ -44,31 +52,68 @@
 </template>
 
 <script>
-console.log(process.env.VUE_APP_BASE_URL);
+  import { registration, login } from '@/http/userAPI';
+  import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '@/utils/consts';
+  import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+
   export default {
-    name: "Login",
     data() {
       return {
-        login: '',
+        email: '',
         password: '',
+        titleForm: '',
+        btnForm: '',
+        linkForm: '',
+        textLinkForm: '',
       }
+    },
+    computed: {
+      textForm() {
+        let obj = {};
+
+        if (this.checkUrl()) {
+          obj.title = 'Авторизация';
+          obj.btn = 'Войти';
+          obj.textLink = 'Зарегистрироваться';
+          obj.link = REGISTRATION_ROUTE;
+        } else {
+          obj.title = 'Регистрация';
+          obj.btn = 'Зарегистрироваться';
+          obj.textLink = 'Войти';
+          obj.link = LOGIN_ROUTE;
+        }
+
+        return obj;
+      },
     },
     methods: {
-      onSubmit() {
-        this.$store.dispatch('AuthModule/onLogin', {
-          login: this.login,
-          password: this.password,
-        }).then(() => {
-          this.$route.push({ name: 'HomeComponent' })
-        })
-      }
+      ...mapMutations({
+        setIsAuth: 'auth/setIsAuth',
+        setUser: 'auth/setUser',
+      }),
+      async clickAuth () {
+        try {
+          let data;
+
+          if (this.checkUrl()) {
+            data = await login(this.email, this.password)
+          } else {
+            data = await registration(this.email, this.password)
+          }
+
+          this.setIsAuth(true);
+          this.setUser(data);
+          this.$router.push(SHOP_ROUTE);
+        } catch(e) {
+          console.log(e.response.data.message);
+        }
+      },
+      checkUrl() {
+        return this.$route.path === LOGIN_ROUTE
+      },
     },
-    mutations: {
-      onLogoutButtonClick() {
-        this.$store.dispatch('AuthModule/onLogout').then(() => {
-          location.reload();
-        })
-      }
+    watch: {
+      $route() {}
     }
   }
 </script>
