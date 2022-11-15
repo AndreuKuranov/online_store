@@ -13,8 +13,10 @@
           :key="item.id"
         >
           <my-button
+            :class="{ 'btn-active': item.id === selectedType.id,}"
             class="list-filter__btn"
             type="button"
+            @click="setSelectedType(item)"
           >
             {{ item.text }}
           </my-button>
@@ -29,8 +31,10 @@
           :key="item.id"
         >
           <my-button
+            :class="{ 'btn-active': item.id === selectedBrand.id,}"
             class="list-filter__btn"
             type="button"
+            @click="setSelectedBrand(item)"
           >
             {{ item.text }}
           </my-button>
@@ -76,6 +80,14 @@ export default {
       productsTop: state => state.shop.productsTop,
       typeProduct: state => state.shop.typeProduct,
       brandProduct: state => state.shop.brandProduct,
+      selectedType: state => state.shop.selectedType,
+      selectedBrand: state => state.shop.selectedBrand,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setSelectedType: 'shop/setSelectedType',
+      setSelectedBrand: 'shop/setSelectedBrand',
     }),
   }
 }
@@ -106,5 +118,9 @@ export default {
   &__btn {
 
   }
+}
+
+.btn-active {
+  background-color: #ffc107;
 }
 </style>

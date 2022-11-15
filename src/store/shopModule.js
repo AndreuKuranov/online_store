@@ -28,6 +28,8 @@ export const shopModule = {
       { id: 'brandProduct2', text: 'apple' },
       { id: 'brandProduct3', text: 'huawei' },
     ],
+    selectedType: {},
+    selectedBrand: {},
   }),
   getters: {
 
@@ -44,6 +46,12 @@ export const shopModule = {
     },
     setBrandProduct(state, brandProduct) {
       state.brandProduct = brandProduct
+    },
+    setSelectedType(state, selectedType) {
+      state.selectedType = selectedType
+    },
+    setSelectedBrand(state, selectedBrand) {
+      state.selectedBrand = selectedBrand
     },
   },
   actions: {

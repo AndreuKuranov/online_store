@@ -8,12 +8,23 @@
         <PhoneComponent class="header__phone" />
         <ShoppingCart class="header__shopping-cart" />
 
-        <router-link 
+        <router-link
+          v-if="!isAuth"
           class="header__authorization-btn authorization-btn"
           to="/login"
+          title="Войти"
         >
           <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">person</span>
         </router-link>
+        <my-button
+          v-if="isAuth"
+          title="Выйти"
+          type="button"
+          class="header__authorization-btn authorization-btn"
+          @click="exit"
+        >
+          <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">logout</span>
+        </my-button>
 
       </div>
     </div>
@@ -25,6 +36,7 @@ import Navbar from '@/components/Navbar.vue';
 import PhoneComponent from '@/components/PhoneComponent.vue';
 import ShoppingCart from '@/components/ShoppingCart.vue';
 import LogoComponent from '@/components/LogoComponent.vue';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -33,6 +45,24 @@ export default {
     ShoppingCart,
     LogoComponent,
   },
+  computed: {
+    ...mapState({
+      isAuth: state => state.auth.isAuth,
+      user: state => state.auth.user,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setIsAuth: 'auth/setIsAuth',
+      setUser: 'auth/setUser',
+    }),
+    exit() {
+      this.setIsAuth(false);
+      this.setUser({});
+      localStorage.removeItem('token');
+      this.$router.go(0);
+    },
+  }
 }
 </script>
 

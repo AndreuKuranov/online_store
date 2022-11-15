@@ -103,7 +103,7 @@
 
           this.setIsAuth(true);
           this.setUser(data);
-          this.$router.push(SHOP_ROUTE);
+          this.$router.go(0);
         } catch(e) {
           console.log(e.response.data.message);
         }
@@ -111,6 +111,18 @@
       checkUrl() {
         return this.$route.path === LOGIN_ROUTE
       },
+
+      // validLogin() {
+      //   const em = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      //   return em.test(String(this.email))
+      // },
+      // validPassword() {
+      //   const pas = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/;
+      //   return pas.test(String(this.password))
+      // },
+      // valid() {
+      //   return this.validLogin() && this.validPassword()
+      // },
     },
     watch: {
       $route() {}

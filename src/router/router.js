@@ -38,6 +38,13 @@ const managwrAuthGuard = function (to, from, next) {
   };
 }
 
+const logoutGuard = function (to, from, next) {
+  if (isAuthorized) {
+    next(SHOP_ROUTE)
+  } else {
+    next()
+  };
+}
 
 const routes = [
   {
@@ -70,10 +77,12 @@ const routes = [
   {
     path: LOGIN_ROUTE,
     component: AuthorizationPage,
+    beforeEnter: logoutGuard,
   },
   {
     path: REGISTRATION_ROUTE,
     component: AuthorizationPage,
+    beforeEnter: logoutGuard,
   },
   {
     path: '/:pathMatch(.*)*',
