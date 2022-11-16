@@ -1,6 +1,6 @@
 <template>
   <TitleBlock class="page__title">
-    Название товара
+    {{ product.name }}
   </TitleBlock>
   <section class="page__product product">
     <div class="product__container container">
@@ -23,17 +23,20 @@
           >
             <img
               class="my-swiper__img"
-              :src="require(`@/image/${item.image}`)"
-              :alt="item.altText"
+              :src="require(`@/image/${item.img}`)"
+              :alt="item.name"
             />
           </swiper-slide>
         </swiper>
         <div class="product__price-block">
-          <div class="product__price">Цена: 10 000 руб</div>
+          <div class="product__price">Цена: {{ product.price }} руб</div>
           <div class="product__btn-block">
             <CounterComponent class="product__counter" />
-            <my-button class="product__btn" type="button">
-              Купить
+            <my-button 
+              class="product__btn" 
+              type="button"
+            >
+              В корзину
             </my-button>
           </div>
         </div>
@@ -43,7 +46,14 @@
 
   <TabsComponent class="page__tabs">
     <TabComponent title="Характеристики" icon="settings_applications">
-      text Характеристики
+      <ul>
+        <li
+          v-for="item in description"
+          :key="item.id"
+        >
+          {{ item.title }}: {{ item.description }}
+        </li>
+      </ul>
     </TabComponent>
     <TabComponent title="Описание" icon="description">
       text Описание
@@ -53,7 +63,11 @@
     </TabComponent>
   </TabsComponent>
 
-  <ListProducts class="page__products" :title="titleTop" :products="productsTop" />
+  <ListProducts 
+    class="page__products" 
+    :title="titleTop" 
+    :products="productsTop" 
+  />
 </template>
 
 <script>
@@ -64,6 +78,7 @@ import TabComponent from '@/components/TabComponent.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
@@ -78,19 +93,24 @@ export default {
   data() {
     return {
       modules: [Autoplay, Navigation, Pagination],
+      product: { id: 'products1', name: 'Название товара', price: '9 999', img: '01.jpg' },
+      description: [
+        { id: 1, title: 'title-1', description: 'description-1' },
+        { id: 2, title: 'title-2', description: 'description-2' },
+        { id: 3, title: 'title-3', description: 'description-3' },
+      ],
       slides: [
-        { id: 'slide1', image: '4.png', altText: '4' },
-        { id: 'slide2', image: '5.png', altText: '5' },
-        { id: 'slide3', image: '6.png', altText: '6' },
+        { id: 'slide1', img: '4.png', name: '4' },
+        { id: 'slide2', img: '5.png', name: '5' },
+        { id: 'slide3', img: '6.png', name: '6' },
       ],
       titleTop: 'Топ продаж',
-      productsTop: [
-        { id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg' },
-        { id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg' },
-        { id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg' },
-        { id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg' },
-      ]
     }
+  },
+  computed: {
+    ...mapState({
+      productsTop: state => state.shop.productsTop,
+    }),
   },
 };
 </script>

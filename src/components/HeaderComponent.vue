@@ -26,6 +26,16 @@
           <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">logout</span>
         </my-button>
 
+        <router-link
+          v-if="user.role === 'ADMIN'"
+          title="Перейти в аминпанель"
+          type="button"
+          class="header__admin-btn admin-btn btn"
+          to="/admin"
+        >
+          <span class="admin-btn__material-symbols-outlined material-symbols-outlined">settings</span>
+        </router-link>
+
       </div>
     </div>
   </header>
@@ -44,6 +54,11 @@ export default {
     PhoneComponent,
     ShoppingCart,
     LogoComponent,
+  },
+  data() {
+    return {
+      
+    }
   },
   computed: {
     ...mapState({
@@ -75,6 +90,7 @@ export default {
     align-items: center;
     column-gap: 16px;
     min-height: 76px;
+    position: relative;
 
     @include min-width-xs {
       column-gap: 20px;
@@ -131,6 +147,13 @@ export default {
   &__authorization-btn {
 
   }
+
+  &__admin-btn {
+    position: absolute;
+    top: 110px;
+    right: 0;
+    z-index: 9999;
+  }
 }
 
 .authorization-btn {
@@ -148,4 +171,5 @@ export default {
     }
   }
 }
+
 </style>

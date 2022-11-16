@@ -53,7 +53,7 @@
 
 <script>
   import { registration, login } from '@/http/userAPI';
-  import { REGISTRATION_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '@/utils/consts';
+  import { REGISTRATION_ROUTE, LOGIN_ROUTE } from '@/utils/consts';
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
   export default {

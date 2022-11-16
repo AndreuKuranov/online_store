@@ -18,7 +18,7 @@
             type="button"
             @click="setSelectedType(item)"
           >
-            {{ item.text }}
+            {{ item.name }}
           </my-button>
         </li>
       </ul>
@@ -36,7 +36,7 @@
             type="button"
             @click="setSelectedBrand(item)"
           >
-            {{ item.text }}
+            {{ item.name }}
           </my-button>
         </li>
       </ul>

@@ -1,7 +1,7 @@
 <template>
   <div class="card-product">
     <router-link 
-      :to="product.link"
+      :to="`${deviceRoute}/${product.id}`"
       class="card-product__img-block"
     >
       <img 
@@ -12,7 +12,7 @@
     </router-link>
     <div class="card-product__content">
       <router-link
-        :to="product.link" 
+        :to="`${deviceRoute}/${product.id}`" 
         class="card-product__link"
       >
         <h4 class="card-product__title">{{ product.name }}</h4>
@@ -24,7 +24,7 @@
           class="card-product__btn"
           type="button"
         >
-          Купить
+          В корзину
         </my-button>
         <CounterComponent v-if="basket" class="card-product__btn" />
       </div>
@@ -34,6 +34,7 @@
 
 <script>
 import CounterComponent from '@/components/CounterComponent.vue';
+import { DEVICE_ROUTE } from '@/utils/consts';
 
 export default {
   components: {
@@ -47,6 +48,11 @@ export default {
     basket: {
       type: Boolean,
       required: false
+    }
+  },
+  data() {
+    return {
+      deviceRoute: DEVICE_ROUTE,
     }
   },
 }
