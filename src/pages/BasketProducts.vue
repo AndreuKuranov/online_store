@@ -34,9 +34,14 @@
     </div>
   </div>
 
-  <ListProducts class="page__products" :title="titleTop" :products="productsTop" />
+  <ListProducts class="page__products" 
+    :title="titleTop" 
+    :products="productsTop" 
+  />
 
-  <my-modal v-model:stateModal="modalVisible">
+  <my-modal 
+    v-model:stateModal="modalVisible"
+  >
     <OrderingForm />
   </my-modal>
 </template>

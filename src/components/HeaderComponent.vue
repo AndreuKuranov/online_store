@@ -30,7 +30,7 @@
           v-if="user.role === 'ADMIN'"
           title="Перейти в аминпанель"
           type="button"
-          class="header__admin-btn admin-btn btn"
+          class="header__admin-btn admin-btn"
           to="/admin"
         >
           <span class="admin-btn__material-symbols-outlined material-symbols-outlined">settings</span>
@@ -149,10 +149,17 @@ export default {
   }
 
   &__admin-btn {
+    @extend %link;
+    @include blockCenter;
+
     position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     top: 110px;
-    right: 0;
+    right: 15px;
     z-index: 9999;
+    background-color: var(--danger-color);
   }
 }
 
