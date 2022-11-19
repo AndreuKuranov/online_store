@@ -22,9 +22,66 @@
       <div class="ordering-form__item">
         <my-input
           class="ordering-form__form-input"
-          v-focus
           placeholder="Наименование"
         />
+      </div>
+
+      <div class="ordering-form__item">
+        <my-input
+          class="ordering-form__form-input"
+          placeholder="Цена"
+          type="number"
+        />
+      </div>
+
+      <div class="ordering-form__item">
+        <input
+          type="file"
+        />
+      </div>
+
+      <div class="ordering-form__item">
+        <my-button
+          class="ordering-form__btn"
+          type="button"
+          @click="setInfo"
+        >
+          Добавить новое свойство
+        </my-button>
+      </div>
+
+      <div class="ordering-form__item">
+
+        <div 
+          class="ordering-form__body"
+          v-for="item in info"
+          :key="item.number"
+        >
+          <div class="ordering-form__item">
+            <my-input
+              class="ordering-form__form-input"
+              placeholder="Введите название свойства"
+            />
+          </div>
+
+          <div class="ordering-form__item">
+            <my-input
+              class="ordering-form__form-input"
+              placeholder="Введите описание свойства"
+            />
+          </div>
+
+          <div class="ordering-form__item">
+            <my-button
+              class="ordering-form__btn"
+              type="button"
+              @click="removeInfo(item.number)"
+            >
+              Удалить свойство
+            </my-button>
+          </div>
+        </div>
+  
       </div>
 
       <div class="ordering-form__item">
@@ -42,12 +99,14 @@
 
 <script>
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+  import { uniqueId } from '@/functions/functions.js';
 
   export default {
     data() {
       return {
         valueSelectedBrand: '',
         valueSelectedType: '',
+        info: [],
       }
     },
     computed: {
@@ -56,6 +115,14 @@
         brandProduct: state => state.shop.brandProduct,
       }),
     },
+    methods: {
+      setInfo() {
+        this.info.push({ title: '', description: '', number: uniqueId() })
+      },
+      removeInfo(number) {
+        this.info = this.info.filter(item => item.number !== number)
+      }
+    }
   }
 </script>
 
