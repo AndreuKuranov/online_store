@@ -8,11 +8,11 @@
     :title="title"
     :products="products"
   />
-  <ListProducts
+  <!-- <ListProducts
     class="page__products"
     :title="titleTop"
     :products="productsTop"
-  />
+  /> -->
 </template>
 
 <script>

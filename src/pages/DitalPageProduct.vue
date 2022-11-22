@@ -63,11 +63,11 @@
     </TabComponent>
   </TabsComponent>
 
-  <ListProducts 
+  <!-- <ListProducts 
     class="page__products" 
     :title="titleTop" 
     :products="productsTop" 
-  />
+  /> -->
 </template>
 
 <script>
@@ -79,6 +79,7 @@ import TitleBlock from '@/components/TitleBlock.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { getOneDevice } from '@/http/productAPI';
 
 export default {
   components: {
@@ -93,7 +94,7 @@ export default {
   data() {
     return {
       modules: [Autoplay, Navigation, Pagination],
-      product: { id: 'products1', name: 'Название товара', price: '9 999', img: '01.jpg' },
+      product: {},
       description: [
         { id: 1, title: 'title-1', description: 'description-1' },
         { id: 2, title: 'title-2', description: 'description-2' },
@@ -112,6 +113,14 @@ export default {
       productsTop: state => state.shop.productsTop,
     }),
   },
+  mounted() {
+    getOneDevice(this.$route.params.id).then(data => this.product = data);
+  },
+  watch: {
+    $route(toRoute, ftomRoute) {
+      
+    }
+  }
 };
 </script>
 

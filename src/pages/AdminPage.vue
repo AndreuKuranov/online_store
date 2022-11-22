@@ -54,6 +54,9 @@
         this.componentVisible = id;
         this.modalVisible = true;
       },
+      // setModalVisible(val) {
+      //   this.modalVisible = val;
+      // }
     }
   }
 </script>

@@ -34,10 +34,11 @@
     </div>
   </div>
 
-  <ListProducts class="page__products" 
+  <!-- <ListProducts 
+    class="page__products" 
     :title="titleTop" 
     :products="productsTop" 
-  />
+  /> -->
 
   <my-modal 
     v-model:stateModal="modalVisible"

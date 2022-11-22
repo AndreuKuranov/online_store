@@ -8,6 +8,7 @@
           class="ordering-form__form-input"
           v-focus
           placeholder="Наименование"
+          v-model="value"
         />
       </div>
 
@@ -15,6 +16,7 @@
         <my-button
           class="ordering-form__btn"
           type="button"
+          @click="addType"
         >
           Создать
         </my-button>
@@ -25,14 +27,20 @@
 </template>
 
 <script>
+import { createType } from '@/http/productAPI';
+
   export default {
     data() {
       return {
-        
+        value: '',
       }
     },
     methods: {
-      
+      addType() {
+        createType({ name: this.value }).then(data => {
+          this.value = '';
+        })
+      }
     }
   }
 </script>

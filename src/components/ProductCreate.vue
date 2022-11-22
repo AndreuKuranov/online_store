@@ -23,6 +23,7 @@
         <my-input
           class="ordering-form__form-input"
           placeholder="Наименование"
+          v-model="nameProduct"
         />
       </div>
 
@@ -31,12 +32,15 @@
           class="ordering-form__form-input"
           placeholder="Цена"
           type="number"
+          v-model="priceProduct"
         />
       </div>
 
       <div class="ordering-form__item">
         <input
           type="file"
+          @change="setImgProduct"
+          ref="file"
         />
       </div>
 
@@ -61,6 +65,8 @@
             <my-input
               class="ordering-form__form-input"
               placeholder="Введите название свойства"
+              @change="changeInfo('title', $event.target.value, item.number)"
+              :value="item.title"
             />
           </div>
 
@@ -68,6 +74,8 @@
             <my-input
               class="ordering-form__form-input"
               placeholder="Введите описание свойства"
+              @change="changeInfo('description', $event.target.value, item.number)"
+              :value="item.description"
             />
           </div>
 
@@ -88,6 +96,7 @@
         <my-button
           class="ordering-form__btn"
           type="button"
+          @click="addDevice"
         >
           Создать
         </my-button>
@@ -100,12 +109,18 @@
 <script>
   import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
   import { uniqueId } from '@/functions/functions.js';
+  import { createDevice } from '@/http/productAPI';
 
   export default {
     data() {
       return {
+        nameProduct: '',
+        priceProduct: 0,
+        imgProduct: null,
         valueSelectedBrand: '',
         valueSelectedType: '',
+        valueSelectedBrandId: '',
+        valueSelectedTypeId: '',
         info: [],
       }
     },
@@ -121,6 +136,31 @@
       },
       removeInfo(number) {
         this.info = this.info.filter(item => item.number !== number)
+      },
+      setImgProduct() {
+        this.imgProduct = this.$refs.file.files[0];
+      },
+      changeInfo(key, value, number) {
+        this.info = this.info.map(i => i.number === number ? {...i, [key]: value} : i)
+      },
+      addDevice() {
+        const formData = new FormData()
+        formData.append('name', this.nameProduct)
+        formData.append('price', `${this.priceProduct}`)
+        formData.append('img', this.imgProduct)
+        formData.append('brandId', 1)
+        formData.append('typeId', 1)
+        formData.append('info', JSON.stringify(this.info))
+        createDevice(formData).then(data => console.log('ok'))
+      },
+      checkId(val) {
+        let id = 0;
+        this.typeProduct.forEach(item => {
+          if (item.name === val) {
+            id = item.id
+          }
+        });
+        return String(id)
       }
     }
   }

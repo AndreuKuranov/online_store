@@ -50,11 +50,11 @@
 
   <PaginationComponent class="page__pagination" />
 
-  <ListProducts
+  <!-- <ListProducts
     class="page__products"
     :title="titleTop"
     :products="productsTop"
-  />
+  /> -->
 </template>
 
 <script>
@@ -62,6 +62,7 @@ import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { getTypes, getBrands, getDevices } from '@/http/productAPI';
 
 export default {
   components: {
@@ -88,8 +89,16 @@ export default {
     ...mapMutations({
       setSelectedType: 'shop/setSelectedType',
       setSelectedBrand: 'shop/setSelectedBrand',
+      setTypeProduct: 'shop/setTypeProduct',
+      setBrandProduct: 'shop/setBrandProduct',
+      setProducts: 'shop/setProducts',
     }),
-  }
+  },
+  mounted() {
+    getTypes().then(data => this.setTypeProduct(data));
+    getBrands().then(data => this.setBrandProduct(data));
+    getDevices().then(data => this.setProducts(data.rows));
+  },
 }
 </script>
 

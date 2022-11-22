@@ -6,7 +6,7 @@
     >
       <img 
         class="card-product__img"
-        :src="require(`@/image/product/${product.img}`)"
+        :src="urlServer + product.img"
         :alt="product.name"
       >
     </router-link>
@@ -53,8 +53,9 @@ export default {
   data() {
     return {
       deviceRoute: DEVICE_ROUTE,
+      urlServer: process.env.VUE_APP_BASE_URL,
     }
-  },
+  }
 }
 </script>
 

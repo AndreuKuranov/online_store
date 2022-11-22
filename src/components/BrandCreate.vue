@@ -8,6 +8,7 @@
           class="ordering-form__form-input"
           v-focus
           placeholder="Наименование"
+          v-model="value"
         />
       </div>
 
@@ -15,6 +16,7 @@
         <my-button
           class="ordering-form__btn"
           type="button"
+          @click="addBrand"
         >
           Создать
         </my-button>
@@ -25,10 +27,21 @@
 </template>
 
 <script>
+  import { createBrand } from '@/http/productAPI';
+
   export default {
     data() {
-      
+      return {
+        value: '',
+      }
     },
+    methods: {
+      addBrand() {
+        createBrand({ name: this.value }).then(data => {
+          this.value = '';
+        })
+      }
+    }
   }
 </script>
 
