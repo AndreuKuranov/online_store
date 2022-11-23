@@ -119,8 +119,6 @@
         imgProduct: null,
         valueSelectedBrand: '',
         valueSelectedType: '',
-        valueSelectedBrandId: '',
-        valueSelectedTypeId: '',
         info: [],
       }
     },
@@ -148,20 +146,11 @@
         formData.append('name', this.nameProduct)
         formData.append('price', `${this.priceProduct}`)
         formData.append('img', this.imgProduct)
-        formData.append('brandId', 1)
-        formData.append('typeId', 1)
+        formData.append('brandId', this.valueSelectedBrand)
+        formData.append('typeId', this.valueSelectedType)
         formData.append('info', JSON.stringify(this.info))
         createDevice(formData).then(data => console.log('ok'))
       },
-      checkId(val) {
-        let id = 0;
-        this.typeProduct.forEach(item => {
-          if (item.name === val) {
-            id = item.id
-          }
-        });
-        return String(id)
-      }
     }
   }
 </script>

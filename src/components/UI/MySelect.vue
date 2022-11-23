@@ -8,7 +8,7 @@
     <option
       v-for="option in options"
       :key="option.id"
-      :value="option.name"
+      :value="option.id"
     >
       {{ option.name }}
     </option>
