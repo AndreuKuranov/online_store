@@ -13,10 +13,10 @@
           :key="item.id"
         >
           <my-button
-            :class="{ 'btn-active': item.id === selectedType.id,}"
+            :class="{ 'btn-active': item.id === selectedType.id }"
             class="list-filter__btn"
             type="button"
-            @click="setSelectedType(item)"
+            @click="checkSelected(item, item.id, selectedType, setSelectedType)"
           >
             {{ item.name }}
           </my-button>
@@ -31,10 +31,10 @@
           :key="item.id"
         >
           <my-button
-            :class="{ 'btn-active': item.id === selectedBrand.id,}"
+            :class="{ 'btn-active': item.id === selectedBrand.id }"
             class="list-filter__btn"
             type="button"
-            @click="setSelectedBrand(item)"
+            @click="checkSelected(item, item.id, selectedBrand, setSelectedBrand)"
           >
             {{ item.name }}
           </my-button>
@@ -62,7 +62,6 @@ import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { getTypes, getBrands, getDevices } from '@/http/productAPI';
 
 export default {
   components: {
@@ -83,22 +82,43 @@ export default {
       brandProduct: state => state.shop.brandProduct,
       selectedType: state => state.shop.selectedType,
       selectedBrand: state => state.shop.selectedBrand,
+      page: state => state.shop.page,
     }),
   },
   methods: {
     ...mapMutations({
       setSelectedType: 'shop/setSelectedType',
       setSelectedBrand: 'shop/setSelectedBrand',
-      setTypeProduct: 'shop/setTypeProduct',
-      setBrandProduct: 'shop/setBrandProduct',
-      setProducts: 'shop/setProducts',
     }),
+    ...mapActions({
+      getTypesAction: 'shop/getTypesAction',
+      getBrandsAction: 'shop/getBrandsAction',
+      getDevicesAction: 'shop/getDevicesAction',
+    }),
+    checkSelected(item, id, selected, setSelected) {
+      if (JSON.stringify(selected) !== '{}' && id === selected.id) {
+        setSelected({});
+      } else {
+        setSelected(item);
+      }
+    }
   },
   mounted() {
-    getTypes().then(data => this.setTypeProduct(data));
-    getBrands().then(data => this.setBrandProduct(data));
-    getDevices().then(data => this.setProducts(data.rows));
+    this.getTypesAction();
+    this.getBrandsAction();
+    this.getDevicesAction(null, null);
   },
+  watch: {
+    page() {
+      this.getDevicesAction();
+    },
+    selectedType() {
+      this.getDevicesAction();
+    },
+    selectedBrand() {
+      this.getDevicesAction();
+    }
+  }
 }
 </script>
 

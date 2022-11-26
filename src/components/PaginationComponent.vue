@@ -2,27 +2,29 @@
   <div class="pagination">
     <div class="pagination__container container">
       <ul class="pagination__list">
-        <li class="pagination__item pagination__item--chevron">
+        <li 
+          class="pagination__item pagination__item--chevron"
+          :class="{ 'pagination__item--active': page <= 1 }"
+          @click="prevBtn"
+        >
           <span class="pagination__material-symbols-outlined material-symbols-outlined">chevron_left</span>
         </li>
 
-        <li class="pagination__item pagination__item--active">
-          1
-        </li>
-        <li class="pagination__item">
-          2
-        </li>
-        <li class="pagination__item">
-          3
-        </li>
-        <li class="pagination__item">
-          4
-        </li>
-        <li class="pagination__item">
-          5
+        <li 
+          class="pagination__item"
+          v-for="pageItem in pages"
+          :key="pageItem"
+          :class="{ 'pagination__item--active': page === pageItem }"
+          @click="setPage(pageItem)"
+        >
+          {{ pageItem }}
         </li>
 
-        <li class="pagination__item pagination__item--chevron">
+        <li 
+          class="pagination__item pagination__item--chevron"
+          :class="{ 'pagination__item--active': page >= pageCount }"
+          @click="nextBtn"
+        >
           <span class="pagination__material-symbols-outlined material-symbols-outlined">chevron_right</span>
         </li>
       </ul>
@@ -31,8 +33,47 @@
 </template>
 
 <script>
-export default {
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
+export default {
+  computed: {
+    ...mapState({
+      page: state => state.shop.page,
+      totalProduct: state => state.shop.totalProduct,
+      limit: state => state.shop.limit,
+    }),
+
+    pageCount() {
+      return Math.ceil(this.totalProduct / this.limit)
+    },
+
+    pages() {
+      const pages = [];
+
+      for (let i = 0; i < this.pageCount; i++) {
+        pages.push(i + 1)
+      }
+
+      return pages
+    }
+  },
+  methods: {
+    ...mapMutations({
+      setPage: 'shop/setPage',
+    }),
+
+    prevBtn() {
+      if (this.page > 1) {
+        this.setPage(this.page - 1)
+      } 
+    },
+
+    nextBtn() {
+      if (this.page < this.pageCount) {
+        this.setPage(this.page + 1)
+      } 
+    }
+  },
 }
 </script>
 
@@ -67,12 +108,13 @@ export default {
 
   &__item {
     @include blockCenter;
-    background-color: rgba(var(--muted-color-rgb), 0.7);
+    background-color: var(--base-bg-color);
     cursor: pointer;
     border-radius: var(--small-border-radius);
     height: 30px;
     width: 30px;
     font-size: 20px;
+    transition: 0.3s;
 
     @include min-width-xs {
       height: 40px;
@@ -92,7 +134,7 @@ export default {
 
   &__item--active {
     cursor: default;
-    background-color: var(--base-bg-color);
+    background-color: rgba(var(--muted-color-rgb), 0.7);
   }
 
   &__material-symbols-outlined {

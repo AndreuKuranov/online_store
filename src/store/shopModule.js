@@ -1,4 +1,4 @@
-import axios from "axios";
+import { getTypes, getBrands, getDevices } from '@/http/productAPI';
 
 export const shopModule = {
   state: () => ({
@@ -13,32 +13,79 @@ export const shopModule = {
     brandProduct: [],
     selectedType: {},
     selectedBrand: {},
+    page: 1,
+    totalProduct: 0,
+    limit: 4,
   }),
+
   getters: {
 
   },
+
   mutations: {
     setProducts(state, products) {
-      state.products = products
+      state.products = products;
     },
     setProductsTop(state, productsTop) {
-      state.productsTop = productsTop
+      state.productsTop = productsTop;
     },
     setTypeProduct(state, typeProduct) {
-      state.typeProduct = typeProduct
+      state.typeProduct = typeProduct;
     },
     setBrandProduct(state, brandProduct) {
-      state.brandProduct = brandProduct
+      state.brandProduct = brandProduct;
     },
     setSelectedType(state, selectedType) {
-      state.selectedType = selectedType
+      state.page = 1;
+      state.selectedType = selectedType;
     },
     setSelectedBrand(state, selectedBrand) {
-      state.selectedBrand = selectedBrand
+      state.page = 1;
+      state.selectedBrand = selectedBrand;
+    },
+    setTotalProduct(state, totalProduct) {
+      state.totalProduct = totalProduct;
+    },
+    setPage(state, page) {
+      state.page = page;
+    },
+    setLimit(state, setLimit) {
+      state.setLimit = setLimit;
     },
   },
-  actions: {
 
+  actions: {
+    async getTypesAction({state, commit}) {
+      try {
+        const data = await getTypes();
+        commit('setTypeProduct', data);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async getBrandsAction({state, commit}) {
+      try {
+        const data = await getBrands();
+        commit('setBrandProduct', data);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async getDevicesAction(
+      {state, commit}, 
+      typeId = state.selectedType.id, 
+      brandId = state.selectedBrand.id, 
+      page = state.page, 
+      limit = state.limit
+    ) {
+      try {
+        const data = await getDevices(typeId, brandId, page, limit);
+        commit('setProducts', data.rows);
+        commit('setTotalProduct', data.count);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
   },
   namespaced: true
 }
