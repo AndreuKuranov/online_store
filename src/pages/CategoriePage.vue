@@ -40,6 +40,30 @@
           </my-button>
         </li>
       </ul>
+
+      <!-- <my-button
+        @click="deleteType"
+      >
+        удалить
+      </my-button> -->
+
+      <!-- <my-button
+        @click="putType"
+      >
+        ред
+      </my-button> -->
+
+      <!-- <my-button
+        @click="deleteDevice"
+      >
+        удалить
+      </my-button> -->
+
+      <!-- <my-button
+        @click="putDevice"
+      >
+        ред
+      </my-button> -->
     </div>
   </div>
 
@@ -62,6 +86,7 @@ import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { deleteTypes, putTypes, deleteDevices, putDevices } from '@/http/productAPI';
 
 export default {
   components: {
@@ -101,7 +126,35 @@ export default {
       } else {
         setSelected(item);
       }
-    }
+    },
+
+    // deleteType() {
+    //   deleteTypes(4)
+    // },
+
+    // putType() {
+    //   putTypes(4, "test")
+    // },
+
+    // deleteDevice() {
+    //   deleteDevices(44)
+    // },
+
+    // putDevice() {
+    //   putDevices(
+    //     33,
+    //     'test 11',
+    //     888,
+    //     'test.jpg',
+    //     2,
+    //     3,
+    //     JSON.stringify([{
+    //       description: "text 22",
+    //       number: "b0bf52e5-57de-d0b0-ccbe-5a12704f6676",
+    //       title: "text 11"
+    //     }])
+    //   )
+    // },
   },
   mounted() {
     this.getTypesAction();

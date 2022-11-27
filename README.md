@@ -15,6 +15,10 @@
 
 [Figma](https://www.figma.com/file/xrX1HnqbZXxlUXTUfqKwVb/Vue-SPA-course?node-id=0%3A1)
 
+## Back-end
+
+[Node.js](https://github.com/AndreuKuranov/online_store_server)
+
 ## Техническая часть
 
 - [Node.js](https://nodejs.org/ru/)

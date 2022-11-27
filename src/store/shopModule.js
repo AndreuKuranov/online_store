@@ -55,7 +55,7 @@ export const shopModule = {
   },
 
   actions: {
-    async getTypesAction({state, commit}) {
+    async getTypesAction({ state, commit }) {
       try {
         const data = await getTypes();
         commit('setTypeProduct', data);
@@ -63,7 +63,7 @@ export const shopModule = {
         console.log(e.message);
       }
     },
-    async getBrandsAction({state, commit}) {
+    async getBrandsAction({ state, commit }) {
       try {
         const data = await getBrands();
         commit('setBrandProduct', data);
@@ -72,7 +72,7 @@ export const shopModule = {
       }
     },
     async getDevicesAction(
-      {state, commit}, 
+      { state, commit }, 
       typeId = state.selectedType.id, 
       brandId = state.selectedBrand.id, 
       page = state.page, 
