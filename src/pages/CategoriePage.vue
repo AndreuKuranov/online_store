@@ -142,17 +142,24 @@ export default {
 
     // putDevice() {
     //   putDevices(
-    //     33,
-    //     'test 11',
+    //     46,
+    //     'test 456456453',
     //     888,
-    //     'test.jpg',
+    //     '0a806713-c764-4d87-b2f1-6e1f4d6359e6.jpg',
     //     2,
-    //     3,
-    //     JSON.stringify([{
-    //       description: "text 22",
-    //       number: "b0bf52e5-57de-d0b0-ccbe-5a12704f6676",
-    //       title: "text 11"
-    //     }])
+    //     4,
+    //     JSON.stringify([
+    //       {
+    //         description: "text 22",
+    //         id: 26,
+    //         title: "text 44"
+    //       },
+    //       {
+    //         description: "text 44",
+    //         id: 27,
+    //         title: "text 44"
+    //       }
+    //     ])
     //   )
     // },
   },

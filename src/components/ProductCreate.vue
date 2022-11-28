@@ -140,7 +140,6 @@
       },
       changeInfo(key, value, number) {
         this.info = this.info.map(i => i.number === number ? {...i, [key]: value} : i)
-        console.log(this.info);
       },
       addDevice() {
         const formData = new FormData()
