@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="page__admin admin">
     <div class="admin__container container">
       <ul class="admin__list">
@@ -82,5 +82,65 @@
   &__btn {
 
   }
+}
+</style> -->
+
+<template>
+  <div class="page__admin admin">
+    <div class="admin__container container">
+      <div class="admin__body">
+        <div class="admin__navbar navbar-admin">
+          <ul class="navbar-admin__list">
+            <li 
+              class="navbar-admin__item"
+              v-for="item in navList"
+              :key="item.id"
+            >
+              <router-link
+                class="navbar-admin__link"
+                :to="`/admin/${item.id}`"
+              >
+                {{ item.name }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
+
+        <div class="admin__page page-admin">
+          <router-view />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    components: {
+
+    },
+    data() {
+      return {
+        navList: [
+          { id: 'typeCreate', name: 'Добавить тип' },
+          { id: 'brandCreate', name: 'Добавить бренд' },
+          { id: 'productCreate', name: 'Добавить продукт' },
+        ]
+      }
+    },
+    methods: {
+
+    }
+  }
+</script>
+
+<style lang="scss">
+.admin {
+  margin: 30px 0 0 0;
+
+  &__container {
+
+  }
+
 }
 </style>
