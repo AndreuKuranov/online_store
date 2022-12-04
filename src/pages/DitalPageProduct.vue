@@ -48,7 +48,7 @@
     <TabComponent title="Характеристики" icon="settings_applications">
       <ul>
         <li
-          v-for="item in description"
+          v-for="item in product.info"
           :key="item.id"
         >
           {{ item.title }}: {{ item.description }}
@@ -95,11 +95,6 @@ export default {
     return {
       modules: [Autoplay, Navigation, Pagination],
       product: {},
-      description: [
-        { id: 1, title: 'title-1', description: 'description-1' },
-        { id: 2, title: 'title-2', description: 'description-2' },
-        { id: 3, title: 'title-3', description: 'description-3' },
-      ],
       slides: [
         { id: 'slide1', img: '4.png', name: '4' },
         { id: 'slide2', img: '5.png', name: '5' },

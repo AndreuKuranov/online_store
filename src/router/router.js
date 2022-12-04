@@ -17,9 +17,10 @@ import AuthorizationPage from '@/pages/AuthorizationPage';
 import AdminPage from '@/pages/AdminPage';
 import jwt_decode from "jwt-decode";
 
-import AdminBrandCreate from '@/pages/AdminBrandCreate.vue';
-import AdminTypeCreate from '@/pages/AdminTypeCreate.vue';
-import AdminProductCreate from '@/pages/AdminProductCreate.vue';
+import AdminBrand from '@/pages/AdminBrand.vue';
+import AdminType from '@/pages/AdminType.vue';
+import AdminTypeDetail from '@/pages/AdminTypeDetail';
+import AdminProduct from '@/pages/AdminProduct.vue';
 
 const isAuthorized = localStorage.hasOwnProperty('token');
 const roleUser = isAuthorized ? jwt_decode(localStorage.getItem('token')) : '';
@@ -62,19 +63,24 @@ const routes = [
     name: 'AdminPage',
     children: [
       {
-        path: 'typeCreate',
-        component: AdminTypeCreate,
-        name: 'AdminTypeCreate'
+        path: 'type',
+        component: AdminType,
+        name: 'AdminType'
       },
       {
-        path: 'brandCreate',
-        component: AdminBrandCreate,
-        name: 'AdminBrandCreate'
+        path: 'type/creatingNewType',
+        component: AdminTypeDetail,
+        name: 'AdminTypeDetail'
       },
       {
-        path: 'productCreate',
-        component: AdminProductCreate,
-        name: 'AdminProductCreate'
+        path: 'brand',
+        component: AdminBrand,
+        name: 'AdminBrand'
+      },
+      {
+        path: 'product',
+        component: AdminProduct,
+        name: 'AdminProduct'
       },
     ],
     beforeEnter: managwrAuthGuard

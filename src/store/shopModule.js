@@ -1,4 +1,4 @@
-import { getTypes, getBrands, getDevices } from '@/http/productAPI';
+import { getTypes, getBrands, getDevices, deleteTypes, putTypes, deleteDevices, putDevices } from '@/http/productAPI';
 
 export const shopModule = {
   state: () => ({
@@ -59,6 +59,14 @@ export const shopModule = {
       try {
         const data = await getTypes();
         commit('setTypeProduct', data);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async deleteTypesAction({ state, commit }, id) {
+      try {
+        const data = await deleteTypes(id);
+        commit('setTypeProduct', state.typeProduct.filter(item => item.id !== id));
       } catch (e) {
         console.log(e.message);
       }

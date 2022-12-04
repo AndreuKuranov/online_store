@@ -122,9 +122,9 @@
     data() {
       return {
         navList: [
-          { id: 'typeCreate', name: 'Добавить тип' },
-          { id: 'brandCreate', name: 'Добавить бренд' },
-          { id: 'productCreate', name: 'Добавить продукт' },
+          { id: 'type', name: 'Типы' },
+          { id: 'brand', name: 'Бренды' },
+          { id: 'product', name: 'Продукты' },
         ]
       }
     },
@@ -141,6 +141,38 @@
   &__container {
 
   }
+
+  &__body {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 180px 1fr;
+  }
+
+  &__navbar {
+
+  }
+
+  &__page {
+
+  }
+}
+
+.navbar-admin {
+
+  &__list {
+    @extend %list;
+  }
+
+  &__item {
+
+  }
+
+  &__link {
+
+  }
+}
+
+.page-admin {
 
 }
 </style>
