@@ -79,7 +79,6 @@ import TitleBlock from '@/components/TitleBlock.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { getOneDevice } from '@/http/productAPI';
 
 export default {
   components: {
@@ -109,7 +108,12 @@ export default {
     }),
   },
   mounted() {
-    getOneDevice(this.$route.params.id).then(data => this.product = data);
+    this.getOneDevicesAction(this.$route.params.id).then(data => this.product = data);
+  },
+  methods: {
+    ...mapActions({
+      getOneDevicesAction: 'shop/getOneDevicesAction',
+    }),
   },
   watch: {
     $route(toRoute, ftomRoute) {

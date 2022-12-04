@@ -164,19 +164,21 @@ export default {
     // },
   },
   mounted() {
+    this.setSelectedType({});
+    this.setSelectedBrand({});
     this.getTypesAction();
     this.getBrandsAction();
-    this.getDevicesAction(null, null);
+    this.getDevicesAction({});
   },
   watch: {
     page() {
-      this.getDevicesAction();
+      this.getDevicesAction({});
     },
     selectedType() {
-      this.getDevicesAction();
+      this.getDevicesAction({});
     },
     selectedBrand() {
-      this.getDevicesAction();
+      this.getDevicesAction({});
     }
   }
 }

@@ -1,4 +1,17 @@
-import { getTypes, getBrands, getDevices, deleteTypes, putTypes, deleteDevices, putDevices } from '@/http/productAPI';
+import { 
+  getTypes,
+  deleteTypes,
+  putTypes,
+  getOneTypes,
+  getBrands,
+  getOneBrands,
+  putBrands,
+  deleteBrands,
+  getDevices,
+  getOneDevice,
+  deleteDevices,
+  putDevices,
+} from '@/http/productAPI';
 
 export const shopModule = {
   state: () => ({
@@ -55,6 +68,7 @@ export const shopModule = {
   },
 
   actions: {
+    // ------------ type ------------
     async getTypesAction({ state, commit }) {
       try {
         const data = await getTypes();
@@ -63,14 +77,32 @@ export const shopModule = {
         console.log(e.message);
       }
     },
+    async getOneTypesAction({ state, commit }, id) {
+      try {
+        const data = await getOneTypes(id);
+        return data
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
     async deleteTypesAction({ state, commit }, id) {
       try {
-        const data = await deleteTypes(id);
+        await deleteTypes(id);
         commit('setTypeProduct', state.typeProduct.filter(item => item.id !== id));
       } catch (e) {
         console.log(e.message);
       }
     },
+    async putTypesAction({ state, commit }, value) {
+      try {
+        await putTypes(value.id, value.name);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    // -------------------------
+
+    // ------------ brand ------------
     async getBrandsAction({ state, commit }) {
       try {
         const data = await getBrands();
@@ -79,21 +111,83 @@ export const shopModule = {
         console.log(e.message);
       }
     },
-    async getDevicesAction(
-      { state, commit }, 
-      typeId = state.selectedType.id, 
-      brandId = state.selectedBrand.id, 
-      page = state.page, 
-      limit = state.limit
-    ) {
+    async getOneBrandsAction({ state, commit }, id) {
       try {
-        const data = await getDevices(typeId, brandId, page, limit);
+        const data = await getOneBrands(id);
+        return data
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async deleteBrandsAction({ state, commit }, id) {
+      try {
+        await deleteBrands(id);
+        commit('setBrandProduct', state.brandProduct.filter(item => item.id !== id));
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async putBrandsAction({ state, commit }, value) {
+      try {
+        await putBrands(value.id, value.name);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    // -------------------------
+
+    // ------------ device ------------
+    async getDevicesAction( { state, commit }, value) {
+      try {
+        let typeId = value.typeId ? value.typeId : state.selectedType.id;
+        let brandId = value.brandId ? value.brandId : state.selectedBrand.id;
+        let page = value.page ? value.page : state.page;
+        let limit = value.limit ? value.limit : state.limit;
+
+        const data = await getDevices(
+          typeId, 
+          brandId, 
+          page, 
+          limit
+        );
         commit('setProducts', data.rows);
         commit('setTotalProduct', data.count);
       } catch (e) {
         console.log(e.message);
       }
     },
+    async getOneDevicesAction({ state, commit }, id) {
+      try {
+        const data = await getOneDevice(id);
+        return data
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async deleteDevicesAction({ state, commit }, id) {
+      try {
+        await deleteDevices(id);
+        commit('setProducts', state.products.filter(item => item.id !== id));
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    async putDevicesAction({ state, commit }, value) {
+      try {
+        await putDevices(
+          value.id,
+          value.name,
+          value.price,
+          value.img,
+          value.brandId,
+          value.typeId,
+          value.info,
+        );
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    // -------------------------
   },
   namespaced: true
 }

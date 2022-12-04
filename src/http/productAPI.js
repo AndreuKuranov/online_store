@@ -11,6 +11,11 @@ export const getTypes = async () => {
   return data;
 }
 
+export const getOneTypes = async (id) => {
+  const { data } = await $host.get(`api/type/${id}`);
+  return data;
+}
+
 export const putTypes = async (id, item) => {
   const { data } = await $authHost.put(`api/type/${id}`, {
     name: item
@@ -36,6 +41,11 @@ export const getBrands = async () => {
   return data;
 }
 
+export const getOneBrands = async (id) => {
+  const { data } = await $host.get(`api/brand/${id}`);
+  return data;
+}
+
 export const putBrands = async (id, item) => {
   const { data } = await $authHost.put(`api/brand/${id}`, {
     name: item
@@ -56,14 +66,13 @@ export const createDevice = async (device) => {
   return data;
 }
 
-export const getDevices = async (typeId, brandId, page, limit = 4) => {
+export const getDevices = async (typeId, brandId, page, limit) => {
   const { data } = await $host.get('api/device', { params: { typeId, brandId, page, limit }});
   return data;
 }
 
 export const getOneDevice = async (id) => {
   const { data } = await $host.get(`api/device/${id}`);
-  console.log(data);
   return data;
 }
 

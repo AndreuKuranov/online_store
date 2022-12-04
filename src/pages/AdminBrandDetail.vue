@@ -16,7 +16,7 @@
         <my-button
           class="ordering-form__btn"
           type="button"
-          @click="addType"
+          @click="addBrand"
         >
           {{ btnText }}
         </my-button>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { createType } from '@/http/productAPI';
+import { createBrand } from '@/http/productAPI';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 
 export default {
@@ -40,30 +40,30 @@ export default {
   },
   methods: {
     ...mapActions({
-      putTypesAction: 'shop/putTypesAction',
-      getOneTypesAction: 'shop/getOneTypesAction'
+      putBrandsAction: 'shop/putBrandsAction',
+      getOneBrandsAction: 'shop/getOneBrandsAction'
     }),
 
-    addType() {
-      if(this.$route.path === '/admin/type/creatingNewType') {
-        createType({ name: this.value }).then(data => this.value = '')
+    addBrand() {
+      if(this.$route.path === '/admin/brand/creatingNewBrand') {
+        createBrand({ name: this.value }).then(data => this.value = '')
       }
 
       if(this.$route.params.id) {
-        this.putTypesAction({ id: this.$route.params.id, name: this.value })
+        this.putBrandsAction({ id: this.$route.params.id, name: this.value })
       }
     }
   },
   mounted() {
-    if(this.$route.path === '/admin/type/creatingNewType') {
-      this.title = 'Создание типа';
+    if(this.$route.path === '/admin/brand/creatingNewBrand') {
+      this.title = 'Создание бренда';
       this.btnText = 'Создать';
     }
 
     if(this.$route.params.id) {
-      this.title = 'Редактирование типа';
+      this.title = 'Редактирование бренда';
       this.btnText = 'Cохранить';
-      this.getOneTypesAction(this.$route.params.id).then(data => this.value = data.name);
+      this.getOneBrandsAction(this.$route.params.id).then(data => this.value = data.name);
     }
   }
 }

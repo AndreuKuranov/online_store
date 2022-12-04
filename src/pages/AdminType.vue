@@ -9,22 +9,22 @@
       url="type"
     />
 
-    <router-link
-      class="type__link"
-      to="type/creatingNewType"
-    >
-      <span class="material-symbols-outlined type__btn__material-symbols-outlined">add</span>
-    </router-link>
+    <LinkAdd
+      class="type__link-add"
+      url="type/creatingNewType" 
+    />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
 import ElementsList from '@/components/admin/ElementsList.vue';
+import LinkAdd from '@/components/admin/LinkAdd.vue';
 
 export default {
   components: {
     ElementsList,
+    LinkAdd,
   },
   methods: {
     ...mapActions({
@@ -44,5 +44,19 @@ export default {
 </script>
 
 <style lang="scss">
+.type {
 
+  &__title {
+
+  }
+
+  &__elements-list {
+
+  }
+
+  &__link-add {
+    margin-top: 20px;
+    margin-left: auto;
+  }
+}
 </style>

@@ -125,4 +125,22 @@ export default {
 
   }
 }
+
+.delete-modal {
+
+  &__text {
+    text-align: center;
+  }
+
+  &__btn-block {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  &__btn {
+
+  }
+}
 </style>
