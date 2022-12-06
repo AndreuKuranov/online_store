@@ -63,11 +63,11 @@
     </TabComponent>
   </TabsComponent>
 
-  <!-- <ListProducts 
+  <ListProducts 
     class="page__products" 
     :title="titleTop" 
     :products="productsTop" 
-  /> -->
+  />
 </template>
 
 <script>
@@ -104,6 +104,7 @@ export default {
   },
   computed: {
     ...mapState({
+      productsTop: state => state.shop.productsTop,
       productsTop: state => state.shop.productsTop,
     }),
   },

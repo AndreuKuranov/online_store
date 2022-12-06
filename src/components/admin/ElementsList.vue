@@ -9,41 +9,45 @@
 
       <div class="elements-list__btn-block">
         <router-link
-          class="elements-list__link"
+          class="elements-list__link btn-admin"
           :to="`${url}/${item.id}`"
         >
           <span class="material-symbols-outlined elements-list__material-symbols-outlined">edit</span>
         </router-link>
 
-        <button
-          class="elements-list__btn"
+        <my-button
+          class="elements-list__btn btn-admin--delete"
           type="button"
           @click="deleteModal(item)"
+          :admin="true"
         >
           <span class="material-symbols-outlined elements-list__material-symbols-outlined">delete</span>
-        </button>
+        </my-button>
       </div>
       
     </li>
   </ul>
+
   <my-modal 
     v-model:stateModal="modalVisible"
   >
     <div class="delete-modal">
       <div class="delete-modal__text">Удалить: "{{name}}"?</div>
       <div class="delete-modal__btn-block">
-        <button 
+        <my-button 
           class="delete-modal__btn"
           @click="deleteElement"
+          :admin="true"
         >
           Да
-        </button>
-        <button 
+        </my-button>
+        <my-button 
           class="delete-modal__btn"
           @click="closeModal"
+          :admin="true"
         >
           Нет
-        </button>
+        </my-button>
       </div>
     </div>
   </my-modal>
@@ -114,15 +118,15 @@ export default {
 
   &__link {
     @extend %link;
+    color: var(--light-color);
   }
 
   &__btn {
-    @include button-clear;
-    cursor: pointer;
+
   }
 
   &__material-symbols-outlined {
-
+    
   }
 }
 

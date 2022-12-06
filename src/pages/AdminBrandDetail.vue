@@ -1,22 +1,24 @@
 <template>
-  <form @submit.prevent class="ordering-form">
-    <h2 class="ordering-form__title">{{ title }}</h2>
+  <form @submit.prevent class="form-admin">
+    <h2 class="form-admin__title">{{ title }}</h2>
 
-    <div class="ordering-form__body">
-      <div class="ordering-form__item">
+    <div class="form-admin__body">
+      <div class="form-admin__item">
         <my-input
-          class="ordering-form__form-input"
+          class="form-admin__input"
           v-focus
           placeholder="Наименование"
           v-model="value"
+          :admin="true"
         />
       </div>
 
-      <div class="ordering-form__item">
+      <div class="form-admin__item">
         <my-button
-          class="ordering-form__btn"
+          class="form-admin__btn"
           type="button"
           @click="addBrand"
+          :admin="true"
         >
           {{ btnText }}
         </my-button>

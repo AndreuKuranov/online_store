@@ -1,6 +1,6 @@
 <template>
   <router-link
-    class="link-add"
+    class="link-add btn-admin"
     :to="url"
   >
     <span class="material-symbols-outlined link-add__material-symbols-outlined">add</span>
@@ -22,10 +22,11 @@ export default {
 
 .link-add {
   @extend %link;
-  @include blockCenter;
-  border: 1px solid var(--dark-color);
-  border-radius: 5px;
   width: 40px;
   height: 40px;
+
+  &__material-symbols-outlined {
+    font-size: 30px;
+  }
 }
 </style>

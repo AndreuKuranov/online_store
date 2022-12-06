@@ -45,6 +45,7 @@ export default {
 
 <style lang="scss">
 .type {
+  margin-bottom: 30px;
 
   &__title {
 

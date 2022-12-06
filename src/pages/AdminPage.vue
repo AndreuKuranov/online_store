@@ -74,14 +74,28 @@
 
   &__list {
     @extend %list;
+    margin-top: 25px;
+    display: grid;
+    gap: 15px;
   }
 
   &__item {
-
+    
   }
 
   &__link {
+    @extend %link;
+    @include blockCenter;
+    width: 100%;
+    min-height: 30px;
+    background-color: var(--success-color);
+    border-radius: 5px;
+    color: var(--light-color);
+    transition: 0.3s;
 
+    &:hover {
+      box-shadow: 0px 0px 7px rgba(var(--dark-color-rgb), 0.7);
+    }
   }
 }
 

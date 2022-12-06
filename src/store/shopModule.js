@@ -16,12 +16,7 @@ import {
 export const shopModule = {
   state: () => ({
     products: [],
-    productsTop: [
-      { id: 'products1', name: 'Название товара', price: '8 888', img: '01.jpg' },
-      { id: 'products2', name: 'Название товара', price: '8 888', img: '02.jpg' },
-      { id: 'products3', name: 'Название товара', price: '8 888', img: '03.jpg' },
-      { id: 'products4', name: 'Название товара', price: '8 888', img: '04.jpg' },
-    ],
+    productsTop: [],
     typeProduct: [],
     brandProduct: [],
     selectedType: {},
@@ -156,6 +151,27 @@ export const shopModule = {
         console.log(e.message);
       }
     },
+    // временно, пока не реализую рейтинг
+    async getDevicesTopAction( { state, commit }, value) {
+      try {
+        let typeId = value.typeId ? value.typeId : state.selectedType.id;
+        let brandId = value.brandId ? value.brandId : state.selectedBrand.id;
+        let page = value.page ? value.page : state.page;
+        let limit = value.limit ? value.limit : state.limit;
+
+        const data = await getDevices(
+          typeId, 
+          brandId, 
+          page, 
+          limit
+        );
+        
+        commit('setProductsTop', data.rows);
+      } catch (e) {
+        console.log(e.message);
+      }
+    },
+    // ----------------------------------
     async getOneDevicesAction({ state, commit }, id) {
       try {
         const data = await getOneDevice(id);

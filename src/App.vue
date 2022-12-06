@@ -14,7 +14,7 @@
   import HeaderComponent from '@/components/HeaderComponent.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
   import { check } from '@/http/userAPI';
-  import { mapMutations } from 'vuex';
+  import { mapMutations, mapActions } from 'vuex';
 
   export default {
     components: { 
@@ -25,13 +25,25 @@
       ...mapMutations({
         setIsAuth: 'auth/setIsAuth',
         setUser: 'auth/setUser',
-      })
+      }),
+      ...mapActions({
+        getDevicesTopAction: 'shop/getDevicesTopAction',
+      }),
     },
     mounted() {
       check().then(data => {
         this.setIsAuth(true);
         this.setUser(data);
       })
+
+      // временно, пока не реализую рейтинг
+      this.getDevicesTopAction({
+        typeId: null, 
+        brandId: null, 
+        page: 1, 
+        limit: 4
+      });
+      // -----------------------------------
     }
   }
 </script>

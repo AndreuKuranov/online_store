@@ -57,6 +57,7 @@ export default {
 
 <style lang="scss">
 .product {
+  margin-bottom: 30px;
 
   &__title {
 

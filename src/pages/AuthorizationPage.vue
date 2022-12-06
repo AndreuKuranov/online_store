@@ -29,13 +29,6 @@
           </div>
 
           <div class="authorization__item">
-            <router-link
-              class="authorization__link"
-              :to="textForm.link"
-            >
-              {{textForm.textLink}}
-            </router-link>
-
             <my-button
               class="authorization__btn"
               type="button"
@@ -43,6 +36,15 @@
             >
               {{textForm.btn}}
             </my-button>
+
+            <div class="authorization__link-block">
+              <router-link
+                class="authorization__link"
+                :to="textForm.link"
+              >
+                {{textForm.textLink}}
+              </router-link>
+            </div>
           </div>
         </div>
 
@@ -130,6 +132,56 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.authorization {
 
+  &__container {
+    max-width: 500px;
+  }
+
+  &__form {
+
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__body {
+    display: grid;
+    gap: 30px;
+  }
+
+  &__item {
+
+  }
+
+  &__label {
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px 10px;
+  }
+
+  &__input {
+
+  }
+
+  &__link-block {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    @extend %link;
+    margin-top: 20px;
+    font-size: 18px;
+    position: relative;
+  }
+
+  @include link-active("&__link", var(--dark-color), 27px, 2px, 1px);
+
+  &__btn {
+    margin: 0 auto;
+  }
+}
 </style>

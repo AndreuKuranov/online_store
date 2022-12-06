@@ -40,45 +40,34 @@
           </my-button>
         </li>
       </ul>
+    </div>
+  </div>
 
-      <!-- <my-button
-        @click="deleteType"
-      >
-        удалить
-      </my-button> -->
-
-      <!-- <my-button
-        @click="putType"
-      >
-        ред
-      </my-button> -->
-
-      <!-- <my-button
-        @click="deleteDevice"
-      >
-        удалить
-      </my-button> -->
-
-      <!-- <my-button
-        @click="putDevice"
-      >
-        ред
-      </my-button> -->
+  <div 
+    class="page__warning warning"
+    v-if="!check"
+  >
+    <div class="warning__container container">
+      <div class="warning__text">{{ textWarning }}</div>
     </div>
   </div>
 
   <ListProducts
+    v-if="check"
     class="page__products"
     :products="products"
   />
 
-  <PaginationComponent class="page__pagination" />
+  <PaginationComponent
+    v-if="check"
+    class="page__pagination" 
+  />
 
-  <!-- <ListProducts
+  <ListProducts
     class="page__products"
     :title="titleTop"
     :products="productsTop"
-  /> -->
+  />
 </template>
 
 <script>
@@ -86,7 +75,6 @@ import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
-import { deleteTypes, putTypes, deleteDevices, putDevices } from '@/http/productAPI';
 
 export default {
   components: {
@@ -108,7 +96,33 @@ export default {
       selectedType: state => state.shop.selectedType,
       selectedBrand: state => state.shop.selectedBrand,
       page: state => state.shop.page,
+      productsTop: state => state.shop.productsTop,
     }),
+
+    checkProduct() {
+      if (JSON.stringify(this.selectedType) == '{}' && JSON.stringify(this.selectedBrand) == '{}' && this.products.length === 0) {
+        return true;
+      } 
+    },
+    checkFilter() {
+      if ((JSON.stringify(this.selectedType) !== '{}' || JSON.stringify(this.selectedBrand) !== '{}') && this.products.length === 0) {
+        return true;
+      }
+    },
+    check() {
+      if (!this.checkProduct && !this.checkFilter) {
+        return true;
+      }
+    },
+    textWarning() {
+      if (this.checkProduct) {
+        return 'Нет товаров';
+      }
+
+      if (this.checkFilter) {
+        return 'Товары не найдены, измените параметры фильтра';
+      }
+    }
   },
   methods: {
     ...mapMutations({
@@ -127,41 +141,7 @@ export default {
         setSelected(item);
       }
     },
-
-    // deleteType() {
-    //   deleteTypes(4)
-    // },
-
-    // putType() {
-    //   putTypes(4, "test")
-    // },
-
-    // deleteDevice() {
-    //   deleteDevices(44)
-    // },
-
-    // putDevice() {
-    //   putDevices(
-    //     46,
-    //     'test 456456453',
-    //     888,
-    //     '0a806713-c764-4d87-b2f1-6e1f4d6359e6.jpg',
-    //     2,
-    //     4,
-    //     JSON.stringify([
-    //       {
-    //         description: "text 22",
-    //         id: 26,
-    //         title: "text 44"
-    //       },
-    //       {
-    //         description: "text 44",
-    //         id: 27,
-    //         title: "text 44"
-    //       }
-    //     ])
-    //   )
-    // },
+    
   },
   mounted() {
     this.setSelectedType({});
@@ -186,6 +166,7 @@ export default {
 
 <style lang="scss">
 .filter {
+  padding-bottom: 20px;
 
   &__container {
 
@@ -213,5 +194,19 @@ export default {
 
 .btn-active {
   background-color: #ffc107;
+}
+
+.warning {
+  margin: 40px 0;
+
+  &__container {
+
+  }
+
+  &__text {
+    font-size: 24px;
+    color: var(--danger-color);
+    text-align: center;
+  }
 }
 </style>
