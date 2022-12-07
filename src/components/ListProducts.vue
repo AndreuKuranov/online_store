@@ -1,7 +1,7 @@
 <template>
   <div class="products">
     <div class="products__container container">
-      <h2 v-if="title" class="products__title">{{title}}</h2>
+      <h2 v-if="title" class="products__title">{{ title }}</h2>
       <div class="products__body">
 
         <div
@@ -77,7 +77,6 @@ export default {
     margin: -10px;
   }
 
-  // пока оставлю, позже попробую сделать
   //.layout-grid {
   //   display: grid;
   //   grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 165px),1fr));

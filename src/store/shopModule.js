@@ -24,6 +24,7 @@ export const shopModule = {
     page: 1,
     totalProduct: 0,
     limit: 4,
+    correctUrl: '',
   }),
 
   getters: {
@@ -60,6 +61,9 @@ export const shopModule = {
     setLimit(state, setLimit) {
       state.setLimit = setLimit;
     },
+    setCorrectUrl(state, correctUrl) {
+      state.correctUrl = correctUrl;
+    }
   },
 
   actions: {

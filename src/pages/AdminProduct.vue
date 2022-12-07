@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 import ElementsList from '@/components/admin/ElementsList.vue';
 import LinkAdd from '@/components/admin/LinkAdd.vue';
 

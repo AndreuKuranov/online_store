@@ -11,6 +11,7 @@
             >
               <router-link
                 class="navbar-admin__link"
+                :class="{ 'link-admin--active': correctUrl === `/admin/${item.id}` }"
                 :to="`/admin/${item.id}`"
               >
                 {{ item.name }}
@@ -28,23 +29,29 @@
 </template>
 
 <script>
-  export default {
-    components: {
+import { mapState, mapMutations } from 'vuex';
 
-    },
-    data() {
-      return {
-        navList: [
-          { id: 'type', name: 'Типы' },
-          { id: 'brand', name: 'Бренды' },
-          { id: 'product', name: 'Продукты' },
-        ]
-      }
-    },
-    methods: {
-
+export default {
+  data() {
+    return {
+      navList: [
+        { id: 'type', name: 'Типы' },
+        { id: 'brand', name: 'Бренды' },
+        { id: 'product', name: 'Продукты' },
+      ]
     }
-  }
+  },
+  methods: {
+    ...mapMutations({
+      setCorrectUrl: 'shop/setCorrectUrl',
+    }),
+  },
+  computed: {
+    ...mapState({
+      correctUrl: state => state.shop.correctUrl,
+    }),
+  },
+}
 </script>
 
 <style lang="scss">
@@ -101,5 +108,9 @@
 
 .page-admin {
 
+}
+
+.link-admin--active {
+  background-color: #ffc107;
 }
 </style>

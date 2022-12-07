@@ -3,14 +3,30 @@
     to="/basket" 
     class="shopping-cart"
   >
-    <span class="material-symbols-outlined shopping-cart__symbols">shopping_cart</span>
+    <span 
+      :class="{ 'link--active': correctUrl === '/basket' }" 
+      class="material-symbols-outlined shopping-cart__symbols"
+    >
+      shopping_cart
+    </span>
     <div class="shopping-cart__icon">2</div>
   </router-link>
 </template>
 
 <script>
-export default {
+import { mapState, mapMutations } from 'vuex';
 
+export default {
+  methods: {
+    ...mapMutations({
+      setCorrectUrl: 'shop/setCorrectUrl',
+    }),
+  },
+  computed: {
+    ...mapState({
+      correctUrl: state => state.shop.correctUrl,
+    }),
+  },
 }
 </script>
 

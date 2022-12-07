@@ -59,4 +59,8 @@
 .page {
   flex: 1 1 auto;
 }
+
+.link--active {
+  text-shadow: 3px 3px 5px rgba(var(--dark-color-rgb));
+}
 </style>

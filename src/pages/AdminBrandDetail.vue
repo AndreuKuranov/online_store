@@ -30,7 +30,7 @@
 
 <script>
 import { createBrand } from '@/http/productAPI';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   data() {

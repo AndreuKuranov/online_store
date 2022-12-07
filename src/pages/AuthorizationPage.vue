@@ -2,7 +2,7 @@
   <div class="page__authorization authorization">
     <div class="authorization__container container">
       <form @submit.prevent class="authorization__form">
-        <h3 class="authorization__title">{{textForm.title}}</h3>
+        <h3 class="authorization__title">{{ textForm.title }}</h3>
 
         <div class="authorization__body">
           <div class="authorization__item">
@@ -34,7 +34,7 @@
               type="button"
               @click="clickAuth"
             >
-              {{textForm.btn}}
+              {{ textForm.btn }}
             </my-button>
 
             <div class="authorization__link-block">
@@ -42,7 +42,7 @@
                 class="authorization__link"
                 :to="textForm.link"
               >
-                {{textForm.textLink}}
+                {{ textForm.textLink }}
               </router-link>
             </div>
           </div>
@@ -56,7 +56,7 @@
 <script>
   import { registration, login } from '@/http/userAPI';
   import { REGISTRATION_ROUTE, LOGIN_ROUTE } from '@/utils/consts';
-  import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+  import { mapMutations } from 'vuex';
 
   export default {
     data() {

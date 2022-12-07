@@ -8,15 +8,18 @@ import {
   DEVICE_ROUTE,
   LOGIN_ROUTE
 } from '@/utils/consts';
+import jwt_decode from "jwt-decode";
+
 import HomeComponent from '@/pages/HomeComponent';
 import DitalPageProduct from '@/pages/DitalPageProduct';
 import Error404Component from '@/pages/Error404Component';
 import CategoriePage from '@/pages/CategoriePage';
 import BasketProducts from '@/pages/BasketProducts';
 import AuthorizationPage from '@/pages/AuthorizationPage';
-import AdminPage from '@/pages/AdminPage';
-import jwt_decode from "jwt-decode";
+import NewsPage from '@/pages/NewsPage';
+import AboutCompany from '@/pages/AboutCompany';
 
+import AdminPage from '@/pages/AdminPage';
 import AdminBrand from '@/pages/AdminBrand.vue';
 import AdminBrandDetail from '@/pages/AdminBrandDetail.vue';
 import AdminType from '@/pages/AdminType.vue';
@@ -132,6 +135,16 @@ const routes = [
     path: REGISTRATION_ROUTE,
     component: AuthorizationPage,
     beforeEnter: logoutGuard,
+  },
+  {
+    path: '/news',
+    component: NewsPage,
+    name: 'NewsPage',
+  },
+  {
+    path: '/aboutCompany',
+    component: AboutCompany,
+    name: 'AboutCompany',
   },
   {
     path: '/:pathMatch(.*)*',

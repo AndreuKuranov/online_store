@@ -34,11 +34,11 @@
     </div>
   </div>
 
-  <!-- <ListProducts 
+  <ListProducts 
     class="page__products" 
-    :title="titleTop" 
+    title="Топ продаж" 
     :products="productsTop" 
-  /> -->
+  />
 
   <my-modal 
     v-model:stateModal="modalVisible"
@@ -52,6 +52,7 @@ import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import CardProduct from '@/components/CardProduct.vue';
 import OrderingForm from '@/components/OrderingForm.vue';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -63,13 +64,6 @@ export default {
   data() {
     return {
       modalVisible: false,
-      titleTop: 'Топ продаж',
-      productsTop: [
-        { id: 'products1', link: '/product', name: 'Название товара', price: '8 888', img: '01.jpg' },
-        { id: 'products2', link: '/product', name: 'Название товара', price: '8 888', img: '02.jpg' },
-        { id: 'products3', link: '/product', name: 'Название товара', price: '8 888', img: '03.jpg' },
-        { id: 'products4', link: '/product', name: 'Название товара', price: '8 888', img: '04.jpg' },
-      ],
       products: [
         { id: 'products1', link: '/product', name: 'Название товара', price: '9 999', img: '01.jpg' },
         { id: 'products2', link: '/product', name: 'Название товара', price: '9 999', img: '02.jpg' },
@@ -78,6 +72,11 @@ export default {
         { id: 'products5', link: '/product', name: 'Название товара', price: '9 999', img: '01.jpg' },
       ],
     }
+  },
+  computed: {
+    ...mapState({
+      productsTop: state => state.shop.productsTop,
+    }),
   },
 }
 </script>

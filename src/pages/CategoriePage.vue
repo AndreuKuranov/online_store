@@ -3,54 +3,21 @@
     Каталог
   </TitleBlock>
 
-  <div class="page__filter filter">
-    <div class="filter__container container">
-      <h3 class="filter__title">Тип</h3>
-      <ul class="filter__list list-filter">
-        <li
-          class="list-filter__item"
-          v-for="item in typeProduct"
-          :key="item.id"
-        >
-          <my-button
-            :class="{ 'btn-active': item.id === selectedType.id }"
-            class="list-filter__btn"
-            type="button"
-            @click="checkSelected(item, item.id, selectedType, setSelectedType)"
-          >
-            {{ item.name }}
-          </my-button>
-        </li>
-      </ul>
+  <FilterComponent
+    class="page__filter"
+    title="Тип"
+    :listElements="typeProduct"
+    :selected="selectedType"
+    @setSelected="setSelectedType"
+  />
 
-      <h3 class="filter__title">Бренд</h3>
-      <ul class="filter__list list-filter">
-        <li
-          class="list-filter__item"
-          v-for="item in brandProduct"
-          :key="item.id"
-        >
-          <my-button
-            :class="{ 'btn-active': item.id === selectedBrand.id }"
-            class="list-filter__btn"
-            type="button"
-            @click="checkSelected(item, item.id, selectedBrand, setSelectedBrand)"
-          >
-            {{ item.name }}
-          </my-button>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div 
-    class="page__warning warning"
-    v-if="!check"
-  >
-    <div class="warning__container container">
-      <div class="warning__text">{{ textWarning }}</div>
-    </div>
-  </div>
+  <FilterComponent
+    class="page__filter"
+    title="Бренд"
+    :listElements="brandProduct"
+    :selected="selectedBrand"
+    @setSelected="setSelectedBrand"
+  />
 
   <ListProducts
     v-if="check"
@@ -63,9 +30,16 @@
     class="page__pagination" 
   />
 
+  <WarningComponent 
+    class="page__warning"
+    v-if="!check"
+  >
+    {{ textWarning }}
+  </WarningComponent>
+
   <ListProducts
     class="page__products"
-    :title="titleTop"
+    title="Топ продаж"
     :products="productsTop"
   />
 </template>
@@ -74,17 +48,20 @@
 import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import FilterComponent from '@/components/FilterComponent.vue';
+import WarningComponent from '@/components/WarningComponent.vue';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   components: {
     ListProducts,
     TitleBlock,
     PaginationComponent,
+    FilterComponent,
+    WarningComponent,
   },
   data() {
     return {
-      titleTop: 'Топ продаж',
     }
   },
   computed: {
@@ -134,14 +111,6 @@ export default {
       getBrandsAction: 'shop/getBrandsAction',
       getDevicesAction: 'shop/getDevicesAction',
     }),
-    checkSelected(item, id, selected, setSelected) {
-      if (JSON.stringify(selected) !== '{}' && id === selected.id) {
-        setSelected({});
-      } else {
-        setSelected(item);
-      }
-    },
-    
   },
   mounted() {
     this.setSelectedType({});
@@ -165,48 +134,5 @@ export default {
 </script>
 
 <style lang="scss">
-.filter {
-  padding-bottom: 20px;
 
-  &__container {
-
-  }
-
-  &__list {
-    margin-bottom: 20px;
-  }
-}
-
-.list-filter {
-  @extend %list;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-
-  &__item {
-    
-  }
-
-  &__btn {
-
-  }
-}
-
-.btn-active {
-  background-color: #ffc107;
-}
-
-.warning {
-  margin: 40px 0;
-
-  &__container {
-
-  }
-
-  &__text {
-    font-size: 24px;
-    color: var(--danger-color);
-    text-align: center;
-  }
-}
 </style>

@@ -135,7 +135,7 @@
 <script>
 import { createDevice } from '@/http/productAPI';
 import { uniqueId } from '@/functions/functions.js';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {

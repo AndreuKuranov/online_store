@@ -19,7 +19,7 @@ export default {
   align-items: center;
 
   &__symbols {
-    font-variation-settings: 'FILL' 1; // заливка иконки 
+    font-variation-settings: 'FILL' 1;
   }
 
   &__text {

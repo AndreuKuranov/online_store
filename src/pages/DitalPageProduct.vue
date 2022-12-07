@@ -65,7 +65,7 @@
 
   <ListProducts 
     class="page__products" 
-    :title="titleTop" 
+    title="Топ продаж" 
     :products="productsTop" 
   />
 </template>
@@ -78,7 +78,7 @@ import TabComponent from '@/components/TabComponent.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions} from 'vuex';
 
 export default {
   components: {
@@ -99,26 +99,30 @@ export default {
         { id: 'slide2', img: '5.png', name: '5' },
         { id: 'slide3', img: '6.png', name: '6' },
       ],
-      titleTop: 'Топ продаж',
     }
   },
   computed: {
     ...mapState({
       productsTop: state => state.shop.productsTop,
-      productsTop: state => state.shop.productsTop,
     }),
   },
   mounted() {
-    this.getOneDevicesAction(this.$route.params.id).then(data => this.product = data);
+    this.getDevice(this.$route.params.id);
   },
   methods: {
     ...mapActions({
       getOneDevicesAction: 'shop/getOneDevicesAction',
     }),
+
+    getDevice(id) {
+      this.getOneDevicesAction(id).then(data => this.product = data);
+    }
   },
   watch: {
     $route(toRoute, ftomRoute) {
-      
+      if (toRoute.params.id) {
+        this.getDevice(toRoute.params.id);
+      }
     }
   }
 };

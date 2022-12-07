@@ -5,7 +5,7 @@
 
   <ListProducts
     class="page__products"
-    :title="titleTop"
+    title="Топ продаж"
     :products="productsTop"
   />
 </template>
@@ -13,7 +13,7 @@
 <script>
 import ListProducts from '@/components/ListProducts.vue';
 import BannerComponent from '@/components/BannerComponent.vue';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -22,7 +22,6 @@ export default {
   },
   data() {
     return {
-      titleTop: 'Топ продаж',
     }
   },
   computed: {

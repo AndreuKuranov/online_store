@@ -13,6 +13,7 @@
           class="header__authorization-btn authorization-btn"
           to="/login"
           title="Войти"
+          :class="checkClass"
         >
           <span class="authorization-btn__material-symbols-outlined material-symbols-outlined">person</span>
         </router-link>
@@ -64,12 +65,19 @@ export default {
     ...mapState({
       isAuth: state => state.auth.isAuth,
       user: state => state.auth.user,
+      correctUrl: state => state.shop.correctUrl,
     }),
+    checkClass() {
+      if (this.correctUrl === '/login' || this.correctUrl === '/registration') {
+        return 'link--active'
+      }
+    }
   },
   methods: {
     ...mapMutations({
       setIsAuth: 'auth/setIsAuth',
       setUser: 'auth/setUser',
+      setCorrectUrl: 'shop/setCorrectUrl',
     }),
     exit() {
       this.setIsAuth(false);
@@ -77,6 +85,7 @@ export default {
       localStorage.removeItem('token');
       this.$router.go(0);
     },
+    
   }
 }
 </script>

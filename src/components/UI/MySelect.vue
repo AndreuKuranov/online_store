@@ -4,7 +4,7 @@
     @change="changeOption"
     :value="modelValue"
   >
-    <option disabled value="">{{defaultOptionText}}</option>
+    <option disabled value="">{{ defaultOptionText }}</option>
     <option
       v-for="option in options"
       :key="option.id"

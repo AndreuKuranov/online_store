@@ -15,6 +15,7 @@
       >
         <router-link
           class="navbar__link"
+          :class="{ 'link--active': correctUrl === item.link }"
           :to="item.link"
         >
           {{ item.textLink }}
@@ -23,19 +24,35 @@
     </ul>
   </nav>
 </template>
+
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
       navList: [
         { id: 'navList1', link: '/categorie', textLink: 'Каталог' },
-        { id: 'navList2', link: '#', textLink: 'Новости' },
-        { id: 'navList3', link: '#', textLink: 'О нас' },
-      ]
+        { id: 'navList2', link: '/news', textLink: 'Новости' },
+        { id: 'navList3', link: '/aboutCompany', textLink: 'О нас' },
+      ],
     }
   },
   methods: {
+    ...mapMutations({
+      setCorrectUrl: 'shop/setCorrectUrl',
+    }),
   },
+  computed: {
+    ...mapState({
+      correctUrl: state => state.shop.correctUrl,
+    }),
+  },
+  watch: {
+    $route(toRoute, ftomRoute) {
+      this.setCorrectUrl(toRoute.path);
+    }
+  }
 }
 </script>
 
@@ -88,6 +105,7 @@ export default {
     @include button-clear;
     @extend %link;
     cursor: pointer;
+    transition: 0.3s;
   }
 }
 </style>
