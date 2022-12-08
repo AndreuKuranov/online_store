@@ -49,6 +49,7 @@ export default {
       this.$emit("setSelected", value);
     },
     checkSelected(item, id) {
+      // нужно проверять на null без {} объектов
       if (JSON.stringify(this.selected) !== '{}' && id === this.selected.id) {
         this.setSelected({});
       } else {

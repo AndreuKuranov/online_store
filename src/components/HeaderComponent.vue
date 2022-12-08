@@ -8,6 +8,10 @@
         <PhoneComponent class="header__phone" />
         <ShoppingCart class="header__shopping-cart" />
 
+<!--
+  Всё меню надо вынести в отдельный компонент, т.к. его логика не связана с HeaderComponent
+  Сейчас компонент получился излишне объемным, и требуется дальнейший рефакторинг на составные части
+-->
         <router-link
           v-if="!isAuth"
           class="header__authorization-btn authorization-btn"
@@ -58,7 +62,7 @@ export default {
   },
   data() {
     return {
-      
+
     }
   },
   computed: {
@@ -79,13 +83,16 @@ export default {
       setUser: 'auth/setUser',
       setCorrectUrl: 'shop/setCorrectUrl',
     }),
+
+    // популярнее называть logout()
     exit() {
+      // эти два вызова надо схлопнуть в один вызов для vuex должен быть
       this.setIsAuth(false);
       this.setUser({});
       localStorage.removeItem('token');
       this.$router.go(0);
     },
-    
+
   }
 }
 </script>
@@ -172,6 +179,7 @@ export default {
   }
 }
 
+// отдельный компонент, со своими собственными стилями
 .authorization-btn {
   @extend %link;
 

@@ -5,6 +5,7 @@
   <section class="page__product product">
     <div class="product__container container">
       <div class="product__body">
+<!--        Это отдельный компонент слайдера, причем полностью дублируется с другим <swiper> что на Home пейдже-->
         <swiper
           navigation
           :loop="true"
@@ -44,6 +45,8 @@
     </div>
   </section>
 
+<!--  Это отдельный компонент, в пейдже не должно быть логики этой фичи, кроме того-->
+<!--  если есть логика в каждом отдельном табе, её тоже выносят в отдельные компоненты-->
   <TabsComponent class="page__tabs">
     <TabComponent title="Характеристики" icon="settings_applications">
       <ul>
@@ -119,6 +122,7 @@ export default {
     }
   },
   watch: {
+    // неверно, данные для таких страниц подгружаются до старта пейджи, через роут резолверы
     $route(toRoute, ftomRoute) {
       if (toRoute.params.id) {
         this.getDevice(toRoute.params.id);

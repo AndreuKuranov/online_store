@@ -139,6 +139,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
+    // все данные по продукту должны быть одним свойством, по умолчанию это null
     return {
       nameProduct: '',
       priceProduct: 0,

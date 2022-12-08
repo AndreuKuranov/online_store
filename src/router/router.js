@@ -72,7 +72,7 @@ const routes = [
         component: AdminType,
       },
       {
-        path: 'type/creatingNewType',
+        path: 'type/creatingNewType', // популярнее просто create
         component: AdminTypeDetail,
       },
       {
@@ -108,7 +108,7 @@ const routes = [
         component: Error404Component,
       },
     ],
-    beforeEnter: managwrAuthGuard
+    beforeEnter: managwrAuthGuard // есть смысл писать до children, а то сложно читать сверху вниз
   },
   {
     path: BASKET_ROUTE,
@@ -123,7 +123,7 @@ const routes = [
   },
   {
     path: `${DEVICE_ROUTE}/:id`,
-    component: DitalPageProduct,
+    component: DitalPageProduct, // Dital -> Detail
     name: 'DitalPageProduct',
   },
   {

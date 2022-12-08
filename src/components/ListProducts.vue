@@ -79,7 +79,7 @@ export default {
 
   //.layout-grid {
   //   display: grid;
-  //   grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 165px),1fr));
+  //   grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 320px),1fr));
   //   gap: var(--layout-grid-gap, 12px);
   //}
 

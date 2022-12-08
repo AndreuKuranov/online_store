@@ -2,6 +2,7 @@
   <footer class="footer">
     <div class="footer__container container">
       <div class="footer__body">
+<!--        Обычно в шаблонах не пишут текста, выносят через i18n-->
         <div class="footer__item">moscow 123456, b124 st. 212dsadasd</div>
         <div class="footer__item">all rights reserved</div>
       </div>
