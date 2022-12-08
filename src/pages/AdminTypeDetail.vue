@@ -62,6 +62,7 @@ export default {
       this.btnText = 'Создать';
     }
 
+    // неверно, данные для редактирования должны подгрузиться до старта страницы
     if(this.$route.params.id) {
       this.title = 'Редактирование типа';
       this.btnText = 'Cохранить';

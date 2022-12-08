@@ -8,6 +8,7 @@
 export default {
   name: 'my-button',
   props: {
+    // для UI компонента не может быть таких пропсов, этот класс может ставиться только вне компонента
     admin: {
       type: Boolean,
       required: false,

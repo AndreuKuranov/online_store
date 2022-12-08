@@ -10,6 +10,8 @@ import 'swiper/css/bundle';
 
 const app = createApp(App);
 
+// компромиссное удобство, т.к. IDE не может найти компоненты в шаблонах
+// плюс явно описывать зависимости от чего конкретный компонент работает получается нагляднее
 components.forEach(component => {
   app.component(component.name, component);
 })

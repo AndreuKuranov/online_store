@@ -110,6 +110,7 @@
           console.log(e.response.data.message);
         }
       },
+      // корректнее назвать isLoginPage()
       checkUrl() {
         return this.$route.path === LOGIN_ROUTE
       },

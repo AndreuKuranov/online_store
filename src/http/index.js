@@ -15,6 +15,7 @@ const authInterceptor = config => {
 
 $authHost.interceptors.request.use(authInterceptor)
 
+// Это деление лишнее, ты ничего не потеряешь, если будет в каждый запрос класть токен, даже если запрос публичный
 export {
   $host,
   $authHost

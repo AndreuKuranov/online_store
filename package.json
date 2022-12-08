@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "server": "json-server --watch db.json --port 5000"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",

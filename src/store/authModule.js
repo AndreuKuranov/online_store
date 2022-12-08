@@ -1,7 +1,7 @@
 export const authModule = {
   state: () => ({
-    isAuth: false,
-    user: {},
+    isAuth: false, // это computed свойство если нет юзера
+    user: {}, // здесь null
   }),
 
   getters: {

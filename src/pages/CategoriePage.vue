@@ -52,6 +52,7 @@ import FilterComponent from '@/components/FilterComponent.vue';
 import WarningComponent from '@/components/WarningComponent.vue';
 import { mapState, mapActions, mapMutations } from 'vuex';
 
+// для таких страниц нужно обновление урла от поиска
 export default {
   components: {
     ListProducts,
@@ -73,9 +74,10 @@ export default {
       selectedType: state => state.shop.selectedType,
       selectedBrand: state => state.shop.selectedBrand,
       page: state => state.shop.page,
-      productsTop: state => state.shop.productsTop,
     }),
 
+    // плохие имена функциЙ, нет явного описания для чего нужны check функции
+    // нет return false
     checkProduct() {
       if (JSON.stringify(this.selectedType) == '{}' && JSON.stringify(this.selectedBrand) == '{}' && this.products.length === 0) {
         return true;
@@ -91,6 +93,7 @@ export default {
         return true;
       }
     },
+    // это нагляднее делать в шаблоне
     textWarning() {
       if (this.checkProduct) {
         return 'Нет товаров';

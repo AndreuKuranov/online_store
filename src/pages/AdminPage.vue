@@ -2,6 +2,7 @@
   <div class="page__admin admin">
     <div class="admin__container container">
       <div class="admin__body">
+<!--        Всё меню - отдельный компонент-->
         <div class="admin__navbar navbar-admin">
           <ul class="navbar-admin__list">
             <li 
@@ -9,6 +10,7 @@
               v-for="item in navList"
               :key="item.id"
             >
+              <!-- link-admin--active это очень странно выглядит, наверняка в библиотеке роутинга уже есть проверка по текущему урлу-->
               <router-link
                 class="navbar-admin__link"
                 :class="{ 'link-admin--active': correctUrl === `/admin/${item.id}` }"
