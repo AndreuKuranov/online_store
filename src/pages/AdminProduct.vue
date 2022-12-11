@@ -7,11 +7,7 @@
       :elements="products"
       @deleteElement="deleteDevicesAction"
       url="product"
-    />
-
-    <LinkAdd
-      class="product__link-add"
-      url="product/creatingNewProduct" 
+      urlCreate="product/createProduct"
     />
   </div>
 </template>
@@ -42,8 +38,8 @@ export default {
     }),
   },
   mounted() {
-    this.setSelectedType({});
-    this.setSelectedBrand({});
+    this.setSelectedType(null);
+    this.setSelectedBrand(null);
 
     this.getDevicesAction({
       typeId: null, 
@@ -65,11 +61,6 @@ export default {
 
   &__elements-list {
 
-  }
-
-  &__link-add {
-    margin-top: 20px;
-    margin-left: auto;
   }
 }
 </style>

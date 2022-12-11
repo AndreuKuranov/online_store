@@ -26,8 +26,7 @@ export const login = async (email, password) => {
   return jwt_decode(data.token);
 }
 
-// плохое имя, не хватает конкретики, в даном случае это checkUserToken
-export const check = async () => {
+export const checkUserToken = async () => {
   // Логика некорректная, сейчас будет вызов апи запроса при старте приложения, а должна браться информация из LocalStorage по текущему юзеру,
   // в случае устаревания токена апи вернёт 401 и на него можно глобально среагировать
   const { data } = await $authHost.get('api/user/auth');

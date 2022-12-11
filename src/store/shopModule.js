@@ -19,8 +19,8 @@ export const shopModule = {
     productsTop: [],
     typeProduct: [],
     brandProduct: [],
-    selectedType: {},
-    selectedBrand: {},
+    selectedType: null,
+    selectedBrand: null,
     page: 1,
     totalProduct: 0,
     limit: 4,
@@ -138,8 +138,8 @@ export const shopModule = {
     // ------------ device ------------
     async getDevicesAction( { state, commit }, value) {
       try {
-        let typeId = value.typeId ? value.typeId : state.selectedType.id;
-        let brandId = value.brandId ? value.brandId : state.selectedBrand.id;
+        let typeId = value.typeId ? value.typeId : state.selectedType?.id;
+        let brandId = value.brandId ? value.brandId : state.selectedBrand?.id;
         let page = value.page ? value.page : state.page;
         let limit = value.limit ? value.limit : state.limit;
 
@@ -158,8 +158,8 @@ export const shopModule = {
     // временно, пока не реализую рейтинг
     async getDevicesTopAction( { state, commit }, value) {
       try {
-        let typeId = value.typeId ? value.typeId : state.selectedType.id;
-        let brandId = value.brandId ? value.brandId : state.selectedBrand.id;
+        let typeId = value.typeId ? value.typeId : state.selectedType?.id;
+        let brandId = value.brandId ? value.brandId : state.selectedBrand?.id;
         let page = value.page ? value.page : state.page;
         let limit = value.limit ? value.limit : state.limit;
 

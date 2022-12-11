@@ -2,7 +2,7 @@
   <div class="page__authorization authorization">
     <div class="authorization__container container">
       <form @submit.prevent class="authorization__form">
-        <h3 class="authorization__title">{{ textForm.title }}</h3>
+        <h3 class="authorization__title">{{ isLoginPage() ? 'Авторизация' : 'Регистрация' }}</h3>
 
         <div class="authorization__body">
           <div class="authorization__item">
@@ -34,15 +34,15 @@
               type="button"
               @click="clickAuth"
             >
-              {{ textForm.btn }}
+              {{ isLoginPage() ? 'Войти' : 'Зарегистрироваться' }}
             </my-button>
 
             <div class="authorization__link-block">
               <router-link
                 class="authorization__link"
-                :to="textForm.link"
+                :to="isLoginPage() ? regLink : logLink "
               >
-                {{ textForm.textLink }}
+                {{ isLoginPage() ? 'Зарегистрироваться' : 'Войти' }}
               </router-link>
             </div>
           </div>
@@ -55,7 +55,7 @@
 
 <script>
   import { registration, login } from '@/http/userAPI';
-  import { REGISTRATION_ROUTE, LOGIN_ROUTE } from '@/utils/consts';
+  import { pathRouters } from '@/router/routes.js';
   import { mapMutations } from 'vuex';
 
   export default {
@@ -67,52 +67,33 @@
         btnForm: '',
         linkForm: '',
         textLinkForm: '',
+
+        regLink: pathRouters.registration,
+        logLink: pathRouters.login,
       }
-    },
-    computed: {
-      textForm() {
-        let obj = {};
-
-        if (this.checkUrl()) {
-          obj.title = 'Авторизация';
-          obj.btn = 'Войти';
-          obj.textLink = 'Зарегистрироваться';
-          obj.link = REGISTRATION_ROUTE;
-        } else {
-          obj.title = 'Регистрация';
-          obj.btn = 'Зарегистрироваться';
-          obj.textLink = 'Войти';
-          obj.link = LOGIN_ROUTE;
-        }
-
-        return obj;
-      },
     },
     methods: {
       ...mapMutations({
-        setIsAuth: 'auth/setIsAuth',
         setUser: 'auth/setUser',
       }),
       async clickAuth () {
         try {
           let data;
 
-          if (this.checkUrl()) {
+          if (this.isLoginPage()) {
             data = await login(this.email, this.password)
           } else {
             data = await registration(this.email, this.password)
           }
 
-          this.setIsAuth(true);
           this.setUser(data);
           this.$router.go(0);
         } catch(e) {
           console.log(e.response.data.message);
         }
       },
-      // корректнее назвать isLoginPage()
-      checkUrl() {
-        return this.$route.path === LOGIN_ROUTE
+      isLoginPage() {
+        return this.$route.path === this.logLink
       },
 
       // validLogin() {

@@ -47,7 +47,7 @@ export default {
     }),
 
     addType() {
-      if(this.$route.path === '/admin/type/creatingNewType') {
+      if(this.$route.path === '/admin/type/createType') {
         createType({ name: this.value }).then(data => this.value = '')
       }
 
@@ -57,7 +57,7 @@ export default {
     }
   },
   mounted() {
-    if(this.$route.path === '/admin/type/creatingNewType') {
+    if(this.$route.path === '/admin/type/createType') {
       this.title = 'Создание типа';
       this.btnText = 'Создать';
     }

@@ -34,7 +34,7 @@
 
 <script>
 import CounterComponent from '@/components/CounterComponent.vue';
-import { DEVICE_ROUTE } from '@/utils/consts';
+import { pathRouters } from '@/router/routes.js';
 
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
   },
   data() {
     return {
-      deviceRoute: DEVICE_ROUTE,
+      deviceRoute: pathRouters.device,
       urlServer: process.env.VUE_APP_BASE_URL,
     }
   }

@@ -1,38 +1,25 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { 
-  ADMIN_ROUTE,
-  SHOP_ROUTE,
-  REGISTRATION_ROUTE,
-  BASKET_ROUTE,
-  CATEGORIE_ROUTE,
-  DEVICE_ROUTE,
-  LOGIN_ROUTE
-} from '@/utils/consts';
 import jwt_decode from "jwt-decode";
 
+import { createRouter, createWebHistory } from 'vue-router';
+import { pathRouters } from '@/router/routes.js';
+import { routerAdmin } from '@/router/routerAdmin.js';
+
 import HomeComponent from '@/pages/HomeComponent';
-import DitalPageProduct from '@/pages/DitalPageProduct';
+import DetailPageProduct from '@/pages/DetailPageProduct';
 import Error404Component from '@/pages/Error404Component';
 import CategoriePage from '@/pages/CategoriePage';
 import BasketProducts from '@/pages/BasketProducts';
 import AuthorizationPage from '@/pages/AuthorizationPage';
 import NewsPage from '@/pages/NewsPage';
 import AboutCompany from '@/pages/AboutCompany';
-
 import AdminPage from '@/pages/AdminPage';
-import AdminBrand from '@/pages/AdminBrand.vue';
-import AdminBrandDetail from '@/pages/AdminBrandDetail.vue';
-import AdminType from '@/pages/AdminType.vue';
-import AdminTypeDetail from '@/pages/AdminTypeDetail';
-import AdminProduct from '@/pages/AdminProduct.vue';
-import AdminProductDetail from '@/pages/AdminProductDetail';
 
 const isAuthorized = localStorage.hasOwnProperty('token');
 const roleUser = isAuthorized ? jwt_decode(localStorage.getItem('token')) : '';
 
 const authGuard = function (to, from, next) {
   if (!isAuthorized) {
-    next(REGISTRATION_ROUTE)
+    next(pathRouters.registration)
   } else {
     next()
   };
@@ -40,9 +27,9 @@ const authGuard = function (to, from, next) {
 
 const managwrAuthGuard = function (to, from, next) {
   if (!isAuthorized) {
-    next(REGISTRATION_ROUTE)
-  } else if (roleUser.role !== 'ADMIN') {
-    next(SHOP_ROUTE)
+    next(pathRouters.registration)
+  } else if (roleUser?.role !== 'ADMIN') {
+    next(pathRouters.shop)
   } else {
     next()
   };
@@ -50,7 +37,7 @@ const managwrAuthGuard = function (to, from, next) {
 
 const logoutGuard = function (to, from, next) {
   if (isAuthorized) {
-    next(SHOP_ROUTE)
+    next(pathRouters.shop)
   } else {
     next()
   };
@@ -58,91 +45,50 @@ const logoutGuard = function (to, from, next) {
 
 const routes = [
   {
-    path: SHOP_ROUTE,
+    path: pathRouters.shop,
     component: HomeComponent,
     name: 'HomeComponent',
   },
   {
-    path: ADMIN_ROUTE,
+    path: pathRouters.admin,
     component: AdminPage,
     name: 'AdminPage',
-    children: [
-      {
-        path: 'type',
-        component: AdminType,
-      },
-      {
-        path: 'type/creatingNewType', // популярнее просто create
-        component: AdminTypeDetail,
-      },
-      {
-        path: 'type/:id',
-        component: AdminTypeDetail,
-      },
-      {
-        path: 'brand',
-        component: AdminBrand,
-      },
-      {
-        path: 'brand/creatingNewBrand',
-        component: AdminBrandDetail,
-      },
-      {
-        path: 'brand/:id',
-        component: AdminBrandDetail,
-      },
-      {
-        path: 'product',
-        component: AdminProduct,
-      },
-      {
-        path: 'product/creatingNewProduct',
-        component: AdminProductDetail,
-      },
-      {
-        path: 'product/:id',
-        component: AdminProductDetail,
-      },
-      {
-        path: ':pathMatch(.*)*',
-        component: Error404Component,
-      },
-    ],
-    beforeEnter: managwrAuthGuard // есть смысл писать до children, а то сложно читать сверху вниз
+    beforeEnter: managwrAuthGuard,
+    children: routerAdmin,
   },
   {
-    path: BASKET_ROUTE,
+    path: pathRouters.basket,
     component: BasketProducts,
     name: 'BasketProducts',
     beforeEnter: authGuard,
   },
   {
-    path: CATEGORIE_ROUTE,
+    path: pathRouters.categorie,
     component: CategoriePage,
     name: 'CategoriePage',
   },
   {
-    path: `${DEVICE_ROUTE}/:id`,
-    component: DitalPageProduct, // Dital -> Detail
-    name: 'DitalPageProduct',
+    path: `${pathRouters.device}/:id`,
+    component: DetailPageProduct,
+    name: 'DetailPageProduct',
   },
   {
-    path: LOGIN_ROUTE,
+    path: pathRouters.login,
     component: AuthorizationPage,
     beforeEnter: logoutGuard,
   },
   {
-    path: REGISTRATION_ROUTE,
+    path: pathRouters.registration,
     component: AuthorizationPage,
     beforeEnter: logoutGuard,
   },
   {
-    path: '/news',
+    path: pathRouters.news,
     component: NewsPage,
     name: 'NewsPage',
   },
   {
-    path: '/aboutCompany',
+    path: pathRouters.company,
     component: AboutCompany,
     name: 'AboutCompany',
   },

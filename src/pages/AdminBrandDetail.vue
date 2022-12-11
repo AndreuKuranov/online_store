@@ -47,7 +47,7 @@ export default {
     }),
 
     addBrand() {
-      if(this.$route.path === '/admin/brand/creatingNewBrand') {
+      if(this.$route.path === '/admin/brand/createBrand') {
         createBrand({ name: this.value }).then(data => this.value = '')
       }
 
@@ -57,7 +57,7 @@ export default {
     }
   },
   mounted() {
-    if(this.$route.path === '/admin/brand/creatingNewBrand') {
+    if(this.$route.path === '/admin/brand/createBrand') {
       this.title = 'Создание бренда';
       this.btnText = 'Создать';
     }

@@ -7,11 +7,7 @@
       :elements="typeProduct"
       @deleteElement="deleteTypesAction"
       url="type"
-    />
-
-    <LinkAdd
-      class="type__link-add"
-      url="type/creatingNewType" 
+      urlCreate="type/createType"
     />
   </div>
 </template>
@@ -53,11 +49,6 @@ export default {
 
   &__elements-list {
 
-  }
-
-  &__link-add {
-    margin-top: 20px;
-    margin-left: auto;
   }
 }
 </style>

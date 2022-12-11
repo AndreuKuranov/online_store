@@ -20,19 +20,19 @@
   />
 
   <ListProducts
-    v-if="check"
+    v-if="checkIfThereAreProducts"
     class="page__products"
     :products="products"
   />
 
   <PaginationComponent
-    v-if="check"
+    v-if="checkIfThereAreProducts"
     class="page__pagination" 
   />
 
   <WarningComponent 
     class="page__warning"
-    v-if="!check"
+    v-if="!checkIfThereAreProducts"
   >
     {{ textWarning }}
   </WarningComponent>
@@ -76,30 +76,34 @@ export default {
       page: state => state.shop.page,
     }),
 
-    // плохие имена функциЙ, нет явного описания для чего нужны check функции
-    // нет return false
-    checkProduct() {
-      if (JSON.stringify(this.selectedType) == '{}' && JSON.stringify(this.selectedBrand) == '{}' && this.products.length === 0) {
-        return true;
+    checkIfThereAreProductsWithoutFilter() {
+      let value = false;
+      if (this.selectedType == null && this.selectedBrand == null && this.products.length === 0) {
+        value = true;
       } 
+      return value;
     },
-    checkFilter() {
-      if ((JSON.stringify(this.selectedType) !== '{}' || JSON.stringify(this.selectedBrand) !== '{}') && this.products.length === 0) {
-        return true;
+    checkIfThereAreProductsWithFilter() {
+      let value = false;
+      if ((this.selectedType !== null || this.selectedBrand !== null) && this.products.length === 0) {
+        value = true;
       }
+      return value;
     },
-    check() {
-      if (!this.checkProduct && !this.checkFilter) {
-        return true;
+    checkIfThereAreProducts() {
+      let value = false;
+      if (!this.checkIfThereAreProductsWithoutFilter && !this.checkIfThereAreProductsWithFilter) {
+        value = true;
       }
+      return value;
     },
     // это нагляднее делать в шаблоне
     textWarning() {
-      if (this.checkProduct) {
+      if (this.checkIfThereAreProductsWithoutFilter) {
         return 'Нет товаров';
       }
 
-      if (this.checkFilter) {
+      if (this.checkIfThereAreProductsWithFilter) {
         return 'Товары не найдены, измените параметры фильтра';
       }
     }
@@ -116,8 +120,8 @@ export default {
     }),
   },
   mounted() {
-    this.setSelectedType({});
-    this.setSelectedBrand({});
+    // this.setSelectedType({});
+    // this.setSelectedBrand({});
     this.getTypesAction();
     this.getBrandsAction();
     this.getDevicesAction({});

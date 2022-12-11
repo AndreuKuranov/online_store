@@ -7,11 +7,7 @@
       :elements="brandProduct"
       @deleteElement="deleteBrandsAction"
       url="brand"
-    />
-
-    <LinkAdd
-      class="brand__link-add"
-      url="brand/creatingNewBrand" 
+      urlCreate="brand/createBrand"
     />
   </div>
 </template>
@@ -53,11 +49,6 @@ export default {
 
   &__elements-list {
 
-  }
-
-  &__link-add {
-    margin-top: 20px;
-    margin-left: auto;
   }
 }
 </style>

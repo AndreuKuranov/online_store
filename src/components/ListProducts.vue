@@ -4,16 +4,12 @@
       <h2 v-if="title" class="products__title">{{ title }}</h2>
       <div class="products__body">
 
-        <div
-          class="products__column"
+        <CardProduct
           v-for="product in products"
           :key="product.id"
-        >
-          <CardProduct
-            class="products__card-product"
-            :product="product"
-          />
-        </div>
+          class="products__card-product"
+          :product="product"
+        />
 
       </div>
     </div>
@@ -72,33 +68,13 @@ export default {
   }
 
   &__body {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -10px;
-  }
-
-  //.layout-grid {
-  //   display: grid;
-  //   grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 320px),1fr));
-  //   gap: var(--layout-grid-gap, 12px);
-  //}
-
-  &__column {
-    flex: 0 1 100%;
-
-    @media (min-width: 480px) {
-      flex: 0 1 50%;
-    }
-    @media (min-width: 900px) {
-      flex: 0 1 33.333%;
-    }
-    @media (min-width: 1250px) {
-      flex: 0 1 25%;
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(var(--layout-grid-min-width, 290px),1fr));
+    gap: var(--layout-grid-gap, 20px);
   }
 
   &__card-product {
-    margin: 10px;
+    
   }
 }
 </style>

@@ -10,7 +10,7 @@
             :key="item.id"
           >
             <my-button
-              :class="{ 'btn-active': item.id === selected.id }"
+              :class="{ 'btn-active': item.id === selected?.id }"
               class="filter__btn"
               type="button"
               @click="checkSelected(item, item.id)"
@@ -32,7 +32,7 @@ export default {
       required: true
     },
     selected: {
-      type: Object,
+      type: Object || null,
       required: true
     },
     title: {
@@ -44,14 +44,16 @@ export default {
     return {
     }
   },
+  computed: {
+
+  },
   methods: {
     setSelected(value) {
       this.$emit("setSelected", value);
     },
     checkSelected(item, id) {
-      // нужно проверять на null без {} объектов
-      if (JSON.stringify(this.selected) !== '{}' && id === this.selected.id) {
-        this.setSelected({});
+      if (id === this.selected?.id) {
+        this.setSelected(null);
       } else {
         this.setSelected(item);
       }

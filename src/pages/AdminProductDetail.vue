@@ -179,7 +179,7 @@ export default {
       this.info = this.info.map(i => i.id === id ? {...i, [key]: value} : i)
     },
     addDevice() {
-      if(this.$route.path === '/admin/product/creatingNewProduct') {
+      if(this.$route.path === '/admin/product/createProduct') {
         const formData = new FormData()
         formData.append('name', this.nameProduct)
         formData.append('price', `${this.priceProduct}`)
@@ -214,7 +214,7 @@ export default {
     this.getBrandsAction();
     this.getTypesAction();
 
-    if(this.$route.path === '/admin/product/creatingNewProduct') {
+    if(this.$route.path === '/admin/product/createProduct') {
       this.title = 'Создание продукта';
       this.btnText = 'Создать';
     }
