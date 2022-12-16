@@ -2,8 +2,13 @@
   <footer class="footer">
     <div class="footer__container container">
       <div class="footer__body">
-<!--        Обычно в шаблонах не пишут текста, выносят через i18n-->
         <div class="footer__item">{{ $t('address') }}</div>
+        <my-button 
+          class=""
+          @click="swichLang"
+        >
+          swich lang
+        </my-button>
         <div class="footer__item">{{ $t('copyright') }}</div>
       </div>
     </div>
@@ -11,7 +16,19 @@
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      
+    }
+  },
+  methods: {
+    swichLang() {
+      this.$i18n.locale === 'ru' ? this.$i18n.locale = 'en' : this.$i18n.locale = 'ru';
+      localStorage.setItem('lang', this.$i18n.locale)
+    }
+  }
+}
 </script>
 
 <style lang="scss">

@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
-import { createI18n, useI18n } from 'vue-i18n/dist/vue-i18n.cjs';
-import { languages, defaultLocale } from '@/i18n';
+import { useI18n } from 'vue-i18n/dist/vue-i18n.cjs';
+import { i18n } from '@/i18n/i18n.js';
 
 import App from './App';
 import components from '@/components/UI';
@@ -10,15 +10,6 @@ import store from '@/store';
 
 import '@/styles/style.scss';
 import 'swiper/css/bundle';
-
-const massagis = Object.assign(languages);
-
-const i18n = createI18n({
-  legacy: false,
-  locale: defaultLocale,
-  fallbackLocale: 'ru',
-  messages: massagis
-})
 
 const app = createApp(App, {
   setup() {

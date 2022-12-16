@@ -63,6 +63,7 @@ export default {
   },
   data() {
     return {
+      
     }
   },
   computed: {
@@ -106,7 +107,27 @@ export default {
       if (this.checkIfThereAreProductsWithFilter) {
         return 'Товары не найдены, измените параметры фильтра';
       }
-    }
+    },
+    routerQuery() {
+      const query = {};
+
+      if (this.page > 1) {
+        query.page = this.page;
+      }
+
+      if (this.selectedType?.id) {
+        query.type = this.selectedType.id
+      }
+
+      if (this.selectedBrand?.id) {
+        query.brand = this.selectedBrand.id
+      }
+
+      return query
+    },
+    // typeId() {
+    //   return this.$route.query.type ? this.$route.query.type : this.typeProduct.id
+    // }
   },
   methods: {
     ...mapMutations({
@@ -124,17 +145,31 @@ export default {
     // this.setSelectedBrand({});
     this.getTypesAction();
     this.getBrandsAction();
-    this.getDevicesAction({});
+
+    let page = this.$route.query.page ? this.$route.query.page : 1;
+    let type = this.$route.query.type ? this.$route.query.type : null;
+    let brand = this.$route.query.brand ? this.$route.query.brand : null;
+
+    this.getDevicesAction({
+      typeId: type, 
+      brandId: brand, 
+      page: page, 
+    });
+
   },
   watch: {
     page() {
       this.getDevicesAction({});
+      this.$router.replace({ query: this.routerQuery });
+      // console.log(this.typeId);
     },
     selectedType() {
       this.getDevicesAction({});
+      this.$router.replace({ query: this.routerQuery });
     },
     selectedBrand() {
       this.getDevicesAction({});
+      this.$router.replace({ query: this.routerQuery });
     }
   }
 }
