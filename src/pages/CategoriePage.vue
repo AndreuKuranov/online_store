@@ -8,7 +8,7 @@
     title="Тип"
     :listElements="typeProduct"
     :selected="selectedType"
-    @setSelected="setSelectedType"
+    @setSelected="setSelectedTypePage"
   />
 
   <FilterComponent
@@ -16,7 +16,7 @@
     title="Бренд"
     :listElements="brandProduct"
     :selected="selectedBrand"
-    @setSelected="setSelectedBrand"
+    @setSelected="setSelectedBrandPage"
   />
 
   <ListProducts
@@ -50,9 +50,8 @@ import TitleBlock from '@/components/TitleBlock.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import FilterComponent from '@/components/FilterComponent.vue';
 import WarningComponent from '@/components/WarningComponent.vue';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
-// для таких страниц нужно обновление урла от поиска
 export default {
   components: {
     ListProducts,
@@ -75,6 +74,9 @@ export default {
       selectedType: state => state.shop.selectedType,
       selectedBrand: state => state.shop.selectedBrand,
       page: state => state.shop.page,
+    }),
+    ...mapGetters({
+      queryParameters: 'shop/queryParameters',
     }),
 
     checkIfThereAreProductsWithoutFilter() {
@@ -108,6 +110,7 @@ export default {
         return 'Товары не найдены, измените параметры фильтра';
       }
     },
+  
     routerQuery() {
       const query = {};
 
@@ -125,14 +128,14 @@ export default {
 
       return query
     },
-    // typeId() {
-    //   return this.$route.query.type ? this.$route.query.type : this.typeProduct.id
-    // }
   },
   methods: {
     ...mapMutations({
       setSelectedType: 'shop/setSelectedType',
       setSelectedBrand: 'shop/setSelectedBrand',
+      setSelectedTypePage: 'shop/setSelectedTypePage',
+      setSelectedBrandPage: 'shop/setSelectedBrandPage',
+      setPage: 'shop/setPage',
     }),
     ...mapActions({
       getTypesAction: 'shop/getTypesAction',
@@ -141,33 +144,29 @@ export default {
     }),
   },
   mounted() {
-    // this.setSelectedType({});
-    // this.setSelectedBrand({});
     this.getTypesAction();
     this.getBrandsAction();
 
-    let page = this.$route.query.page ? this.$route.query.page : 1;
-    let type = this.$route.query.type ? this.$route.query.type : null;
-    let brand = this.$route.query.brand ? this.$route.query.brand : null;
+    if (JSON.stringify(this.$route.query) === '{}') {
+      this.getDevicesAction({});
+    }
+    
+  },
+  created() {
+    if (this.$route.query.page) {
+      this.setPage(this.$route.query.page)
+    }
 
-    this.getDevicesAction({
-      typeId: type, 
-      brandId: brand, 
-      page: page, 
-    });
+    if (this.$route.query.type) {
+      this.setSelectedType({id: this.$route.query.type})
+    }
 
+    if (this.$route.query.brand) {
+      this.setSelectedBrand({id: this.$route.query.brand})
+    }
   },
   watch: {
-    page() {
-      this.getDevicesAction({});
-      this.$router.replace({ query: this.routerQuery });
-      // console.log(this.typeId);
-    },
-    selectedType() {
-      this.getDevicesAction({});
-      this.$router.replace({ query: this.routerQuery });
-    },
-    selectedBrand() {
+    queryParameters() {
       this.getDevicesAction({});
       this.$router.replace({ query: this.routerQuery });
     }

@@ -10,7 +10,7 @@
             :key="item.id"
           >
             <my-button
-              :class="{ 'btn-active': item.id === selected?.id }"
+              :class="{ 'btn-active': String(item.id) === String(selected?.id) }"
               class="filter__btn"
               type="button"
               @click="checkSelected(item, item.id)"
@@ -52,7 +52,7 @@ export default {
       this.$emit("setSelected", value);
     },
     checkSelected(item, id) {
-      if (id === this.selected?.id) {
+      if (String(id) === String(this.selected?.id)) {
         this.setSelected(null);
       } else {
         this.setSelected(item);

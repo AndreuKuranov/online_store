@@ -14,7 +14,7 @@
           class="pagination__item"
           v-for="pageItem in pages"
           :key="pageItem"
-          :class="{ 'pagination__item--active': page === pageItem }"
+          :class="{ 'pagination__item--active': String(page) === String(pageItem) }"
           @click="setPage(pageItem)"
         >
           {{ pageItem }}
@@ -74,6 +74,9 @@ export default {
       } 
     }
   },
+  mounted() {
+    console.log(this.page);
+  }
 }
 </script>
 

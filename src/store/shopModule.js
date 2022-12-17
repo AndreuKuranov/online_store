@@ -28,7 +28,13 @@ export const shopModule = {
   }),
 
   getters: {
-
+    queryParameters(state) {
+      return {
+        type: state.selectedType,
+        brand: state.selectedBrand,
+        page: state.page,
+      }
+    }
   },
 
   mutations: {
@@ -45,10 +51,16 @@ export const shopModule = {
       state.brandProduct = brandProduct;
     },
     setSelectedType(state, selectedType) {
-      state.page = 1;
       state.selectedType = selectedType;
     },
     setSelectedBrand(state, selectedBrand) {
+      state.selectedBrand = selectedBrand;
+    },
+    setSelectedTypePage(state, selectedType) {
+      state.page = 1;
+      state.selectedType = selectedType;
+    },
+    setSelectedBrandPage(state, selectedBrand) {
       state.page = 1;
       state.selectedBrand = selectedBrand;
     },
