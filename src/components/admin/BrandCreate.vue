@@ -4,7 +4,7 @@
 
     <div class="ordering-form__body">
       <div class="ordering-form__item">
-        <my-input
+        <AdminInput
           class="ordering-form__form-input"
           v-focus
           placeholder="Наименование"
@@ -13,13 +13,13 @@
       </div>
 
       <div class="ordering-form__item">
-        <my-button
+        <AdminButton
           class="ordering-form__btn"
           type="button"
           @click="addBrand"
         >
           Создать
-        </my-button>
+        </AdminButton>
       </div>
     </div>
 
@@ -28,8 +28,13 @@
 
 <script>
   import { createBrand } from '@/http/productAPI';
+  import AdminButton from '@/components/admin/AdminButton.vue';
+  import AdminInput from '@/components/admin/AdminInput.vue';
 
   export default {
+    components: {
+      AdminButton,
+    },
     data() {
       return {
         value: '',

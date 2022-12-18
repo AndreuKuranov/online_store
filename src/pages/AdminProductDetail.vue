@@ -1,64 +1,59 @@
 <template>
-    <form @submit.prevent class="page-admin__form form-admin">
+  <form @submit.prevent class="page-admin__form form-admin">
     <h2 class="form-admin__title">{{ title }}</h2>
 
     <div class="form-admin__body">
       <div class="form-admin__item">
         <label class="form-admin__label" for="brand">Бренд</label>
-        <my-select
+        <AdminSelect
           class="form-admin__select"
           v-model="valueSelectedBrand"
           id="brand"
           :options="brandProduct"
           :defaultOptionText="'Выберете бренд'"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
         <label class="form-admin__label" for="type">Тип</label>
-        <my-select
+        <AdminSelect
           class="form-admin__select"
           v-model="valueSelectedType"
           id="type"
           :options="typeProduct"
           :defaultOptionText="'Выберете тип'"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
         <label class="form-admin__label" for="name-product">Наименование продукта</label>
-        <my-input
+        <AdminInput
           class="form-admin__input"
           placeholder="Наименование"
           v-model="nameProduct"
           id="name-product"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
         <label class="form-admin__label" for="price-product">Цена</label>
-        <my-input
+        <AdminInput
           class="form-admin__input"
           placeholder="Цена"
           type="number"
           id="name-product"
           v-model="priceProduct"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
         <label class="form-admin__label" for="img-product">Картинка</label>
-        <my-input
+        <input
           class="form-admin__input input-admin--file"
           type="file"
           id="img-product"
           @change="setImgProduct"
           ref="file"
-          :admin="true"
         />
       </div>
 
@@ -72,60 +67,55 @@
             :key="item.id"
           >
             <div class="characteristics__item">
-              <my-input
+              <AdminInput
                 class="characteristics__input"
                 placeholder="Введите название свойства"
                 @change="changeInfo('title', $event.target.value, item.id)"
                 :value="item.title"
-                :admin="true"
               />
             </div>
 
             <div class="characteristics__item">
-              <my-input
+              <AdminInput
                 class="characteristics__input"
                 placeholder="Введите описание свойства"
                 @change="changeInfo('description', $event.target.value, item.id)"
                 :value="item.description"
-                :admin="true"
               />
             </div>
 
             <div class="characteristics__item">
-              <my-button
+              <AdminButton
                 class="characteristics__btn btn-admin--delete"
                 type="button"
                 @click="removeInfo(item.id)"
-                :admin="true"
               >
                 <span class="material-symbols-outlined characteristics__material-symbols-outlined">delete</span>
-              </my-button>
+              </AdminButton>
             </div>
           </div>
         </div>
       </div>
 
       <div class="form-admin__item">
-        <my-button
+        <AdminButton
           class="form-admin__btn"
           type="button"
           @click="setInfo"
-          :admin="true"
         >
           Добавить новое свойство
           <span class="material-symbols-outlined form-admin__material-symbols-outlined">add</span>
-        </my-button>
+        </AdminButton>
       </div>
 
       <div class="form-dmin__item">
-        <my-button
+        <AdminButton
           class="form-admin__btn"
           type="button"
           @click="addDevice"
-          :admin="true"
         >
           {{ btnText }}
-        </my-button>
+        </AdminButton>
       </div>
     </div>
 
@@ -136,8 +126,16 @@
 import { createDevice } from '@/http/productAPI';
 import { uniqueId } from '@/functions/functions.js';
 import { mapState, mapActions } from 'vuex';
+import AdminButton from '@/components/admin/AdminButton.vue';
+import AdminInput from '@/components/admin/AdminInput.vue';
+import AdminSelect from '@/components/admin/AdminSelect.vue';
 
 export default {
+  components: {
+    AdminButton,
+    AdminInput,
+    AdminSelect,
+  },
   data() {
     // все данные по продукту должны быть одним свойством, по умолчанию это null
     return {

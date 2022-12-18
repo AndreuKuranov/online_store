@@ -4,7 +4,7 @@
 
     <div class="ordering-form__body">
       <div class="ordering-form__item">
-        <my-select
+        <AdminSelect
           v-model="valueSelectedBrand"
           :options="brandProduct"
           :defaultOptionText="'Выберете бренд'"
@@ -12,7 +12,7 @@
       </div>
 
       <div class="ordering-form__item">
-        <my-select
+        <AdminSelect
           v-model="valueSelectedType"
           :options="typeProduct"
           :defaultOptionText="'Выберете тип'"
@@ -20,7 +20,7 @@
       </div>
 
       <div class="ordering-form__item">
-        <my-input
+        <AdminInput
           class="ordering-form__form-input"
           placeholder="Наименование"
           v-model="nameProduct"
@@ -28,7 +28,7 @@
       </div>
 
       <div class="ordering-form__item">
-        <my-input
+        <AdminInput
           class="ordering-form__form-input"
           placeholder="Цена"
           type="number"
@@ -37,7 +37,7 @@
       </div>
 
       <div class="ordering-form__item">
-        <input
+        <AdminInput
           type="file"
           @change="setImgProduct"
           ref="file"
@@ -45,13 +45,13 @@
       </div>
 
       <div class="ordering-form__item">
-        <my-button
+        <AdminButton
           class="ordering-form__btn"
           type="button"
           @click="setInfo"
         >
           Добавить новое свойство
-        </my-button>
+        </AdminButton>
       </div>
 
       <div class="ordering-form__item">
@@ -62,7 +62,7 @@
           :key="item.number"
         >
           <div class="ordering-form__item">
-            <my-input
+            <AdminInput
               class="ordering-form__form-input"
               placeholder="Введите название свойства"
               @change="changeInfo('title', $event.target.value, item.number)"
@@ -71,7 +71,7 @@
           </div>
 
           <div class="ordering-form__item">
-            <my-input
+            <AdminInput
               class="ordering-form__form-input"
               placeholder="Введите описание свойства"
               @change="changeInfo('description', $event.target.value, item.number)"
@@ -80,26 +80,26 @@
           </div>
 
           <div class="ordering-form__item">
-            <my-button
+            <AdminButton
               class="ordering-form__btn"
               type="button"
               @click="removeInfo(item.number)"
             >
               Удалить свойство
-            </my-button>
+            </AdminButton>
           </div>
         </div>
   
       </div>
 
       <div class="ordering-form__item">
-        <my-button
+        <AdminButton
           class="ordering-form__btn"
           type="button"
           @click="addDevice"
         >
           Создать
-        </my-button>
+        </AdminButton>
       </div>
     </div>
 
@@ -107,11 +107,19 @@
 </template>
 
 <script>
-  import { mapState, mapGetters, mapActions, mapMutations } from 'vuex';
+  import { mapState } from 'vuex';
   import { uniqueId } from '@/functions/functions.js';
   import { createDevice } from '@/http/productAPI';
+  import AdminButton from '@/components/admin/AdminButton.vue';
+  import AdminInput from '@/components/admin/AdminInput.vue';
+  import AdminSelect from '@/components/admin/AdminSelect.vue';
 
   export default {
+    components: {
+      AdminButton,
+      AdminInput,
+      AdminSelect,
+    },
     data() {
       return {
         nameProduct: '',

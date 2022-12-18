@@ -7,19 +7,26 @@
     </main>
 
     <footer-component />
+
+    <ModalDeleteElement />
+    <ModalOrderingForm />
   </div>
 </template>
 
 <script>
   import HeaderComponent from '@/components/HeaderComponent.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+  import ModalDeleteElement from '@/components/ModalDeleteElement.vue';
+  import ModalOrderingForm from '@/components/ModalOrderingForm.vue';
   import { checkUserToken } from '@/http/userAPI';
   import { mapMutations, mapActions } from 'vuex';
 
   export default {
     components: { 
       HeaderComponent, 
-      FooterComponent 
+      FooterComponent,
+      ModalDeleteElement,
+      ModalOrderingForm,
     },
     methods: {
       ...mapMutations({

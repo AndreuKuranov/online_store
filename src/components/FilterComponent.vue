@@ -32,8 +32,8 @@ export default {
       required: true
     },
     selected: {
-      type: Object || null,
-      required: true
+      type: Object,
+      required: false
     },
     title: {
       type: String,

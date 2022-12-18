@@ -25,7 +25,7 @@
           <my-button
             class="basket__btn"
             type="button"
-            @click="modalVisible = true"
+            @click="this.setModalVisible(true)"
           >
             Оформить
           </my-button>
@@ -39,31 +39,22 @@
     title="Топ продаж" 
     :products="productsTop" 
   />
-
-  <my-modal 
-    v-model:stateModal="modalVisible"
-  >
-    <OrderingForm />
-  </my-modal>
 </template>
 
 <script>
 import ListProducts from '@/components/ListProducts.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
 import CardProduct from '@/components/CardProduct.vue';
-import OrderingForm from '@/components/OrderingForm.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   components: {
     TitleBlock,
     ListProducts,
     CardProduct,
-    OrderingForm,
   },
   data() {
     return {
-      modalVisible: false,
       products: [
         { id: 'products1', link: '/product', name: 'Название товара', price: '9 999', img: '01.jpg' },
         { id: 'products2', link: '/product', name: 'Название товара', price: '9 999', img: '02.jpg' },
@@ -76,8 +67,15 @@ export default {
   computed: {
     ...mapState({
       productsTop: state => state.shop.productsTop,
+      modalVisible: state => state.modal.modalVisible,
     }),
   },
+
+  methods: {
+    ...mapMutations({
+      setModalVisible: 'modal/setModalVisible',
+    }),
+  }
 }
 </script>
 

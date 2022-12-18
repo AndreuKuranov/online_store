@@ -4,24 +4,22 @@
 
     <div class="form-admin__body">
       <div class="form-admin__item">
-        <my-input
+        <AdminInput
           class="form-admin__input"
           v-focus
           placeholder="Наименование"
           v-model="value"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
-        <my-button
+        <AdminButton
           class="form-admin__btn"
           type="button"
           @click="addType"
-          :admin="true"
         >
           {{ btnText }}
-        </my-button>
+        </AdminButton>
       </div>
     </div>
 
@@ -31,8 +29,14 @@
 <script>
 import { createType } from '@/http/productAPI';
 import { mapActions } from 'vuex';
+import AdminButton from '@/components/admin/AdminButton.vue';
+import AdminInput from '@/components/admin/AdminInput.vue';
 
 export default {
+  components: {
+    AdminButton,
+    AdminInput,
+  },
   data() {
     return {
       value: '',
@@ -56,13 +60,12 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     if(this.$route.path === '/admin/type/createType') {
       this.title = 'Создание типа';
       this.btnText = 'Создать';
     }
 
-    // неверно, данные для редактирования должны подгрузиться до старта страницы
     if(this.$route.params.id) {
       this.title = 'Редактирование типа';
       this.btnText = 'Cохранить';

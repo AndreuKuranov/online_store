@@ -21,54 +21,29 @@
             <span class="material-symbols-outlined elements-list__material-symbols-outlined">edit</span>
           </router-link>
 
-          <my-button
+          <AdminButton
             class="elements-list__btn btn-admin--delete"
             type="button"
-            @click="deleteModal(item)"
-            :admin="true"
+            @click="deleteModal(item.name, url, item.id)"
           >
             <span class="material-symbols-outlined elements-list__material-symbols-outlined">delete</span>
-          </my-button>
+          </AdminButton>
         </div>
         
       </li>
     </ul>
   </div>
-
-<!--  также как говорил на пред занятии, гораздо лучше будет посмотреть API существующих библиотек
-и оттуда брать пример использования-->
-<!--  модалка удаления - отдельный компонент, не может быть частью ElementsList фичи-->
-  <my-modal 
-    v-model:stateModal="modalVisible"
-  >
-    <div class="delete-modal">
-      <div class="delete-modal__text">Удалить: "{{name}}"?</div>
-      <div class="delete-modal__btn-block">
-        <my-button 
-          class="delete-modal__btn"
-          @click="deleteElement"
-          :admin="true"
-        >
-          Да
-        </my-button>
-        <my-button 
-          class="delete-modal__btn"
-          @click="closeModal"
-          :admin="true"
-        >
-          Нет
-        </my-button>
-      </div>
-    </div>
-  </my-modal>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import LinkAdd from '@/components/admin/LinkAdd.vue';
+import AdminButton from '@/components/admin/AdminButton.vue';
 
 export default {
   components: {
     LinkAdd,
+    AdminButton,
   },
   props: {
     elements: {
@@ -86,26 +61,23 @@ export default {
   },
   data() {
     return {
-      modalVisible: false,
-      name: '',
-      id: '',
     }
   },
   methods: {
-    deleteModal(item) {
-      this.modalVisible = true;
-      this.name = item.name;
-      this.id = item.id;
+    ...mapMutations({
+      setModalVisibleAdmin: 'modal/setModalVisibleAdmin',
+      setDeleteElement: 'modal/setDeleteElement',
+    }),
+
+    deleteModal(title, name, id) {
+      this.setDeleteElement({
+        title,
+        name,
+        id,
+      })
+
+      this.setModalVisibleAdmin(true);
     },
-    closeModal() {
-      this.modalVisible = false;
-      this.name = '';
-      this.id = '';
-    },
-    deleteElement() {
-      this.$emit("deleteElement", this.id);
-      this.modalVisible = false;
-    }
   }
 }
 </script>

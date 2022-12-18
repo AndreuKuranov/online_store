@@ -1,6 +1,6 @@
 <template>
   <select 
-    class="select"
+    class="select-admin"
     @change="changeOption"
     :value="modelValue"
   >
@@ -17,7 +17,6 @@
 
 <script>
 export default {
-  name: 'my-select',
   props: {
     defaultOptionText: {
       type: String
@@ -39,8 +38,11 @@ export default {
 </script>
 
 <style scoped>
-
-.select {
-
+.select-admin {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid var(--dark-color);
+  border-radius: var(--small-border-radius);
 }
 </style>

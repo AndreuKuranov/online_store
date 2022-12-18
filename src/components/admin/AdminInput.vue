@@ -2,14 +2,13 @@
   <input
     :value="modelValue"
     @input="updateInput"
-    class="input"
+    class="input-admin"
     type="text"
   />
 </template>
 
 <script>
 export default {
-  name: 'my-input',
   props: {
     modelValue: [String, Number],
   },
@@ -22,15 +21,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input {
+.input-admin {
   box-sizing: border-box;
   width: 100%;
-  padding: 14px 6px;
+  padding: 5px;
   border: 1px solid var(--dark-color);
   border-radius: var(--small-border-radius);
 
-  @include min-width-md {
-    padding: 18px 10px;
+  &--file {
+    border: none;
+    padding: 0;
   }
 }
 </style>

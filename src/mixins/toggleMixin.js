@@ -7,7 +7,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.$emit('update:stateModal', false)
+      this.$emit('setStateModal', false)
     }
   },
 }

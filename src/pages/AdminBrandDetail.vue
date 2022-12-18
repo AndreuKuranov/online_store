@@ -4,24 +4,22 @@
 
     <div class="form-admin__body">
       <div class="form-admin__item">
-        <my-input
+        <AdminInput
           class="form-admin__input"
           v-focus
           placeholder="Наименование"
           v-model="value"
-          :admin="true"
         />
       </div>
 
       <div class="form-admin__item">
-        <my-button
+        <AdminButton
           class="form-admin__btn"
           type="button"
           @click="addBrand"
-          :admin="true"
         >
           {{ btnText }}
-        </my-button>
+        </AdminButton>
       </div>
     </div>
 
@@ -31,8 +29,14 @@
 <script>
 import { createBrand } from '@/http/productAPI';
 import { mapActions } from 'vuex';
+import AdminButton from '@/components/admin/AdminButton.vue';
+import AdminInput from '@/components/admin/AdminInput.vue';
 
 export default {
+  components: {
+    AdminButton,
+    AdminInput,
+  },
   data() {
     return {
       value: '',
