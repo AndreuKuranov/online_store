@@ -100,7 +100,7 @@ export default {
       }
       return value;
     },
-    // это нагляднее делать в шаблоне
+
     textWarning() {
       if (this.checkIfThereAreProductsWithoutFilter) {
         return 'Нет товаров';
@@ -111,7 +111,7 @@ export default {
       }
     },
   
-    routerQuery() {
+    setParametersQuery() {
       const query = {};
 
       if (this.page > 1) {
@@ -142,6 +142,29 @@ export default {
       getBrandsAction: 'shop/getBrandsAction',
       getDevicesAction: 'shop/getDevicesAction',
     }),
+
+    checkParametersQuery() {
+      if (this.$route.query.page) {
+        this.setPage(this.$route.query.page)
+      } else {
+        this.setPage(1);
+      }
+
+      if (this.$route.query.type) {
+        this.setSelectedType({id: this.$route.query.type})
+      } else {
+        this.setSelectedType(null);
+      }
+
+      if (this.$route.query.brand) {
+        this.setSelectedBrand({id: this.$route.query.brand})
+      } else {
+        this.setSelectedBrand(null);
+      }
+    }
+  },
+  created() {
+    this.checkParametersQuery();
   },
   mounted() {
     this.getTypesAction();
@@ -150,25 +173,21 @@ export default {
     if (JSON.stringify(this.$route.query) === '{}') {
       this.getDevicesAction({});
     }
-    
-  },
-  created() {
-    if (this.$route.query.page) {
-      this.setPage(this.$route.query.page)
-    }
-
-    if (this.$route.query.type) {
-      this.setSelectedType({id: this.$route.query.type})
-    }
-
-    if (this.$route.query.brand) {
-      this.setSelectedBrand({id: this.$route.query.brand})
-    }
   },
   watch: {
     queryParameters() {
       this.getDevicesAction({});
-      this.$router.replace({ query: this.routerQuery });
+      this.$router.replace({ query: this.setParametersQuery });
+    },
+
+    $route(toRoute, ftomRoute) {
+      if (JSON.stringify(toRoute.query) === '{}') {
+        this.setPage(1);
+        this.setSelectedType(null);
+        this.setSelectedBrand(null);
+      } else {
+        // this.checkParametersQuery();
+      }
     }
   }
 }

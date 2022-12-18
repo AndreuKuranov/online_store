@@ -3,6 +3,7 @@
     <Navbar class="menu__navbar" />
     <PhoneComponent class="menu__phone" />
     <ShoppingCart class="menu__shopping-cart" />
+    <SwichLang />
 
     <router-link
       v-if="!isAuth"
@@ -40,6 +41,7 @@
 import Navbar from '@/components/Navbar.vue';
 import PhoneComponent from '@/components/PhoneComponent.vue';
 import ShoppingCart from '@/components/ShoppingCart.vue';
+import SwichLang from '@/components/SwichLang.vue';
 import { mapState, mapMutations, mapGetters } from 'vuex';
 
 export default {
@@ -47,6 +49,7 @@ export default {
     Navbar,
     PhoneComponent,
     ShoppingCart,
+    SwichLang,
   },
   data() {
     return {

@@ -3,12 +3,6 @@
     <div class="footer__container container">
       <div class="footer__body">
         <div class="footer__item">{{ $t('address') }}</div>
-        <my-button 
-          class=""
-          @click="swichLang"
-        >
-          swich lang
-        </my-button>
         <div class="footer__item">{{ $t('copyright') }}</div>
       </div>
     </div>
@@ -22,12 +16,6 @@ export default {
       
     }
   },
-  methods: {
-    swichLang() {
-      this.$i18n.locale === 'ru' ? this.$i18n.locale = 'en' : this.$i18n.locale = 'ru';
-      localStorage.setItem('lang', this.$i18n.locale)
-    }
-  }
 }
 </script>
 

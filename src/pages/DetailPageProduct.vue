@@ -5,7 +5,6 @@
   <section class="page__product product">
     <div class="product__container container">
       <div class="product__body">
-<!--        Это отдельный компонент слайдера, причем полностью дублируется с другим <swiper> что на Home пейдже-->
         <swiper
           navigation
           :loop="true"
@@ -45,18 +44,11 @@
     </div>
   </section>
 
-<!--  Это отдельный компонент, в пейдже не должно быть логики этой фичи, кроме того-->
-<!--  если есть логика в каждом отдельном табе, её тоже выносят в отдельные компоненты-->
   <TabsComponent class="page__tabs">
     <TabComponent title="Характеристики" icon="settings_applications">
-      <ul>
-        <li
-          v-for="item in product.info"
-          :key="item.id"
-        >
-          {{ item.title }}: {{ item.description }}
-        </li>
-      </ul>
+      <SpecificationsProduct 
+        :productInfo="product.info"
+      />
     </TabComponent>
     <TabComponent title="Описание" icon="description">
       text Описание
@@ -79,6 +71,7 @@ import CounterComponent from '@/components/CounterComponent.vue';
 import TabsComponent from '@/components/TabsComponent.vue';
 import TabComponent from '@/components/TabComponent.vue';
 import TitleBlock from '@/components/TitleBlock.vue';
+import SpecificationsProduct from '@/components/SpecificationsProduct.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { mapState, mapActions} from 'vuex';
@@ -92,6 +85,7 @@ export default {
     TabsComponent,
     TabComponent,
     TitleBlock,
+    SpecificationsProduct,
   },
   data() {
     return {

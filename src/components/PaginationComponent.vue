@@ -64,13 +64,13 @@ export default {
 
     prevBtn() {
       if (this.page > 1) {
-        this.setPage(this.page - 1)
+        this.setPage(Number(this.page) - 1)
       } 
     },
 
     nextBtn() {
       if (this.page < this.pageCount) {
-        this.setPage(this.page + 1)
+        this.setPage(Number(this.page) + 1)
       } 
     }
   },
